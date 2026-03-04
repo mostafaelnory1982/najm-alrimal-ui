@@ -9,13 +9,13 @@
 // =============================================================================
 
 // 1. Primitives — raw token values (Sass variables, no output)
-@import './base/primitives';
+@import '../base/primitives';
 
 // 2. Theme tokens — CSS custom properties, light + dark
-@import './base/themes';
+@import '../base/themes';
 
 // 3. Typography — font import, type classes, text utilities
-@import './base/typography';
+@import '../base/typography';
 
 // =============================================================================
 // Global reset
