@@ -280,15 +280,12 @@ html {
   font-size: 100%;
 }
 
-img,
-video,
-svg {
+img, video, svg {
   display: block;
   max-width: 100%;
 }
 
-ul,
-ol {
+ul, ol {
   list-style: none;
 }
 
@@ -299,9 +296,7 @@ button {
   font-family: inherit;
 }
 
-input,
-textarea,
-select {
+input, textarea, select {
   font-family: inherit;
   font-size: inherit;
 }
@@ -310,8 +305,12 @@ select {
   background-color: rgb(var(--color-surface));
 }
 
-.bg-surface-cont {
+.bg-surface-container {
   background-color: rgb(var(--color-surface-container));
+}
+
+.bg-surface-elevated {
+  background-color: rgb(var(--color-surface-elevated));
 }
 
 .bg-brand {
@@ -322,8 +321,41 @@ select {
   background-color: rgb(var(--color-primary-container));
 }
 
+.bg-surface-blur {
+  background-color: rgba(var(--color-surface), 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.text-on-surface {
+  color: rgb(var(--color-on-surface));
+}
+
 .text-on-brand {
   color: rgb(var(--color-on-primary));
+}
+
+.text-brand {
+  color: rgb(var(--color-primary));
+}
+
+.text-muted {
+  color: rgb(var(--color-on-surface-variant));
+}
+
+.text-success {
+  color: rgb(var(--color-success));
+}
+
+.text-warning {
+  color: rgb(var(--color-warning));
+}
+
+.text-error {
+  color: rgb(var(--color-error));
+}
+
+.text-info {
+  color: rgb(var(--color-info));
 }
 
 .border-outline {
@@ -364,6 +396,34 @@ select {
   border-radius: 624.9375rem;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .logo-box {
   width: 2.5rem;
   height: 2.5rem;
@@ -371,6 +431,7 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
 }
 
 .btn-brand {
@@ -383,20 +444,21 @@ select {
   font-family: inherit;
   font-weight: 600;
   font-size: var(--font-size-body-md);
-  transition: opacity 200ms;
+  transition: opacity 200ms ease, background-color 200ms ease;
 }
 .btn-brand:hover {
-  opacity: 0.9;
+  opacity: 0.88;
 }
 .btn-brand:active {
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 body,
-.btn-brand,
 header,
 footer,
-.logo-box {
+.btn-brand,
+.logo-box,
+.bg-surface-blur {
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
 }
 

@@ -6,8 +6,8 @@
  *  - Vanilla JS only. No frameworks.
  *  - Dark mode: toggles .dark class on <html>
  *  - Language: toggles lang + dir attributes on <html>
- *  - Preferences saved to localStorage
- *  - No flash of unstyled content (FOUC prevention in <head>)
+ *  - Preferences saved to localStorage (with try/catch for Edge file:// restriction)
+ *  - No flash of unstyled content (FOUC prevention inline script in <head>)
  */
 
 'use strict';
@@ -17,8 +17,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const STORAGE_KEYS = {
-  THEME: 'najm-theme',   // 'dark' | 'light'
-  LANG:  'najm-lang',    // 'ar'   | 'en'
+  THEME: 'najm-theme',  // 'dark' | 'light'
+  LANG:  'najm-lang',   // 'ar'   | 'en'
 };
 
 const DEFAULTS = {
@@ -26,6 +26,27 @@ const DEFAULTS = {
   LANG:  'ar',
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// STORAGE HELPERS
+// Edge blocks localStorage when page is opened as file://
+// All reads/writes go through these helpers to avoid console errors
+// ─────────────────────────────────────────────────────────────────────────────
+
+function storageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function storageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Silently ignore — storage blocked (file://, private mode, etc.)
+  }
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // THEME MANAGEMENT
@@ -55,37 +76,37 @@ function applyTheme(theme) {
   });
 
   // Persist preference
-  localStorage.setItem(STORAGE_KEYS.THEME, theme);
+  storageSet(STORAGE_KEYS.THEME, theme);
 
-  // Update aria-pressed state on toggle button
+  // Update toggle button aria state
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
+    const isAr = html.lang === 'ar';
     themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     themeToggle.setAttribute('aria-label',
       theme === 'dark'
-        ? (document.documentElement.lang === 'ar' ? 'تفعيل الوضع الفاتح' : 'Switch to light mode')
-        : (document.documentElement.lang === 'ar' ? 'تفعيل الوضع المظلم' : 'Switch to dark mode')
+        ? (isAr ? 'تفعيل الوضع الفاتح' : 'Switch to light mode')
+        : (isAr ? 'تفعيل الوضع المظلم' : 'Switch to dark mode')
     );
   }
 }
 
 /**
- * Toggle between light and dark themes
+ * Toggle between light and dark
  */
 function toggleTheme() {
-  const currentTheme = localStorage.getItem(STORAGE_KEYS.THEME) || DEFAULTS.THEME;
-  applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  const current = storageGet(STORAGE_KEYS.THEME) || DEFAULTS.THEME;
+  applyTheme(current === 'dark' ? 'light' : 'dark');
 }
 
 /**
- * Get the saved or system-preferred theme
+ * Get saved or system-preferred theme
  * @returns {'light'|'dark'}
  */
 function getPreferredTheme() {
-  const saved = localStorage.getItem(STORAGE_KEYS.THEME);
+  const saved = storageGet(STORAGE_KEYS.THEME);
   if (saved === 'dark' || saved === 'light') return saved;
 
-  // Fall back to system preference
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     return 'dark';
   }
@@ -93,13 +114,12 @@ function getPreferredTheme() {
   return DEFAULTS.THEME;
 }
 
-
 // ─────────────────────────────────────────────────────────────────────────────
 // LANGUAGE MANAGEMENT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Apply language to <html> attributes
+ * Apply language to <html>
  * @param {'ar'|'en'} lang
  */
 function applyLanguage(lang) {
@@ -109,18 +129,18 @@ function applyLanguage(lang) {
   html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
   // Persist preference
-  localStorage.setItem(STORAGE_KEYS.LANG, lang);
+  storageSet(STORAGE_KEYS.LANG, lang);
 
-  // Update toggle button state
+  // Update toggle button label
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
-    langToggle.textContent  = lang === 'ar' ? 'EN' : 'عربي';
+    langToggle.textContent = lang === 'ar' ? 'EN' : 'عربي';
     langToggle.setAttribute('aria-label',
       lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'
     );
   }
 
-  // Update all translated elements
+  // Update all bilingual elements using data-ar / data-en attributes
   document.querySelectorAll('[data-ar][data-en]').forEach((el) => {
     el.textContent = el.dataset[lang] || el.textContent;
   });
@@ -130,73 +150,65 @@ function applyLanguage(lang) {
  * Toggle between Arabic and English
  */
 function toggleLanguage() {
-  const currentLang = localStorage.getItem(STORAGE_KEYS.LANG) || DEFAULTS.LANG;
-  applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+  const current = storageGet(STORAGE_KEYS.LANG) || DEFAULTS.LANG;
+  applyLanguage(current === 'ar' ? 'en' : 'ar');
 }
 
 /**
- * Get the saved language preference
+ * Get saved language preference
  * @returns {'ar'|'en'}
  */
 function getPreferredLanguage() {
-  const saved = localStorage.getItem(STORAGE_KEYS.LANG);
+  const saved = storageGet(STORAGE_KEYS.LANG);
   if (saved === 'ar' || saved === 'en') return saved;
   return DEFAULTS.LANG;
 }
 
-
 // ─────────────────────────────────────────────────────────────────────────────
 // INITIALIZATION
-// Runs after DOM is ready
 // ─────────────────────────────────────────────────────────────────────────────
 
 function init() {
-  // Apply saved preferences
   applyTheme(getPreferredTheme());
   applyLanguage(getPreferredLanguage());
 
-  // Bind theme toggle button
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', toggleTheme);
   }
 
-  // Bind language toggle button
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
     langToggle.addEventListener('click', toggleLanguage);
   }
 
-  // Listen for system theme changes (when no saved preference)
+  // Follow system preference only if user has no saved preference
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      // Only follow system if user hasn't set a manual preference
-      if (!localStorage.getItem(STORAGE_KEYS.THEME)) {
+      if (!storageGet(STORAGE_KEYS.THEME)) {
         applyTheme(e.matches ? 'dark' : 'light');
       }
     });
   }
 }
 
-// Run on DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
   init();
 }
 
-
 // ─────────────────────────────────────────────────────────────────────────────
-// FOUC PREVENTION SNIPPET
+// FOUC PREVENTION — paste this in <head> BEFORE stylesheet links
 // ─────────────────────────────────────────────────────────────────────────────
-// IMPORTANT: Copy this inline <script> into the <head> of every HTML file
-// BEFORE any stylesheet links to prevent flash of wrong theme:
 //
 // <script>
 //   (function() {
-//     const t = localStorage.getItem('najm-theme');
-//     if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-//       document.documentElement.classList.add('dark');
-//     }
+//     try {
+//       var t = localStorage.getItem('najm-theme');
+//       if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+//         document.documentElement.classList.add('dark');
+//       }
+//     } catch(e) {}
 //   })();
 // </script>
