@@ -1,0 +1,10 @@
+{
+  "name": "najm-alrimal-ui",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "sass --watch src/scss/styles.scss src/css/styles.css"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}

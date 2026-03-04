@@ -1,0 +1,30 @@
+// Fix: Use ../base/ because styles.scss is inside /CSS/ folder
+@use '../base/primitives' as p;
+@use '../base/themes';
+@use '../base/typography';
+
+// Custom Mappings
+.bg-surface      { background-color: rgb(var(--color-surface)); }
+.bg-brand        { background-color: rgb(var(--color-primary)); }
+.text-on-surface { color: rgb(var(--color-on-surface)); }
+.text-brand      { color: rgb(var(--color-primary)); }
+
+.logo-box {
+  width: p.$space-10; height: p.$space-10;
+  border-radius: p.$radius-md;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.btn-brand {
+  padding: p.$space-3 p.$space-6;
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--color-on-primary));
+  border-radius: p.$radius-md;
+  border: none; cursor: pointer;
+  transition: opacity var(--transition-speed);
+  &:hover { opacity: 0.9; }
+}
+
+.dark-show { display: none; }
+html.dark .dark-show { display: block; }
+html.dark .dark-hide { display: none; }

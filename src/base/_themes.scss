@@ -1,0 +1,38 @@
+@use 'primitives' as p;
+
+:root {
+  // Surface - Light
+  --color-surface:                   255 255 255;
+  --color-surface-container:         244 244 244;
+  --color-on-surface:                33 33 33;
+  --color-on-surface-variant:        97 97 97;
+
+  // Primary
+  --color-primary:                   39 78 162;
+  --color-on-primary:                255 255 255;
+  --color-primary-container:         214 224 245;
+
+  // Outline
+  --color-outline:                   189 189 189;
+  --color-outline-variant:           224 224 224;
+
+  --transition-speed:                200ms;
+}
+
+html.dark {
+  // Surface - Dark
+  --color-surface:                   18 18 18;
+  --color-surface-container:         28 28 28;
+  
+  // On Surface - FIXED CONTRAST
+  --color-on-surface:                238 238 238; 
+  --color-on-surface-variant:        180 180 180; // Light gray for visibility
+
+  // Primary - Dark
+  --color-primary:                   173 193 235;
+  --color-on-primary:                20 40 82;
+  --color-primary-container:         39 78 162;
+
+  --color-outline:                   66 66 66;
+  --color-outline-variant:           48 48 48;
+}
