@@ -1,29 +1,43 @@
 // =============================================================================
-// _typography.scss - Full IBM Plex Sans Arabic Scale
+// _typography.scss
+// Type system — Nijm Al-Rimal Design System
+// Figma: node 8973:58468 (Typography)
+// Font: IBM Plex Sans Arabic (matches styles.css)
+// RTL Arabic default + LTR English support
 // =============================================================================
 
+// Google Fonts import — IBM Plex Sans Arabic
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 
+// -----------------------------------------------------------------------------
+// CSS custom properties — type tokens
+// -----------------------------------------------------------------------------
 :root {
   --font-primary: 'IBM Plex Sans Arabic', sans-serif;
-  
-  // DESKTOP SCALE
-  --font-size-display-xl:    3rem;
-  --font-size-display-lg:    2.5rem;
-  --font-size-display-md:    2rem;
-  --font-size-display-sm:    1.75rem;
-  --font-size-heading-xl:    1.5rem;
-  --font-size-heading-lg:    1.25rem;
-  --font-size-heading-md:    1.125rem;
-  --font-size-heading-sm:    1rem;
-  --font-size-body-lg:       1rem;
-  --font-size-body-md:       0.875rem;
-  --font-size-body-sm:       0.75rem;
-  --font-size-label-lg:      0.875rem;
-  --font-size-caption:       0.6875rem;
+
+  // Display
+  --font-size-display-xl: 3rem;
+  --font-size-display-lg: 2.5rem;
+  --font-size-display-md: 2rem;
+  --font-size-display-sm: 1.75rem;
+
+  // Heading
+  --font-size-heading-xl: 1.5rem;
+  --font-size-heading-lg: 1.25rem;
+  --font-size-heading-md: 1.125rem;
+  --font-size-heading-sm: 1rem;
+
+  // Body
+  --font-size-body-lg:    1rem;
+  --font-size-body-md:    0.875rem;
+  --font-size-body-sm:    0.75rem;
+
+  // Label & caption
+  --font-size-label-lg:   0.875rem;
+  --font-size-caption:    0.6875rem;
 }
 
-// RESPONSIVE OVERRIDES
+// Responsive type scaling
 @media (max-width: 1023px) {
   :root {
     --font-size-display-xl: 2.5rem;
@@ -32,28 +46,176 @@
   }
 }
 
+@media (max-width: 767px) {
+  :root {
+    --font-size-display-xl: 2rem;
+    --font-size-display-lg: 1.75rem;
+    --font-size-display-md: 1.5rem;
+    --font-size-heading-xl: 1.25rem;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Base
+// -----------------------------------------------------------------------------
 body {
   font-family: var(--font-primary);
+  font-size: var(--font-size-body-lg);
+  font-weight: 400;
+  line-height: 1.6;
   background-color: rgb(var(--color-surface));
   color: rgb(var(--color-on-surface));
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// FULL CLASS LIST
-.text-display-xl { font-size: var(--font-size-display-xl); font-weight: 700; line-height: 1.2; }
-.text-display-lg { font-size: var(--font-size-display-lg); font-weight: 700; line-height: 1.2; }
-.text-display-md { font-size: var(--font-size-display-md); font-weight: 600; line-height: 1.25; }
-.text-display-sm { font-size: var(--font-size-display-sm); font-weight: 600; line-height: 1.25; }
-.text-heading-xl { font-size: var(--font-size-heading-xl); font-weight: 700; line-height: 1.3; }
-.text-heading-lg { font-size: var(--font-size-heading-lg); font-weight: 600; line-height: 1.4; }
-.text-heading-md { font-size: var(--font-size-heading-md); font-weight: 600; line-height: 1.4; }
-.text-heading-sm { font-size: var(--font-size-heading-sm); font-weight: 500; line-height: 1.5; }
-.text-body-lg    { font-size: var(--font-size-body-lg); font-weight: 400; line-height: 1.6; }
-.text-body-md    { font-size: var(--font-size-body-md); font-weight: 400; line-height: 1.6; }
-.text-body-sm    { font-size: var(--font-size-body-sm); font-weight: 400; line-height: 1.5; }
-.text-label-lg   { font-size: var(--font-size-label-lg); font-weight: 600; line-height: 1.4; }
-.text-caption    { font-size: var(--font-size-caption); font-weight: 400; line-height: 1.4; }
+// RTL default
+:root,
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
 
-// RTL NUMERALS
-.numerals-arabic { font-variant-numeric: oldstyle-nums; }
-.numerals-latin { direction: ltr; display: inline-block; }
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+// -----------------------------------------------------------------------------
+// Display type classes
+// -----------------------------------------------------------------------------
+.text-display-xl {
+  font-size: var(--font-size-display-xl);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-display-lg {
+  font-size: var(--font-size-display-lg);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-display-md {
+  font-size: var(--font-size-display-md);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.text-display-sm {
+  font-size: var(--font-size-display-sm);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+// -----------------------------------------------------------------------------
+// Heading type classes
+// -----------------------------------------------------------------------------
+.text-heading-xl {
+  font-size: var(--font-size-heading-xl);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.text-heading-lg {
+  font-size: var(--font-size-heading-lg);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-heading-md {
+  font-size: var(--font-size-heading-md);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-heading-sm {
+  font-size: var(--font-size-heading-sm);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+// -----------------------------------------------------------------------------
+// Body type classes
+// -----------------------------------------------------------------------------
+.text-body-lg {
+  font-size: var(--font-size-body-lg);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-body-md {
+  font-size: var(--font-size-body-md);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-body-sm {
+  font-size: var(--font-size-body-sm);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+// -----------------------------------------------------------------------------
+// Label & caption
+// -----------------------------------------------------------------------------
+.text-label-lg {
+  font-size: var(--font-size-label-lg);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-caption {
+  font-size: var(--font-size-caption);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+// -----------------------------------------------------------------------------
+// Numeral display helpers
+// -----------------------------------------------------------------------------
+.numerals-arabic {
+  font-variant-numeric: oldstyle-nums;
+}
+
+.numerals-latin {
+  direction: ltr;
+  display: inline-block;
+}
+
+// -----------------------------------------------------------------------------
+// Text color utilities (using your rgb() pattern)
+// -----------------------------------------------------------------------------
+.text-on-surface     { color: rgb(var(--color-on-surface)); }
+.text-muted          { color: rgb(var(--color-on-surface-variant)); }
+.text-brand          { color: rgb(var(--color-primary)); }
+.text-success        { color: rgb(var(--color-success)); }
+.text-warning        { color: rgb(var(--color-warning)); }
+.text-error          { color: rgb(var(--color-error)); }
+.text-info           { color: rgb(var(--color-info)); }
+
+// -----------------------------------------------------------------------------
+// Font weight utilities
+// -----------------------------------------------------------------------------
+.font-light    { font-weight: 300; }
+.font-regular  { font-weight: 400; }
+.font-medium   { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold     { font-weight: 700; }
+
+// Misc
+strong, b { font-weight: 700; }
+
+a {
+  color: rgb(var(--color-primary));
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: opacity var(--transition-speed);
+
+  &:hover { opacity: 0.8; }
+}
+
+::selection {
+  background-color: rgba(39, 78, 162, 0.15);
+  color: rgb(var(--color-on-surface));
+}

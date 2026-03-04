@@ -1,30 +1,184 @@
-// Fix: Use ../base/ because styles.scss is inside /CSS/ folder
-@use '../base/primitives' as p;
-@use '../base/themes';
-@use '../base/typography';
+// =============================================================================
+// styles.scss — Main entry point
+// Nijm Al-Rimal Design System
+// Stack: Bootstrap 5 (CDN in HTML) + Custom SCSS tokens
+//
+// IMPORTANT: Bootstrap is loaded via CDN in index.html — NOT imported here.
+// This avoids @use/@import conflicts and node_modules Bootstrap errors.
+// Run: sass --watch src/scss/styles.scss src/css/styles.css
+// =============================================================================
 
-// Custom Mappings
-.bg-surface      { background-color: rgb(var(--color-surface)); }
-.bg-brand        { background-color: rgb(var(--color-primary)); }
-.text-on-surface { color: rgb(var(--color-on-surface)); }
-.text-brand      { color: rgb(var(--color-primary)); }
+// 1. Primitives — raw token values (Sass variables, no output)
+@import './base/primitives';
 
-.logo-box {
-  width: p.$space-10; height: p.$space-10;
-  border-radius: p.$radius-md;
-  display: flex; align-items: center; justify-content: center;
+// 2. Theme tokens — CSS custom properties, light + dark
+@import './base/themes';
+
+// 3. Typography — font import, type classes, text utilities
+@import './base/typography';
+
+// =============================================================================
+// Global reset
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+// =============================================================================
+// Surface utilities
+// =============================================================================
+.bg-surface        { background-color: rgb(var(--color-surface)); }
+.bg-surface-cont   { background-color: rgb(var(--color-surface-container)); }
+.bg-brand          { background-color: rgb(var(--color-primary)); }
+.bg-brand-cont     { background-color: rgb(var(--color-primary-container)); }
+.text-on-brand     { color: rgb(var(--color-on-primary)); }
+
+// =============================================================================
+// Border utilities
+// =============================================================================
+.border-outline     { border-color: rgb(var(--color-outline)) !important; }
+.border-outline-var { border-color: rgb(var(--color-outline-variant)) !important; }
+
+.divider {
+  border: none;
+  border-top: 0.0625rem solid rgb(var(--color-outline));
+  margin-block: $space-4;
+}
+
+// =============================================================================
+// Border radius utilities
+// =============================================================================
+.rounded-sm   { border-radius: $radius-sm; }
+.rounded-md   { border-radius: $radius-md; }
+.rounded-lg   { border-radius: $radius-lg; }
+.rounded-xl   { border-radius: $radius-xl; }
+.rounded-2xl  { border-radius: $radius-2xl; }
+.rounded-full { border-radius: $radius-full; }
+
+// =============================================================================
+// Common components
+// =============================================================================
+
+// Logo box
+.logo-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Brand button
 .btn-brand {
-  padding: p.$space-3 p.$space-6;
+  padding: $space-3 $space-6;
   background-color: rgb(var(--color-primary));
   color: rgb(var(--color-on-primary));
-  border-radius: p.$radius-md;
-  border: none; cursor: pointer;
-  transition: opacity var(--transition-speed);
-  &:hover { opacity: 0.9; }
+  border-radius: $radius-md;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--font-size-body-md);
+  transition: opacity $transition-speed;
+
+  &:hover  { opacity: 0.9; }
+  &:active { opacity: 0.8; }
 }
 
+// =============================================================================
+// Theme transition — smooth dark/light swap
+// Only transition color-related properties, not layout ones
+// =============================================================================
+body,
+.btn-brand,
+header,
+footer,
+.logo-box {
+  transition:
+    background-color $transition-speed ease,
+    color $transition-speed ease,
+    border-color $transition-speed ease;
+}
+
+// =============================================================================
+// Dark/light icon visibility
+// Matches html.dark pattern in script.js
+// =============================================================================
 .dark-show { display: none; }
+
 html.dark .dark-show { display: block; }
-html.dark .dark-hide { display: none; }
+html.dark .dark-hide  { display: none; }
+
+// =============================================================================
+// Bootstrap RTL overrides
+// Patches Bootstrap utility classes for RTL direction
+// =============================================================================
+[dir="rtl"] {
+  .ms-auto  { margin-right: auto !important; margin-left: unset !important; }
+  .me-auto  { margin-left: auto !important;  margin-right: unset !important; }
+  .text-start { text-align: right !important; }
+  .text-end   { text-align: left !important; }
+  .ps-0 { padding-right: 0 !important; padding-left: unset !important; }
+  .pe-0 { padding-left: 0 !important;  padding-right: unset !important; }
+}
+
+// =============================================================================
+// Focus visible — accessibility
+// =============================================================================
+:focus-visible {
+  outline: 0.1875rem solid rgba(39, 78, 162, 0.4);
+  outline-offset: 0.125rem;
+}
+
+// =============================================================================
+// Section spacing utilities
+// =============================================================================
+.section-sm { padding-block: $space-12; }
+.section-md { padding-block: $space-16; }
+.section-lg { padding-block: $space-24; }
+.section-xl { padding-block: $space-32; }
+
+// =============================================================================
+// Scrollbar (Webkit)
+// =============================================================================
+::-webkit-scrollbar        { width: 0.375rem; height: 0.375rem; }
+::-webkit-scrollbar-track  { background: rgb(var(--color-surface-container)); }
+::-webkit-scrollbar-thumb  { background: rgb(var(--color-outline)); border-radius: $radius-full; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-on-surface-variant)); }

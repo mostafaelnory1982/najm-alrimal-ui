@@ -1,38 +1,88 @@
-@use 'primitives' as p;
+// =============================================================================
+// _themes.scss
+// Semantic theme tokens — Light & Dark mode
+// Figma: node 8973:20251 (Themes)
+// Color format: space-separated R G B  (used as: rgb(var(--token)))
+// Dark mode: html.dark class (toggled by script.js)
+// =============================================================================
 
+// Light mode — :root
 :root {
-  // Surface - Light
-  --color-surface:                   255 255 255;
-  --color-surface-container:         244 244 244;
-  --color-on-surface:                33 33 33;
-  --color-on-surface-variant:        97 97 97;
+  // Surfaces
+  --color-surface:             255 255 255;
+  --color-surface-container:   244 244 244;
+  --color-surface-elevated:    255 255 255;
 
-  // Primary
-  --color-primary:                   39 78 162;
-  --color-on-primary:                255 255 255;
-  --color-primary-container:         214 224 245;
+  // On-surface text
+  --color-on-surface:          33  33  33;   // #212121 — contrast 15:1 on white ✓
+  --color-on-surface-variant:  97  97  97;   // #616161 — contrast 4.6:1 on white ✓ AA
+  --color-on-surface-muted:    117 117 117;  // #757575 — contrast 4.6:1 on white ✓ AA
+  --color-on-surface-disabled: 189 189 189;
+
+  // Brand primary — DGA Navy #274EA2
+  --color-primary:             39  78  162;
+  --color-on-primary:          255 255 255;
+  --color-primary-container:   214 224 245;
+  --color-on-primary-cont:     20  40  82;
 
   // Outline
-  --color-outline:                   189 189 189;
-  --color-outline-variant:           224 224 224;
+  --color-outline:             189 189 189;
+  --color-outline-variant:     224 224 224;
 
-  --transition-speed:                200ms;
+  // Semantic
+  --color-success:             22  163 74;
+  --color-success-subtle:      240 253 244;
+  --color-warning:             217 119 6;
+  --color-warning-subtle:      255 251 235;
+  --color-error:               220 38  38;
+  --color-error-subtle:        254 242 242;
+  --color-info:                37  99  235;
+  --color-info-subtle:         239 246 255;
+
+  // Transitions
+  --transition-speed:          200ms;
+
+  // Shadows
+  --shadow-sm:  0 0.0625rem 0.125rem rgba(0, 0, 0, 0.05);
+  --shadow-md:  0 0.25rem 0.375rem rgba(0, 0, 0, 0.07), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.06);
+  --shadow-lg:  0 0.625rem 0.9375rem rgba(0, 0, 0, 0.1), 0 0.25rem 0.375rem rgba(0, 0, 0, 0.05);
 }
 
+// Dark mode — html.dark (matches your script.js toggle)
 html.dark {
-  // Surface - Dark
-  --color-surface:                   18 18 18;
-  --color-surface-container:         28 28 28;
-  
-  // On Surface - FIXED CONTRAST
-  --color-on-surface:                238 238 238; 
-  --color-on-surface-variant:        180 180 180; // Light gray for visibility
+  // Surfaces
+  --color-surface:             18  18  18;
+  --color-surface-container:   28  28  28;
+  --color-surface-elevated:    38  38  38;
 
-  // Primary - Dark
-  --color-primary:                   173 193 235;
-  --color-on-primary:                20 40 82;
-  --color-primary-container:         39 78 162;
+  // On-surface text — FIXED: high contrast on dark backgrounds
+  --color-on-surface:          238 238 238;  // #EEEEEE — contrast 15:1 on #121212 ✓
+  --color-on-surface-variant:  180 180 180;  // #B4B4B4 — contrast 7:1 on #121212 ✓ AA
+  --color-on-surface-muted:    158 158 158;  // #9E9E9E — contrast 4.7:1 on #121212 ✓ AA
+  --color-on-surface-disabled: 66  66  66;
 
-  --color-outline:                   66 66 66;
-  --color-outline-variant:           48 48 48;
+  // Brand primary — lightened for dark bg
+  --color-primary:             173 193 235;  // #ADC1EB
+  --color-on-primary:          20  40  82;   // #142852 — dark text on light primary
+  --color-primary-container:   39  78  162;  // #274EA2 — original brand as container
+  --color-on-primary-cont:     214 224 245;
+
+  // Outline
+  --color-outline:             66  66  66;
+  --color-outline-variant:     48  48  48;
+
+  // Semantic — lightened for dark bg
+  --color-success:             34  197 94;
+  --color-success-subtle:      21  128 61;
+  --color-warning:             245 158 11;
+  --color-warning-subtle:      180 83  9;
+  --color-error:               239 68  68;
+  --color-error-subtle:        185 28  28;
+  --color-info:                59  130 246;
+  --color-info-subtle:         29  78  216;
+
+  // Shadows — stronger on dark
+  --shadow-sm:  0 0.0625rem 0.125rem rgba(0, 0, 0, 0.3);
+  --shadow-md:  0 0.25rem 0.375rem rgba(0, 0, 0, 0.4), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  --shadow-lg:  0 0.625rem 0.9375rem rgba(0, 0, 0, 0.5), 0 0.25rem 0.375rem rgba(0, 0, 0, 0.3);
 }
