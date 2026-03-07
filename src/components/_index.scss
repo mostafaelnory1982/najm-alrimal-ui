@@ -1,0 +1,9 @@
+// ============================================================
+// components/_index.scss
+// الفهرس الرئيسي لكل المكونات (Components Index)
+// ============================================================
+
+@forward 'buttons';
+@forward 'inputs';
+@forward 'tags';
+@forward 'dropdowns';

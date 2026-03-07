@@ -1,0 +1,170 @@
+@use '../base/primitives' as p;
+@use '../base/themes'     as t;
+@use '../base/typography' as ty;
+
+// 1. Tag base
+.tag {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             p.$space-1; // 4px
+
+  // Geometry
+  height:          32px;
+  padding-inline:  p.$space-3; // 12px
+  padding-block:   0;
+  border-radius:   p.$radius-full; 
+  border:          1px solid transparent;
+
+  // Typography
+  font-family:     var(--font-primary);
+  font-size:       p.$font-size-body-lg; // 16px
+  font-weight:     p.$font-weight-medium;
+  line-height:     p.$line-height-normal;
+  white-space:     nowrap;
+  text-align:      center;
+  vertical-align:  middle;
+  text-decoration: none;
+
+  .icon { flex-shrink: 0; width: 18px; height: 18px; fill: currentColor; }
+
+  // Dismiss button
+  .tag__dismiss {
+    display:     inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    cursor:      pointer;
+    padding:     0;
+    background:  none;
+    border:      none;
+    color:       inherit;
+    opacity:     0.7;
+    transition:  all p.$transition-speed ease;
+
+    .icon { width: 14px; height: 14px; }
+    &:hover { opacity: 1; }
+    &:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; border-radius: p.$radius-full; }
+  }
+
+  &.tag--icon-only { width: 32px; padding-inline: 0; .icon { width: 18px; height: 18px; } }
+}
+
+// 2. Size Modifiers
+.tag-sm {
+  height:          24px;
+  padding-inline:  p.$space-2; // 8px
+  font-size:       p.$font-size-body-sm; // 12px
+  line-height:     p.$line-height-tight;
+  .icon { width: 14px; height: 14px; }
+  &.tag--icon-only { width: 24px; padding-inline: 0; }
+  .tag__dismiss .icon { width: 12px; height: 12px; }
+}
+
+.tag-xs {
+  height:          20px;
+  padding-inline:  p.$space-1; // 4px
+  font-size:       p.$font-size-caption; 
+  font-weight:     p.$font-weight-semibold;
+  line-height:     p.$line-height-tight;
+  .icon { width: 12px; height: 12px; }
+  &.tag--icon-only { width: 20px; padding-inline: 0; }
+  .tag__dismiss .icon { width: 10px; height: 10px; }
+}
+
+// 3. Color Variants
+.tag-neutral {
+  background-color: rgb(var(--color-surface-container));
+  border-color:     rgb(var(--color-outline-variant));
+  color:            rgb(var(--color-on-surface));
+}
+
+.tag-success {
+  background-color: rgb(var(--color-success-container));
+  border-color:     rgb(var(--color-success));
+  color:            rgb(var(--color-on-success-cont));
+  .tag__dismiss:hover { color: rgb(var(--color-success)); }
+}
+
+.tag-danger {
+  background-color: rgb(var(--color-error-container));
+  border-color:     rgb(var(--color-error));
+  color:            rgb(var(--color-on-error-cont));
+  .tag__dismiss:hover { color: rgb(var(--color-error)); }
+}
+
+.tag-warning {
+  background-color: rgb(var(--color-warning-container));
+  border-color:     rgb(var(--color-warning));
+  color:            rgb(var(--color-on-warning-cont));
+  .icon { color: rgb(var(--color-warning)); }
+  .tag__dismiss:hover { color: rgb(var(--color-warning)); }
+}
+
+.tag-info, .tag-primary {
+  background-color: rgb(var(--color-primary-container));
+  border-color:     rgb(var(--color-primary));
+  color:            rgb(var(--color-on-primary-cont));
+  .tag__dismiss:hover { color: rgb(var(--color-primary)); }
+}
+
+.tag-on-color {
+  background-color: rgba(var(--color-surface), 0.20);
+  border-color:     rgba(var(--color-surface), 0.30);
+  color:            rgb(var(--color-surface));
+  .icon, .tag__dismiss { color: rgb(var(--color-surface)); }
+}
+
+// 4. Status Badge
+.status-badge {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             p.$space-2; // 8px
+  height:          20px;
+  padding-inline:  p.$space-2;
+  border-radius:   p.$radius-full;
+  border:          1px solid transparent;
+
+  font-family: var(--font-primary);
+  font-size:   p.$font-size-caption;
+  font-weight: p.$font-weight-medium;
+  line-height: p.$line-height-tight;
+  white-space: nowrap;
+
+  .status-badge__dot {
+    display: inline-block; flex-shrink: 0; width: 10px; height: 10px;
+    border-radius: 50%; background: currentColor;
+  }
+}
+
+.status-badge--subtle {
+  &.status-badge--green {
+    background-color: rgb(var(--color-success-container));
+    color:            rgb(var(--color-on-success-cont));
+    .status-badge__dot { background: rgb(var(--color-success)); }
+  }
+  &.status-badge--yellow {
+    background-color: rgb(var(--color-warning-container));
+    color:            rgb(var(--color-on-warning-cont));
+    .status-badge__dot { background: rgb(var(--color-warning)); }
+  }
+  &.status-badge--red {
+    background-color: rgb(var(--color-error-container));
+    color:            rgb(var(--color-on-error-cont));
+    .status-badge__dot { background: rgb(var(--color-error)); }
+  }
+}
+
+.status-badge--inverted {
+  color: rgb(var(--color-surface));
+  .status-badge__dot { background: rgba(var(--color-surface), 0.60); }
+  &.status-badge--green  { background-color: rgb(var(--color-success)); }
+  &.status-badge--yellow { background-color: rgb(var(--color-warning)); }
+  &.status-badge--red    { background-color: rgb(var(--color-error)); }
+}
+
+.status-badge--ghost {
+  background-color: transparent; border-color: transparent;
+  &.status-badge--green  { color: rgb(var(--color-success)); }
+  &.status-badge--yellow { color: rgb(var(--color-warning)); }
+  &.status-badge--red    { color: rgb(var(--color-error)); }
+}

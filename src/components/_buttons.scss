@@ -1,0 +1,127 @@
+@use '../base/primitives' as p;
+@use '../base/themes'     as t;
+@use '../base/typography' as ty;
+
+// 1. Local design tokens
+$btn-radius:          p.$radius-sm; 
+$btn-padding-lg:      p.$space-4;   
+$btn-padding-md:      p.$space-3;   
+$btn-padding-sm:      p.$space-2;   
+
+$btn-height-sm:       32px;
+$btn-height-md:       40px;
+$btn-height-lg:       44px;
+
+$btn-icon-gap:        p.$space-1;   
+$btn-icon-sm:         16px;
+$btn-icon-md:         20px;
+$btn-icon-lg:         24px;
+
+// Typography (Fixed: Mapping to Primitives)
+$btn-font-size:       p.$font-size-body-lg; 
+$btn-font-weight:     p.$font-weight-semibold;
+$btn-line-height:     p.$line-height-normal;
+
+// 2. Base .btn override
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             $btn-icon-gap;
+
+  font-family:     var(--font-primary);
+  font-size:       $btn-font-size;
+  font-weight:     $btn-font-weight;
+  line-height:     $btn-line-height;
+  white-space:     nowrap;
+  text-decoration: none;
+
+  height:          $btn-height-md;
+  padding-inline:  $btn-padding-md;
+  padding-block:   0;
+  border-radius:   $btn-radius;
+  border:          1px solid transparent;
+
+  cursor:          pointer;
+  overflow:        hidden;
+  transition:      all p.$transition-speed ease-in-out;
+
+  &:focus-visible {
+    outline:        2px solid rgb(var(--color-primary));
+    outline-offset: 2px;
+    box-shadow:     none;
+  }
+
+  &:disabled, &.disabled {
+    opacity: 0.4; cursor: not-allowed; pointer-events: none;
+  }
+
+  .icon { flex-shrink: 0; fill: currentColor; width: $btn-icon-md; height: $btn-icon-md; }
+
+  &.btn-icon-only {
+    width: $btn-height-md; padding-inline: 0;
+    .icon { width: $btn-icon-md; height: $btn-icon-md; }
+  }
+}
+
+// 3. Size modifiers
+.btn-sm {
+  height: $btn-height-sm; padding-inline: $btn-padding-sm;
+  font-size: p.$font-size-body-md; line-height: p.$line-height-tight;
+  .icon { width: $btn-icon-sm; height: $btn-icon-sm; }
+  &.btn-icon-only { width: $btn-height-sm; }
+}
+
+.btn-lg {
+  height: $btn-height-lg; padding-inline: $btn-padding-lg;
+  font-size: $btn-font-size; line-height: $btn-line-height;
+  .icon { width: $btn-icon-lg; height: $btn-icon-lg; }
+  &.btn-icon-only { width: $btn-height-lg; }
+}
+
+// 4. Variant: Primary-Brand
+.btn-primary {
+  background-color: rgb(var(--color-primary));
+  border-color:     rgb(var(--color-primary));
+  color:            rgb(var(--color-on-primary));
+
+  &:hover:not(:disabled) {
+    background-color: rgb(var(--color-primary-container));
+    border-color:     rgb(var(--color-primary-container));
+    color:            rgb(var(--color-on-primary-cont));
+  }
+
+  &.btn-on-color {
+    background-color: rgb(var(--color-surface));
+    border-color:     rgb(var(--color-surface));
+    color:            rgb(var(--color-primary));
+  }
+}
+
+// 5. Variant: Secondary-Solid
+.btn-secondary {
+  background-color: rgb(var(--color-surface-container));
+  border-color:     rgb(var(--color-surface-container));
+  color:            rgb(var(--color-on-surface));
+  &:hover:not(:disabled) { background-color: rgb(var(--color-outline-variant)); }
+}
+
+// 6. Variant: Ghost
+.btn-outline, .btn-ghost {
+  background-color: transparent; border-color: transparent; color: rgb(var(--color-primary));
+  &:hover:not(:disabled) { background-color: rgb(var(--color-surface-container)); }
+}
+
+// 7. Variant: Destructive
+.btn-danger {
+  background-color: rgb(var(--color-error));
+  border-color:     rgb(var(--color-error));
+  color:            rgb(var(--color-on-primary));
+  
+  &.btn-danger-secondary {
+    background-color: rgb(var(--color-error-subtle));
+    color:            rgb(var(--color-error));
+  }
+}
+
+.btn-block { width: 100%; display: flex; }

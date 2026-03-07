@@ -1,0 +1,72 @@
+// ============================================================
+// _icons.scss  —  Base icon system + branded icon extensions
+// Project: Najm Alrimal (Bootstrap 5 / SCSS)
+// ============================================================
+
+@use 'primitives' as p;
+
+// ── Size variables ───────────────────────────────────────────
+$icon-sm:  16px;
+$icon-md:  24px;   // default
+$icon-lg:  32px;
+$icon-xl:  48px;
+
+// ── Base icon styles ─────────────────────────────────────────
+// Applies to both UI icons (icon-*) and branded icons (brand-*)
+.icon {
+  display: inline-block;
+  width:  $icon-md;
+  height: $icon-md;
+  vertical-align: middle;
+  flex-shrink: 0;
+
+  // Shared size modifiers
+  &.icon-sm  { width: $icon-sm;  height: $icon-sm;  }
+  &.icon-md  { width: $icon-md;  height: $icon-md;  }
+  &.icon-lg  { width: $icon-lg;  height: $icon-lg;  }
+  &.icon-xl  { width: $icon-xl;  height: $icon-xl;  }
+}
+
+// ── Standard UI icons (inherits currentColor) ─────────────────
+// Applied via <use href="#icon-name">
+.icon-ui {
+  fill: currentColor;
+  stroke: none;
+}
+
+// ── Branded icon reset ────────────────────────────────────────
+// Prevents accidental color overrides from parent/theme context.
+// DO NOT set fill/stroke on branded icons — their colors are
+// hardcoded in the SVG symbol definitions to preserve brand identity.
+.icon-branded {
+  // Reset any inherited fill/stroke — symbols carry their own brand colors
+  fill: unset;
+  stroke: unset;
+  stroke-width: unset;
+
+  // Prevent dark-mode theming from inverting brand colors
+  [data-bs-theme="dark"] & {
+    filter: none;
+  }
+}
+
+// ── Optional: circular container for social icons ─────────────
+// Usage: <span class="icon-badge icon-badge-md"><svg class="icon icon-branded">…</svg></span>
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  width: 40px;
+  height: 40px;
+
+  &.icon-badge-sm { width: 28px; height: 28px; }
+  &.icon-badge-md { width: 40px; height: 40px; }
+  &.icon-badge-lg { width: 56px; height: 56px; }
+
+  // Dark mode: neutral background so brand colors still pop
+  [data-bs-theme="dark"] & {
+    background-color: #2a2a2a;
+  }
+}

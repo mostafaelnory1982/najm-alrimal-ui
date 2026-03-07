@@ -1,0 +1,204 @@
+@use '../base/primitives' as p;
+@use '../base/themes'     as t;
+@use '../base/typography' as ty;
+
+// 1. Shadows
+$input-shadow-focus:
+  0 2px 4px -2px rgba(16, 24, 40, 0.06),
+  0 4px 8px -2px rgba(16, 24, 40, 0.10);
+
+// 2. Form Group Wrapper
+.form-field {
+  display:         flex;
+  flex-direction:  column;
+  gap:             p.$space-2; 
+  min-width:       200px;
+  position:        relative;
+  width:           100%;
+
+  // 2a. Label
+  .form-field__label {
+    display:     flex;
+    align-items: center;
+    gap:         p.$space-1;
+    white-space: nowrap;
+
+    font-family: var(--font-primary);
+    font-size:   p.$font-size-body-lg; // 16px
+    font-weight: p.$font-weight-semibold;
+    line-height: p.$line-height-normal;
+    color:       rgb(var(--color-on-surface));
+
+    .form-field__required {
+      color:       rgb(var(--color-error));
+      font-weight: p.$font-weight-semibold;
+      line-height: p.$line-height-normal;
+    }
+
+    &.is-disabled {
+      color:          rgb(var(--color-on-surface-disabled));
+      pointer-events: none;
+    }
+  }
+
+  // 2b. Input Shell
+  .form-field__control {
+    display:        flex;
+    align-items:    stretch;
+    height:         44px;
+    border:         1px solid rgb(var(--color-outline));
+    border-radius:  p.$radius-sm; // 4px
+    background:     rgb(var(--color-surface));
+    overflow:       hidden;
+    position:       relative;
+    transition:     all p.$transition-speed ease;
+
+    // Prefix & Suffix
+    .form-field__prefix,
+    .form-field__suffix {
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      flex-shrink:     0;
+      padding:         2px p.$space-4;
+      background:      rgb(var(--color-surface-container));
+      white-space:     nowrap;
+
+      font-family: var(--font-primary);
+      font-size:   p.$font-size-body-lg;
+      font-weight: p.$font-weight-regular;
+      line-height: p.$line-height-normal;
+      color:       rgb(var(--color-on-surface-muted));
+    }
+
+    // Icon + Input area
+    .form-field__inner {
+      display:        flex;
+      align-items:    center;
+      flex:           1 0 0;
+      min-width:      0;
+      padding-inline: p.$space-4;
+      gap:            p.$space-1; 
+      height:         100%;
+      position:       relative;
+
+      .form-field__icon {
+        display:     flex;
+        align-items: center;
+        flex-shrink: 0;
+        width:       20px;
+        height:      20px;
+        color:       rgb(var(--color-on-surface-variant));
+        .icon { width: 20px; height: 20px; fill: currentColor; }
+      }
+
+      .form-control {
+        flex:          1 0 0;
+        min-width:     0;
+        height:        100%;
+        padding:       0;
+        border:        none;
+        border-radius: 0;
+        background:    transparent;
+        box-shadow:    none;
+        outline:       none;
+
+        font-family: var(--font-primary);
+        font-size:   p.$font-size-body-lg;
+        font-weight: p.$font-weight-regular;
+        line-height: p.$line-height-normal;
+        color:       rgb(var(--color-on-surface));
+
+        &::placeholder { color: rgb(var(--color-on-surface-muted)); opacity: 1; }
+        &:focus { outline: none; box-shadow: none; }
+      }
+
+      .form-field__feedback-icon {
+        display:     flex;
+        align-items: center;
+        flex-shrink: 0;
+        width:       20px;
+        height:      20px;
+      }
+    }
+  }
+
+  // 2c. Helper / Error Text
+  .form-field__helper {
+    display:     flex;
+    align-items: center;
+    gap:         p.$space-2;
+
+    .form-field__helper-icon {
+      display: flex; align-items: flex-start; flex-shrink: 0; padding: p.$space-1;
+      .icon { width: 16px; height: 16px; fill: currentColor; color: rgb(var(--color-on-surface-variant)); }
+    }
+
+    .form-field__helper-text {
+      font-family:   var(--font-primary);
+      font-size:     p.$font-size-body-md; // 14px
+      font-weight:   p.$font-weight-regular;
+      line-height:   p.$line-height-tight;
+      color:         rgb(var(--color-on-surface-variant));
+      padding-block: p.$space-1;
+      min-height:    32px;
+      display:       flex;
+      align-items:   center;
+    }
+  }
+
+  // 3. States
+  &:not(.is-disabled):not(.is-invalid) {
+    .form-field__control:hover { border-color: rgb(var(--color-on-surface-variant)); }
+  }
+
+  &.is-focused .form-field__control,
+  .form-field__control:focus-within {
+    border-color: rgb(var(--color-primary));
+    background:   rgb(var(--color-surface-container));
+    box-shadow:   $input-shadow-focus;
+
+    &::after {
+      content:       '';
+      position:      absolute;
+      inset-inline:  -1px;
+      bottom:        -1px;
+      height:        2px;
+      background:    rgb(var(--color-primary));
+      border-radius: 0 0 p.$radius-sm p.$radius-sm;
+    }
+  }
+
+  &.is-invalid, &:has(.form-control.is-invalid) {
+    .form-field__control {
+      border-color: rgb(var(--color-error));
+      background:   rgb(var(--color-surface));
+      &:focus-within::after { background: rgb(var(--color-error)); }
+    }
+    .form-field__helper {
+      .form-field__helper-icon .icon { color: rgb(var(--color-error)); }
+      .form-field__helper-text       { color: rgb(var(--color-error)); }
+    }
+  }
+
+  &.is-disabled {
+    .form-field__control {
+      background:     transparent;
+      border-color:   rgb(var(--color-outline));
+      pointer-events: none;
+
+      .form-field__prefix, .form-field__suffix {
+        background: rgb(var(--color-surface-container));
+        color:      rgb(var(--color-on-surface-disabled));
+      }
+
+      .form-field__inner {
+        .form-control { color: rgb(var(--color-on-surface-disabled)); }
+        .form-field__icon .icon { color: rgb(var(--color-on-surface-disabled)); }
+      }
+    }
+    .form-field__helper { opacity: 0.5; }
+  }
+}
+
+.form-field { width: 100%; }
