@@ -168,6 +168,34 @@ function getPreferredLanguage() {
 // INITIALIZATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STICKY HEADER SCROLL STATE
+// Figma spec: afterscroll=true → height 80px, backdrop-blur(24px), rgba(255,255,255,0.70)
+// Trigger: add .is-scrolled to #site-header when scrollY > 48 (utility bar height)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function initScrollHeader() {
+  const header = document.getElementById('site-header');
+  if (!header) return;
+
+  const SCROLL_THRESHOLD = 48; // ~utility bar height
+
+  function onScroll() {
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+
+  // Use passive listener for performance
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Run once on init in case page loads mid-scroll
+  onScroll();
+}
+
 function init() {
   applyTheme(getPreferredTheme());
   applyLanguage(getPreferredLanguage());
@@ -190,6 +218,9 @@ function init() {
       }
     });
   }
+
+  // Sticky header scroll behaviour
+  initScrollHeader();
 }
 
 if (document.readyState === 'loading') {

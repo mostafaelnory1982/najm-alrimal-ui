@@ -29,9 +29,13 @@ $icon-xl:  48px;
 
 // ── Standard UI icons (inherits currentColor) ─────────────────
 // Applied via <use href="#icon-name">
+// Icons use stroke="currentColor" paths — fill must be none.
 .icon-ui {
-  fill: currentColor;
-  stroke: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 // ── Branded icon reset ────────────────────────────────────────

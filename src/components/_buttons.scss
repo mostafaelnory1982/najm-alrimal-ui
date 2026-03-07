@@ -56,7 +56,7 @@ $btn-line-height:     p.$line-height-normal;
     opacity: 0.4; cursor: not-allowed; pointer-events: none;
   }
 
-  .icon { flex-shrink: 0; fill: currentColor; width: $btn-icon-md; height: $btn-icon-md; }
+  .icon { flex-shrink: 0;  width: $btn-icon-md; height: $btn-icon-md; }
 
   &.btn-icon-only {
     width: $btn-height-md; padding-inline: 0;

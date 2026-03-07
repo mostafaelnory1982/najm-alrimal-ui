@@ -62,7 +62,7 @@ $dropdown-shadow-panel:
       flex-shrink:          0;
       padding-inline-start: p.$space-4;
       color:                rgb(var(--color-on-surface));
-      .icon { width: 20px; height: 20px; fill: currentColor; }
+      .icon { width: 20px; height: 20px;  }
     }
 
     .form-select, select {
@@ -103,7 +103,7 @@ $dropdown-shadow-panel:
       pointer-events:    none;
       flex-shrink:       0;
       color:             rgb(var(--color-on-surface));
-      .icon { width: 20px; height: 20px; fill: currentColor; transition: transform p.$transition-speed ease; }
+      .icon { width: 20px; height: 20px;  transition: transform p.$transition-speed ease; }
     }
   }
 
@@ -115,7 +115,7 @@ $dropdown-shadow-panel:
 
     .select-field__helper-icon {
       display: flex; align-items: flex-start; flex-shrink: 0; padding: p.$space-1;
-      .icon { width: 16px; height: 16px; fill: currentColor; color: rgb(var(--color-on-surface-variant)); }
+      .icon { width: 16px; height: 16px;  color: rgb(var(--color-on-surface-variant)); }
     }
 
     .select-field__helper-text {
@@ -224,7 +224,7 @@ $dropdown-shadow-panel:
       width:         16px; height: 16px;
       border:        1px solid rgb(var(--color-on-surface));
       border-radius: 2px; background: transparent; transition: all 0.1s;
-      .icon { width: 12px; height: 12px; fill: rgb(var(--color-surface)); display: none; }
+      .icon { width: 12px; height: 12px;  display: none; }
     }
 
     &:hover, &.is-hovered { background: rgb(var(--color-surface-container)); }

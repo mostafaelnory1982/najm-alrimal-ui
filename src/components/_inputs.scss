@@ -89,7 +89,7 @@ $input-shadow-focus:
         width:       20px;
         height:      20px;
         color:       rgb(var(--color-on-surface-variant));
-        .icon { width: 20px; height: 20px; fill: currentColor; }
+        .icon { width: 20px; height: 20px;  }
       }
 
       .form-control {
@@ -131,7 +131,7 @@ $input-shadow-focus:
 
     .form-field__helper-icon {
       display: flex; align-items: flex-start; flex-shrink: 0; padding: p.$space-1;
-      .icon { width: 16px; height: 16px; fill: currentColor; color: rgb(var(--color-on-surface-variant)); }
+      .icon { width: 16px; height: 16px;  color: rgb(var(--color-on-surface-variant)); }
     }
 
     .form-field__helper-text {

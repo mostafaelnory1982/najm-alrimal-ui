@@ -101,7 +101,7 @@ $app-badge-border:   #a6a6a6;
   text-decoration: none; cursor: pointer; background: transparent; border: none;
   font-family: var(--font-primary); font-size: p.$font-size-body-md;
   font-weight: p.$font-weight-regular; line-height: p.$line-height-tight; color: $footer-link;
-  .icon { width: 16px; height: 16px; flex-shrink: 0; fill: currentColor; }
+  .icon { width: 16px; height: 16px; flex-shrink: 0;  }
   &:hover { color: $footer-link; text-decoration: underline; opacity: 0.85; }
   &--full { width: 100%; }
 }
