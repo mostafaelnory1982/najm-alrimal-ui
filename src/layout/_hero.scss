@@ -1,0 +1,293 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Hero Section
+// Figma node 8922:23506 — Hero-container
+//
+// Layout:  full-viewport, video behind header (negative margin)
+// Content: centered column, px-96px py-80px, gap-32px
+// ════════════════════════════════════════════════════════════
+
+.hero {
+  position:        relative;
+  width:           100%;
+  margin-top: 160px;
+  min-height:      100vh;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  overflow:        hidden;
+
+  // Fallback background while video loads (or if video missing in dev)
+  background:      #0d1e4a;
+
+  // Header is position:fixed — it floats above the page.
+  // Hero needs no margin/padding adjustment — it starts at top:0 naturally.
+  // The header overlaps the top of the hero, which is the desired full-bleed effect.
+
+  // ── Video background ───────────────────────────────────────
+  &__video-wrap {
+    position: absolute;
+    inset:    0;
+    z-index:  0;
+  }
+
+  &__video {
+    position:   absolute;
+    inset:      0;
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  // Dark gradient overlay — left side darker for text legibility
+  // Figma screenshot shows sand dunes on right, text on left
+  &__overlay {
+    position:   absolute;
+    inset:      0;
+    background: linear-gradient(
+      to left,                              // RTL: dark on right side (text)
+      rgba(10, 20, 50, 0.30) 0%,
+      rgba(10, 20, 50, 0.65) 50%,
+      rgba(10, 20, 50, 0.80) 100%
+    );
+  }
+
+  // ── Hero content — sits above video ────────────────────────
+  &__content {
+    position:        relative;
+    z-index:         1;
+    width:           100%;
+    max-width:       1280px;
+    margin-inline:   auto;
+    padding-inline:  p.$space-24;  // 96px — Figma spacing-9xl
+    padding-block:   p.$space-20;  // 80px — Figma spacing-8xl
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    gap:             p.$space-8;   // 32px — Figma spacing-4xl
+  }
+
+  // ── Heading block ──────────────────────────────────────────
+  &__text {
+    display:        flex;
+    flex-direction: column;
+    align-items:    flex-end;     // RTL: align right
+    gap:            p.$space-2;   // 8px
+    width:          100%;
+  }
+
+  &__heading {
+    width:           100%;
+    // ↓ CSS custom property — responsive, scales via _typography.scss breakpoints
+    font-size:       var(--font-size-display-xl);
+    font-weight:     700;        // bold — no token needed, semantic value
+    line-height:     1.2;        // unitless ratio — scales with font-size automatically
+    letter-spacing:  -1.2px;     // Figma: tracking -2 — kept as raw, intentional
+    // ↓ CSS custom property — flips with html.dark via _themes.scss
+    color:           rgb(var(--color-on-primary));  // white in both light + dark
+    text-align:      center;
+    margin:          0;
+  }
+
+  &__subheading {
+    width:        100%;
+    // ↓ CSS custom property — font-size-heading-lg = 20px, responsive
+    font-size:    var(--font-size-heading-lg);
+    font-weight:  600;           // semibold
+    line-height:  1.5;           // unitless — 20px × 1.5 = 30px matches Figma
+    color:        rgb(var(--color-on-primary));  // white in both light + dark
+    text-align:   center;
+    margin:       0;
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Advanced Search Card — glass morphism
+// Figma: w-768px, bg rgba(255,255,255,0.3), backdrop-blur-md(8px)
+// border-radius 8px, px-32px py-24px, gap-24px
+// This is a placeholder — full component will be built separately
+// ════════════════════════════════════════════════════════════
+.hero__search-card {
+  width:                   768px;
+  max-width:               100%;
+  background:              rgba(255, 255, 255, 0.30);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter:         blur(8px);
+  border-radius:           p.$radius-md;   // 8px
+  padding:                 p.$space-6 p.$space-8; // 24px 32px
+  display:                 flex;
+  flex-direction:          column;
+  gap:                     p.$space-6;     // 24px
+}
+
+// ── Search tabs ────────────────────────────────────────────
+.search-tabs {
+  display:       flex;
+  align-items:   flex-start;
+  gap:           p.$space-6;    // 24px
+  border-bottom: 0.8px solid rgba(255, 255, 255, 0.40);
+  padding-bottom: 0;
+}
+
+.search-tab {
+  flex:            1 1 0;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             p.$space-1;   // 4px
+  padding:         p.$space-4;   // 16px
+  background:      transparent;
+  border:          none;
+  cursor:          pointer;
+  font-family:     var(--font-primary);
+  font-size:       var(--font-size-body-md);   // 14px — responsive
+  font-weight:     p.$font-weight-medium;
+  color:           rgb(var(--color-on-surface-variant));
+  white-space:     nowrap;
+  position:        relative;
+  border-radius:   p.$radius-sm;
+  transition:      color p.$transition-speed;
+
+  .icon { flex-shrink: 0; }
+
+  // Active indicator line
+  &.is-active {
+    font-weight: p.$font-weight-bold;
+    color:       rgb(var(--color-on-surface));
+
+    &::after {
+      content:       '';
+      position:      absolute;
+      bottom:        -0.8px;
+      left:          p.$space-4;
+      right:         p.$space-4;
+      height:        3px;
+      background:    rgb(var(--color-primary)); // #274ea2
+      border-radius: p.$radius-full;
+    }
+  }
+
+  &:hover:not(.is-active) {
+    color: rgb(var(--color-on-surface));
+  }
+}
+
+// ── Dropdowns grid ─────────────────────────────────────────
+// Layout only — individual fields use .select-field from _dropdowns.scss
+// Figma: 2×2 flex-wrap grid, min-width 240px per field, gap 16px
+.search-fields {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       p.$space-4;  // 16px
+
+  // Each .select-field gets equal flex share, min 240px before wrapping
+  .select-field {
+    flex:      1 0 240px;
+    min-width: 0;
+  }
+}
+
+// ── Actions ─────────────────────────────────────────────────
+.search-actions {
+  display:        flex;
+  flex-direction: column;
+  gap:            p.$space-2;   // 8px
+
+  // Search button — full width in card context
+  .btn-block {
+    width:           100%;
+    justify-content: center;
+    gap:             p.$space-1;
+    height:          44px;
+  }
+
+  // Ghost help link below button
+  &__help {
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    height:          32px;
+    padding-inline:  p.$space-2;
+    font-family:     var(--font-primary);
+    font-size:       12px;
+    font-weight:     p.$font-weight-medium;
+    color:           rgb(var(--color-primary));
+    text-decoration: none;
+    text-align:      center;
+    cursor:          pointer;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Dark mode overrides
+// Most colors already use rgb(var(--color-*)) and flip automatically.
+// Only override what the glass card needs explicitly.
+// ════════════════════════════════════════════════════════════
+html.dark .hero__search-card {
+  background: rgba(20, 27, 52, 0.60);
+}
+
+// Tabs inside card — on dark, the card bg is dark so text should be light
+html.dark .search-tab {
+  color: rgba(255, 255, 255, 0.70);
+  &.is-active { color: #ffffff; }
+  &:hover:not(.is-active) { color: #ffffff; }
+}
+
+html.dark .search-field {
+  &__label {
+    // --color-on-surface already flips to #EEEEEE in dark — no override needed
+  }
+  &__select {
+    background:   rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.20);
+    color:        rgba(255, 255, 255, 0.55);
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 960px) {
+  .hero {
+    &__content {
+      padding-inline: p.$space-8;   // 32px
+      padding-block:  p.$space-12;  // 48px
+    }
+  }
+
+  .hero__search-card { width: 100%; }
+
+  .search-tabs {
+    gap:       p.$space-2;
+    flex-wrap: wrap;
+  }
+
+  .search-tab { padding: p.$space-2; }
+  .search-field { flex: 1 0 100%; }  // stack fields on mobile
+}
+
+@media (max-width: 600px) {
+  .hero {
+    &__content { padding-inline: p.$space-4; }
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Post-hero page offset
+// Header is position:fixed — all sections AFTER the hero need
+// to be offset by the header height so they're not hidden under it.
+// Hero itself needs no offset (it fills the full viewport intentionally).
+// Header height tokens (match _header.scss):
+//   full:    utility(40) + main(80) + strip(40) = 160px
+//   scrolled: main only = 80px
+// ════════════════════════════════════════════════════════════
+// main > :not(.hero) {
+//   // Sections after hero are standard page sections — nothing needed here
+//   // because hero fills 100vh and the next section starts right after naturally.
+//   // If content ever needs pushing, add scroll-margin-top here.
+// }
