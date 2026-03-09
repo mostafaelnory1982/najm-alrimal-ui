@@ -1,0 +1,242 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Product Card Component
+// Figma node 8922:23560  (instance of 4079:9075)
+//
+// Structure:
+//   .product-card            — white card, shadow-md, radius-8
+//     .product-card__image   — 160px tall image area, radius-4
+//     .product-card__body    — title + rating + price
+//     .product-card__actions — full-width add-to-cart button
+//     .product-card__fav     — absolute heart button top-end
+//
+// Hover state (from Figma):
+//   Card lifts with deeper shadow
+//   Image scales 1.06
+//   Add-to-cart button bg darkens
+//   Favourite button becomes visible (opacity 0 → 1)
+// ════════════════════════════════════════════════════════════
+
+$shadow-card:       0 2px 4px -2px rgba(16, 24, 40, 0.06),
+                    0 4px 8px -2px rgba(16, 24, 40, 0.10);
+$shadow-card-hover: 0 4px 6px -2px rgba(16, 24, 40, 0.08),
+                    0 12px 16px -4px rgba(16, 24, 40, 0.14);
+
+// ── Card shell ─────────────────────────────────────────────
+.product-card {
+  position:        relative;
+  display:         flex;
+  flex-direction:  column;
+  gap:             p.$space-2;        // 8px — Figma spacing-md
+  padding:         p.$space-2;        // 8px
+  background:      rgb(var(--color-surface-elevated));
+  border-radius:   p.$radius-md;      // 8px
+  box-shadow:      $shadow-card;
+  text-decoration: none;
+  color:           inherit;
+  overflow:        hidden;
+  transition:      box-shadow 250ms ease,
+                   transform   250ms ease;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    transform:  translateY(-2px);
+
+    .product-card__image img {
+      transform: scale(1.06);
+    }
+
+    .product-card__fav {
+      opacity: 1;
+    }
+
+    .product-card__add-btn {
+      background: #1e3d82;   // darken primary on hover
+    }
+  }
+}
+
+// ── Image area ─────────────────────────────────────────────
+.product-card__image {
+  position:      relative;
+  width:         100%;
+  height:        160px;
+  border-radius: p.$radius-sm;       // 4px
+  overflow:      hidden;
+  flex-shrink:   0;
+  background:    rgb(var(--color-surface-container));
+
+  img {
+    position:   absolute;
+    inset:      0;
+    width:      100%;
+    height:     100%;
+    object-fit: contain;             // Figma: object-contain — no crop
+    transition: transform 350ms ease;
+  }
+}
+
+// ── Body ───────────────────────────────────────────────────
+.product-card__body {
+  display:        flex;
+  flex-direction: column;
+  gap:            p.$space-2;
+  width:          100%;
+}
+
+// Product title — Figma: text-lg/Bold, 18px, #1f2a37
+.product-card__title {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-md);   // 1.125rem ≈ 18px
+  font-weight:  p.$font-weight-bold;
+  line-height:  1.56;                          // 28px
+  color:        rgb(var(--color-on-surface));
+  text-align:   right;
+  margin:       0;
+  display:      -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow:     hidden;
+}
+
+// ── Rating row ─────────────────────────────────────────────
+.product-card__rating {
+  display:     flex;
+  align-items: center;
+  gap:         p.$space-4;     // 16px between stars and count
+  flex-direction: row-reverse; // RTL: stars on right
+}
+
+.product-card__stars {
+  display: flex;
+  gap:     p.$space-1;        // 4px
+  flex-direction: row-reverse;
+
+  // Star icons — use currentColor
+  .star {
+    width:  20px;
+    height: 20px;
+    color:  #f59e0b;           // amber-400
+
+    &--empty { color: #d1d5db; }
+  }
+}
+
+.product-card__rating-count {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-body-sm);   // 12px
+  font-weight:  p.$font-weight-regular;
+  color:        rgb(var(--color-primary));
+  white-space:  nowrap;
+}
+
+// ── Price row ──────────────────────────────────────────────
+.product-card__price {
+  display:     flex;
+  align-items: baseline;
+  gap:         p.$space-1;
+  flex-direction: row-reverse;   // RTL
+}
+
+// Original price — struck through
+.product-card__price-original {
+  font-family:      var(--font-primary);
+  font-size:        var(--font-size-heading-md);   // 18px
+  font-weight:      p.$font-weight-regular;
+  color:            rgb(var(--color-on-surface-variant));
+  text-decoration:  line-through;
+  white-space:      nowrap;
+}
+
+// Sale / current price
+.product-card__price-current {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-body-lg);    // 16px
+  font-weight:  p.$font-weight-bold;
+  color:        rgb(var(--color-on-surface));
+  white-space:  nowrap;
+}
+
+// SAR currency icon — SVG sprite, inherits color from parent
+// Usage: <svg class="icon icon--sar"><use href="#icon-sar"></use></svg>
+.icon--sar {
+  display:     inline-block;
+  width:       1em;              // scales with font-size of parent
+  height:      auto;
+  flex-shrink: 0;
+  fill:        currentColor;     // inherits color from price element
+  vertical-align: middle;
+  position:    relative;
+  top:         -0.05em;          // optical alignment with text baseline
+}
+
+// ── Actions ────────────────────────────────────────────────
+.product-card__actions {
+  width: 100%;
+  margin-top: auto;
+}
+
+// Add to cart — full-width primary button
+.product-card__add-btn {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             p.$space-1;
+  width:           100%;
+  height:          44px;
+  padding-inline:  p.$space-4;
+  background:      rgb(var(--color-primary));
+  color:           #ffffff;
+  border:          none;
+  border-radius:   p.$radius-sm;
+  font-family:     var(--font-primary);
+  font-size:       var(--font-size-body-lg);
+  font-weight:     p.$font-weight-semibold;
+  white-space:     nowrap;
+  cursor:          pointer;
+  text-decoration: none;
+  transition:      background p.$transition-speed ease;
+
+  .icon {
+    width:  24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    flex-shrink: 0;
+  }
+}
+
+// ── Favourite button ───────────────────────────────────────
+// Positioned top-inset-inline-end; fades in on card hover
+.product-card__fav {
+  position:        absolute;
+  top:             p.$space-4;        // 16px
+  inset-inset-inline-end: p.$space-4;       // 16px — RTL-aware
+  z-index:         1;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           32px;
+  height:          32px;
+  background:      #f3f4f6;
+  border:          none;
+  border-radius:   p.$radius-full;
+  cursor:          pointer;
+  opacity:         0;                 // hidden by default, shown on card hover
+  transition:      opacity   200ms ease,
+                   background 200ms ease;
+
+  &:hover {
+    background: #e5e7eb;
+    opacity: 1 !important;
+
+    .icon { color: #ef4444; }
+  }
+
+  .icon {
+    width:  20px;
+    height: 20px;
+    color:  rgb(var(--color-on-surface-variant));
+    transition: color 200ms ease;
+  }
+}

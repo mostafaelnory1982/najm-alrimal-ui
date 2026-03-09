@@ -133,6 +133,20 @@
     <path d="M16 3.13a4 4 0 0 1 0 7.75M22 20c0-3.5-2.5-6-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </symbol>
 
+  <symbol id="icon-sar" viewBox="0 0 20 18" fill="currentColor" aria-label="ريال سعودي">
+    <!-- Official Saudi Riyal symbol — DGA standard glyph -->
+    <!-- Two vertical pillars + two horizontal bars + diagonal slash -->
+    <path d="M3 0h2v10H3V0zm6 0h2v10H9V0z" />
+    <path d="M1 4h12v2H1V4zm0 4h12v2H1V8z" />
+    <path d="M7 10l6 7h-2.5L5 12.5l2-2.5z" />
+  </symbol>
+
+  <symbol id="icon-briefcase" viewBox="0 0 24 24" fill="none">
+    <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2 12h20M12 12v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+
   <symbol id="icon-logout" viewBox="0 0 24 24" fill="none">
     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

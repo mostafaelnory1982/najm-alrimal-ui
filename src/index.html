@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
         if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark');
         }
-      } catch (e) {}
+      } catch (e) { }
     })();
   </script>
 
@@ -29,15 +30,16 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/brand/Favicon.png">
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
      SVG SPRITE INJECTOR
      Icons live in assets/icons/sprite.js
      Works on file://, http://, and https:// — no fetch, no CORS.
      All <use href="#icon-*"> references resolve normally.
 ════════════════════════════════════════════════════════════════ -->
-<script src="assets/icons/sprite.js"></script>
+  <script src="assets/icons/sprite.js"></script>
 
   <!-- ═══════════════════════════════════════════════════════════
        HEADER
@@ -68,8 +70,7 @@
 
       <!-- CENTER: Promo -->
       <div class="header-utility__promo">
-        <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚"
-              data-en="Free delivery on orders over 1000 SAR 🚚">
+        <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚" data-en="Free delivery on orders over 1000 SAR 🚚">
           توصيل مجاني للطلبات أكثر من 1000 ريال 🚚
         </span>
       </div>
@@ -82,16 +83,16 @@
           <span class="header-flag">
             <!-- Saudi flag inline SVG (no external file dependency) -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" aria-hidden="true">
-              <rect width="20" height="14" fill="#006923"/>
-              <text x="10" y="10" text-anchor="middle" font-size="6" fill="white" font-family="serif">&#x627;&#x644;&#x633;&#x639;&#x648;&#x62F;&#x64A;&#x629;</text>
+              <rect width="20" height="14" fill="#006923" />
+              <text x="10" y="10" text-anchor="middle" font-size="6" fill="white"
+                font-family="serif">&#x627;&#x644;&#x633;&#x639;&#x648;&#x62F;&#x64A;&#x629;</text>
             </svg>
           </span>
           <span data-ar="العربية" data-en="English">العربية</span>
         </button>
 
         <!-- Dark / Light mode toggle — transparent round button -->
-        <button class="btn-mode-switch" id="theme-toggle"
-                aria-label="تفعيل الوضع المظلم" aria-pressed="false">
+        <button class="btn-mode-switch" id="theme-toggle" aria-label="تفعيل الوضع المظلم" aria-pressed="false">
           <svg class="icon icon-ui dark-hide" aria-hidden="true" width="24" height="24">
             <use href="#icon-sun"></use>
           </svg>
@@ -259,9 +260,7 @@
 
       <!-- Video background — replace src with actual video in production -->
       <div class="hero__video-wrap" aria-hidden="true">
-        <video class="hero__video"
-               autoplay muted loop playsinline
-               poster="assets/images/hero-poster.jpg">
+        <video class="hero__video" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
           <source src="assets/imgs/Hero-Video.mp4" type="video/mp4">
         </video>
         <!-- Gradient overlay -->
@@ -273,14 +272,12 @@
 
         <!-- Heading block -->
         <div class="hero__text">
-          <h1 class="hero__heading"
-              data-ar="قطع غيار أصلية، توصيل سريع في جميع أنحاء المملكة العربية السعودية"
-              data-en="Genuine Parts, Fast Delivery Across Saudi Arabia">
+          <h1 class="hero__heading" data-ar="قطع غيار أصلية، توصيل سريع في جميع أنحاء المملكة العربية السعودية"
+            data-en="Genuine Parts, Fast Delivery Across Saudi Arabia">
             قطع غيار أصلية، توصيل سريع في جميع أنحاء المملكة العربية السعودية
           </h1>
-          <p class="hero__subheading"
-             data-ar="مصدرك الموثوق لقطع غيار السيارات عالية الجودة"
-             data-en="Your trusted source for high-quality car spare parts">
+          <p class="hero__subheading" data-ar="مصدرك الموثوق لقطع غيار السيارات عالية الجودة"
+            data-en="Your trusted source for high-quality car spare parts">
             مصدرك الموثوق لقطع غيار السيارات عالية الجودة
           </p>
         </div>
@@ -305,7 +302,8 @@
               <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
                 <use href="#icon-credit-card"></use>
               </svg>
-              <span data-ar="البحث باستخدام رقم تعريف المركبة (VIN)" data-en="Search by VIN">البحث باستخدام رقم تعريف المركبة (VIN)</span>
+              <span data-ar="البحث باستخدام رقم تعريف المركبة (VIN)" data-en="Search by VIN">البحث باستخدام رقم تعريف
+                المركبة (VIN)</span>
             </button>
             <button class="search-tab" role="tab" aria-selected="false">
               <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
@@ -319,8 +317,7 @@
           <div class="search-fields">
 
             <div class="select-field">
-              <label class="select-field__label"
-                     data-ar="الماركة" data-en="Make">الماركة</label>
+              <label class="select-field__label" data-ar="الماركة" data-en="Make">الماركة</label>
               <div class="select-field__control">
                 <select class="is-placeholder" aria-label="اختر الماركة">
                   <option value="" disabled selected>مثال: تويوتا</option>
@@ -334,8 +331,7 @@
             </div>
 
             <div class="select-field">
-              <label class="select-field__label"
-                     data-ar="الموديل" data-en="Model">الموديل</label>
+              <label class="select-field__label" data-ar="الموديل" data-en="Model">الموديل</label>
               <div class="select-field__control">
                 <select class="is-placeholder" aria-label="اختر الموديل">
                   <option value="" disabled selected>مثال: لاند كروزر</option>
@@ -349,8 +345,7 @@
             </div>
 
             <div class="select-field">
-              <label class="select-field__label"
-                     data-ar="سنة الصنع" data-en="Year">سنة الصنع</label>
+              <label class="select-field__label" data-ar="سنة الصنع" data-en="Year">سنة الصنع</label>
               <div class="select-field__control">
                 <select class="is-placeholder" aria-label="اختر سنة الصنع">
                   <option value="" disabled selected>مثال: 2026</option>
@@ -364,8 +359,7 @@
             </div>
 
             <div class="select-field">
-              <label class="select-field__label"
-                     data-ar="حجم المحرك" data-en="Engine Size">حجم المحرك</label>
+              <label class="select-field__label" data-ar="حجم المحرك" data-en="Engine Size">حجم المحرك</label>
               <div class="select-field__control">
                 <select class="is-placeholder" aria-label="اختر حجم المحرك">
                   <option value="" disabled selected>على سبيل المثال: 2.5 لتر</option>
@@ -389,8 +383,7 @@
               <span data-ar="ابحث عن أجزائي" data-en="Find My Parts">ابحث عن أجزائي</span>
             </a>
             <a href="#" class="search-actions__help">
-              <span data-ar="ألا تجد سيارتك؟ اسأل خبراءنا"
-                    data-en="Can't find your car? Ask our experts">
+              <span data-ar="ألا تجد سيارتك؟ اسأل خبراءنا" data-en="Can't find your car? Ask our experts">
                 ألا تجد سيارتك؟ اسأل خبراءنا
               </span>
             </a>
@@ -405,294 +398,805 @@
     </section>
     <!-- /hero -->
 
-    <!-- ── Featured Categories ─────────────────────────────────── -->
-    <section class="section-md bg-surface">
-      <div class="container">
-        <h2 class="text-heading-lg text-on-surface mb-4"
-            data-ar="الفئات الأكثر طلباً" data-en="Most Requested Categories">
-          الفئات الأكثر طلباً
-        </h2>
-        <div class="row g-3">
+    <!-- ══ Trust Signal Bar ════════════════════════════ -->
+    <section class="trust-bar" aria-label="مزايا نجم الرمال">
+      <div class="trust-bar__container">
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-droplet"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="زيوت وسوائل" data-en="Oils &amp; Fluids">زيوت وسوائل</span>
-              <span class="tag tag-sm tag-neutral" data-ar="1,240 منتج" data-en="1,240 products">1,240 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-brake"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="الفرامل" data-en="Brakes">الفرامل</span>
-              <span class="tag tag-sm tag-neutral" data-ar="876 منتج" data-en="876 products">876 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-tire"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="الإطارات" data-en="Tires">الإطارات</span>
-              <span class="tag tag-sm tag-neutral" data-ar="632 منتج" data-en="632 products">632 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-battery"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="البطاريات" data-en="Batteries">البطاريات</span>
-              <span class="tag tag-sm tag-neutral" data-ar="210 منتج" data-en="210 products">210 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-filter"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="فلاتر وصيانة" data-en="Filters">فلاتر وصيانة</span>
-              <span class="tag tag-sm tag-neutral" data-ar="450 منتج" data-en="450 products">450 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-light"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="الإنارة" data-en="Lighting">الإنارة</span>
-              <span class="tag tag-sm tag-neutral" data-ar="380 منتج" data-en="380 products">380 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-engine"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="قطع المحرك" data-en="Engine Parts">قطع المحرك</span>
-              <span class="tag tag-sm tag-neutral" data-ar="920 منتج" data-en="920 products">920 منتج</span>
-            </a>
-          </div>
-
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="#" class="d-flex flex-column align-items-center gap-2 p-4 bg-surface-elevated rounded-lg text-center text-decoration-none" style="border:1px solid rgb(var(--color-outline))">
-              <svg class="icon icon-xl text-brand" aria-hidden="true"><use href="#icon-accessories"></use></svg>
-              <span class="text-label-lg text-on-surface" data-ar="الإكسسوارات" data-en="Accessories">الإكسسوارات</span>
-              <span class="tag tag-sm tag-neutral" data-ar="1,100 منتج" data-en="1,100 products">1,100 منتج</span>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Offers Banner ───────────────────────────────────────── -->
-    <section class="section-md bg-brand-cont">
-      <div class="container">
-        <div class="row align-items-center g-4">
-          <div class="col-md-7">
-            <span class="tag tag-sm tag-primary mb-3"
-                  data-ar="عرض محدود الوقت" data-en="Limited Time Offer">عرض محدود الوقت</span>
-            <h2 class="text-heading-xl text-on-surface mb-2"
-                data-ar="خصم 20% على جميع زيوت الإطارات"
-                data-en="20% Off All Tire Oils">
-              خصم 20% على جميع زيوت الإطارات
-            </h2>
-            <p class="text-body-md text-muted mb-4"
-               data-ar="استخدم كود الخصم NAJM20 عند الدفع. العرض ينتهي في 30 مارس."
-               data-en="Use code NAJM20 at checkout. Offer ends March 30.">
-              استخدم كود الخصم NAJM20 عند الدفع. العرض ينتهي في 30 مارس.
+        <!-- Item 1 — Genuine guarantee -->
+        <div class="trust-item">
+          <div class="trust-item__body">
+            <p class="trust-item__title" data-ar="ضمان أصلي 100%" data-en="100% Genuine Guarantee">
+              ضمان أصلي 100%
             </p>
-            <a href="#" class="btn btn-primary btn-lg"
-               data-ar="تسوق العرض" data-en="Shop the Deal">تسوق العرض</a>
+            <p class="trust-item__desc" data-ar="قطع غيار معتمدة مباشرة من الوكلاء المعتمدين"
+              data-en="Certified parts directly from authorized dealers">
+              قطع غيار معتمدة مباشرة من الوكلاء المعتمدين
+            </p>
           </div>
-          <div class="col-md-5 text-center">
-            <svg class="icon text-brand" style="width:140px;height:140px;opacity:.2" aria-hidden="true">
-              <use href="#icon-discount"></use>
+          <div class="trust-item__icon" aria-hidden="true">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <use href="#icon-check-circle"></use>
             </svg>
           </div>
         </div>
+
+        <!-- Item 2 — Fast shipping -->
+        <div class="trust-item">
+          <div class="trust-item__body">
+            <p class="trust-item__title" data-ar="شحن سريع إلى جميع المناطق" data-en="Fast Shipping Nationwide">
+              شحن سريع إلى جميع المناطق
+            </p>
+            <p class="trust-item__desc" data-ar="التوصيل خلال 1-3 أيام في جميع أنحاء المملكة العربية السعودية"
+              data-en="Delivery within 1-3 days across Saudi Arabia">
+              التوصيل خلال 1-3 أيام في جميع أنحاء المملكة العربية السعودية
+            </p>
+          </div>
+          <div class="trust-item__icon" aria-hidden="true">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <use href="#icon-truck"></use>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 3 — Secure payments -->
+        <div class="trust-item">
+          <div class="trust-item__body">
+            <p class="trust-item__title" data-ar="مدفوعات آمنة" data-en="Secure Payments">
+              مدفوعات آمنة
+            </p>
+            <p class="trust-item__desc" data-ar="آمن بنسبة 100% عبر مدى، أبل باي، وفيزا"
+              data-en="100% secure via Mada, Apple Pay & Visa">
+              آمن بنسبة 100% عبر مدى، أبل باي، وفيزا
+            </p>
+          </div>
+          <div class="trust-item__icon" aria-hidden="true">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <use href="#icon-credit-card"></use>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 4 — Easy returns -->
+        <div class="trust-item">
+          <div class="trust-item__body">
+            <p class="trust-item__title" data-ar="إرجاع سهل" data-en="Easy Returns">
+              إرجاع سهل
+            </p>
+            <p class="trust-item__desc" data-ar="إمكانية الإرجاع بسهولة خلال 14 يومًا"
+              data-en="Easy returns within 14 days">
+              إمكانية الإرجاع بسهولة خلال 14 يومًا
+            </p>
+          </div>
+          <div class="trust-item__icon" aria-hidden="true">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <use href="#icon-arrow-left"></use>
+            </svg>
+          </div>
+        </div>
+
       </div>
     </section>
+    <!-- /trust-bar -->
 
-    <!-- ── Featured Products ───────────────────────────────────── -->
-    <section class="section-md bg-surface">
-      <div class="container">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-          <h2 class="text-heading-lg text-on-surface mb-0"
-              data-ar="منتجات مميزة" data-en="Featured Products">منتجات مميزة</h2>
-          <a href="#" class="btn btn-ghost btn-sm"
-             data-ar="عرض الكل" data-en="View All">عرض الكل</a>
+    <!-- ══ Trusted Brands ════════════ -->
+    <section class="brands-section" aria-labelledby="brands-heading">
+      <div class="brands-section__inner">
+
+        <!-- Heading -->
+        <div class="brands-section__header">
+          <h2 class="brands-section__title" id="brands-heading" data-ar="موثوق به من قبل كبار المصنعين"
+            data-en="Trusted by Top Manufacturers">
+            موثوق به من قبل كبار المصنعين
+          </h2>
         </div>
-        <div class="row g-3">
 
-          <div class="col-6 col-lg-3">
-            <div class="bg-surface-elevated rounded-lg p-3" style="border:1px solid rgb(var(--color-outline))">
-              <div class="bg-surface rounded-md mb-3 d-flex align-items-center justify-content-center" style="height:140px">
-                <svg class="icon text-muted" style="width:64px;height:64px" aria-hidden="true"><use href="#icon-image"></use></svg>
-              </div>
-              <span class="tag tag-xs tag-success mb-2" data-ar="متوفر" data-en="In Stock">متوفر</span>
-              <p class="text-label-lg text-on-surface mb-1">زيت موتور Mobil 1 5W-30</p>
-              <p class="text-caption text-muted mb-2"
-                 data-ar="مناسب لـ: شيفروليه، فورد، كرايسلر"
-                 data-en="Fits: Chevrolet, Ford, Chrysler">مناسب لـ: شيفروليه، فورد، كرايسلر</p>
-              <div class="d-flex align-items-center justify-content-between">
-                <span class="text-heading-sm text-brand">199 ريال</span>
-                <button class="btn btn-primary btn-sm btn-icon-only" aria-label="أضف للسلة">
-                  <svg class="icon icon-ui" aria-hidden="true"><use href="#icon-cart"></use></svg>
-                </button>
-              </div>
-            </div>
+        <!-- Brand logo grid -->
+        <div class="brands-grid" role="list" aria-label="العلامات التجارية">
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Logo.svg.svg" alt="Ford" loading="lazy">
           </div>
 
-          <div class="col-6 col-lg-3">
-            <div class="bg-surface-elevated rounded-lg p-3" style="border:1px solid rgb(var(--color-outline))">
-              <div class="bg-surface rounded-md mb-3 d-flex align-items-center justify-content-center" style="height:140px">
-                <svg class="icon text-muted" style="width:64px;height:64px" aria-hidden="true"><use href="#icon-image"></use></svg>
-              </div>
-              <span class="tag tag-xs tag-success mb-2" data-ar="متوفر" data-en="In Stock">متوفر</span>
-              <p class="text-label-lg text-on-surface mb-1">طقم فرامل Brembo الأمامية</p>
-              <p class="text-caption text-muted mb-2"
-                 data-ar="مناسب لـ: كاديلاك، لينكولن"
-                 data-en="Fits: Cadillac, Lincoln">مناسب لـ: كاديلاك، لينكولن</p>
-              <div class="d-flex align-items-center justify-content-between">
-                <span class="text-heading-sm text-brand">450 ريال</span>
-                <button class="btn btn-primary btn-sm btn-icon-only" aria-label="أضف للسلة">
-                  <svg class="icon icon-ui" aria-hidden="true"><use href="#icon-cart"></use></svg>
-                </button>
-              </div>
-            </div>
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Lexus.svg" alt="Lexus" loading="lazy">
           </div>
 
-          <div class="col-6 col-lg-3">
-            <div class="bg-surface-elevated rounded-lg p-3" style="border:1px solid rgb(var(--color-outline))">
-              <div class="bg-surface rounded-md mb-3 d-flex align-items-center justify-content-center" style="height:140px">
-                <svg class="icon text-muted" style="width:64px;height:64px" aria-hidden="true"><use href="#icon-image"></use></svg>
-              </div>
-              <span class="tag tag-xs tag-warning mb-2" data-ar="كمية محدودة" data-en="Limited Stock">كمية محدودة</span>
-              <p class="text-label-lg text-on-surface mb-1">بطارية AC Delco 75AH</p>
-              <p class="text-caption text-muted mb-2"
-                 data-ar="مناسب لـ: بيوك، شيفروليه"
-                 data-en="Fits: Buick, Chevrolet">مناسب لـ: بيوك، شيفروليه</p>
-              <div class="d-flex align-items-center justify-content-between">
-                <span class="text-heading-sm text-brand">320 ريال</span>
-                <button class="btn btn-primary btn-sm btn-icon-only" aria-label="أضف للسلة">
-                  <svg class="icon icon-ui" aria-hidden="true"><use href="#icon-cart"></use></svg>
-                </button>
-              </div>
-            </div>
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/bmw_logo.svg.svg" alt="BMW" loading="lazy">
           </div>
 
-          <div class="col-6 col-lg-3">
-            <div class="bg-surface-elevated rounded-lg p-3" style="border:1px solid rgb(var(--color-outline))">
-              <div class="bg-surface rounded-md mb-3 d-flex align-items-center justify-content-center" style="height:140px">
-                <svg class="icon text-muted" style="width:64px;height:64px" aria-hidden="true"><use href="#icon-image"></use></svg>
-              </div>
-              <span class="tag tag-xs tag-success mb-2" data-ar="متوفر" data-en="In Stock">متوفر</span>
-              <p class="text-label-lg text-on-surface mb-1">فلتر هواء K&amp;N مضخم</p>
-              <p class="text-caption text-muted mb-2"
-                 data-ar="مناسب لـ: فورد F-150، موستانج"
-                 data-en="Fits: Ford F-150, Mustang">مناسب لـ: فورد F-150، موستانج</p>
-              <div class="d-flex align-items-center justify-content-between">
-                <span class="text-heading-sm text-brand">280 ريال</span>
-                <button class="btn btn-primary btn-sm btn-icon-only" aria-label="أضف للسلة">
-                  <svg class="icon icon-ui" aria-hidden="true"><use href="#icon-cart"></use></svg>
-                </button>
-              </div>
-            </div>
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Mercides.svg" alt="Mercedes-Benz" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/nissan_usa_logo.svg.svg" alt="Nissan" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Toyota.svg" alt="Toyota" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/nissan_usa_logo.svg.svg" alt="Nissan" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Mercides.svg" alt="Mercedes-Benz" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Logo.svg.svg" alt="Hyundai" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Toyota.svg" alt="Toyota" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Lexus.svg" alt="Lexus" loading="lazy">
+          </div>
+
+          <div class="brand-card" role="listitem">
+            <img class="brand-card__logo" src="assets/imgs/Brands/Symbol.svg.svg" alt="Hyundai" loading="lazy">
           </div>
 
         </div>
+        <!-- /brands-grid -->
+
+        <!-- CTA -->
+        <a href="/brands" class="btn btn-secondary" data-ar="عرض جميع الشركات المصنعة" data-en="View All Manufacturers">
+          عرض جميع الشركات المصنعة
+        </a>
+
       </div>
     </section>
+    <!-- /brands-section -->
 
-    <!-- ── Loyalty Program ─────────────────────────────────────── -->
-    <section class="section-md bg-surface-container">
-      <div class="container">
-        <div class="text-center mb-5">
-          <svg class="icon text-brand mb-3" style="width:48px;height:48px" aria-hidden="true">
-            <use href="#icon-loyalty"></use>
-          </svg>
-          <h2 class="text-heading-xl text-on-surface mb-2"
-              data-ar="برنامج الولاء — نجم الرمال"
-              data-en="Loyalty Program — Najm Al-Rimal">برنامج الولاء — نجم الرمال</h2>
-          <p class="text-body-md text-muted"
-             data-ar="اجمع النقاط مع كل عملية شراء واستبدلها بخصومات حصرية"
-             data-en="Earn points with every purchase and redeem them for exclusive discounts">
-            اجمع النقاط مع كل عملية شراء واستبدلها بخصومات حصرية
+    <!-- ══ Main Categories ═════════ -->
+    <section class="categories-section" aria-labelledby="categories-heading">
+      <div class="categories-section__inner">
+
+        <!-- Section header -->
+        <div class="categories-section__header">
+          <h2 class="categories-section__title" id="categories-heading" data-ar="قطع غيار السيارات الأساسية"
+            data-en="Essential Auto Parts">
+            قطع غيار السيارات الأساسية
+          </h2>
+          <p class="categories-section__subtitle"
+            data-ar="كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة."
+            data-en="Everything you need to keep your car running smoothly. Guaranteed original quality.">
+            كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة.
           </p>
         </div>
-        <div class="row g-4 justify-content-center">
-          <div class="col-md-4">
-            <div class="bg-surface-elevated rounded-xl p-4 text-center" style="border:2px solid #cd7f32">
-              <div class="text-heading-lg mb-1" style="color:#cd7f32"
-                   data-ar="برونزي" data-en="Bronze">برونزي</div>
-              <div class="text-caption text-muted mb-3"
-                   data-ar="0 – 5,000 نقطة" data-en="0 – 5,000 points">0 – 5,000 نقطة</div>
-              <ul class="list-unstyled text-body-md text-on-surface text-start">
-                <li class="mb-2">✓ نقطة لكل 10 ريال</li>
-                <li class="mb-2">✓ خصم 5% على الطلبات</li>
-                <li>✓ الأولوية في الدعم</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="bg-surface-elevated rounded-xl p-4 text-center" style="border:2px solid #aaa">
-              <div class="text-heading-lg mb-1" style="color:#aaa"
-                   data-ar="فضي" data-en="Silver">فضي</div>
-              <div class="text-caption text-muted mb-3"
-                   data-ar="5,001 – 15,000 نقطة" data-en="5,001 – 15,000 points">5,001 – 15,000 نقطة</div>
-              <ul class="list-unstyled text-body-md text-on-surface text-start">
-                <li class="mb-2">✓ نقطتان لكل 10 ريال</li>
-                <li class="mb-2">✓ خصم 10% على الطلبات</li>
-                <li>✓ توصيل مجاني</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="bg-surface-elevated rounded-xl p-4 text-center" style="border:2px solid #d4af37">
-              <div class="text-heading-lg mb-1" style="color:#d4af37"
-                   data-ar="ذهبي" data-en="Gold">ذهبي</div>
-              <div class="text-caption text-muted mb-3"
-                   data-ar="+15,000 نقطة" data-en="+15,000 points">+15,000 نقطة</div>
-              <ul class="list-unstyled text-body-md text-on-surface text-start">
-                <li class="mb-2">✓ 3 نقاط لكل 10 ريال</li>
-                <li class="mb-2">✓ خصم 15% على الطلبات</li>
-                <li>✓ توصيل مجاني + أولوية</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ── Trusted Brands ──────────────────────────────────────── -->
-    <section class="section-lg bg-surface">
-      <div class="container">
-        <h2 class="text-heading-lg text-on-surface mb-4"
-            data-ar="ماركات نثق بها" data-en="Brands We Trust">ماركات نثق بها</h2>
-        <div class="row g-3 align-items-center">
-          <div class="col-4 col-md-2">
-            <div class="bg-surface-elevated rounded-lg p-3 text-center text-muted text-label-lg">Mobil 1</div>
-          </div>
-          <div class="col-4 col-md-2">
-            <div class="bg-surface-elevated rounded-lg p-3 text-center text-muted text-label-lg">Brembo</div>
-          </div>
-          <div class="col-4 col-md-2">
-            <div class="bg-surface-elevated rounded-lg p-3 text-center text-muted text-label-lg">AC Delco</div>
-          </div>
-          <div class="col-4 col-md-2">
-            <div class="bg-surface-elevated rounded-lg p-3 text-center text-muted text-label-lg">K&amp;N</div>
-          </div>
-          <div class="col-4 col-md-2">
-            <div class="bg-surface-elevated rounded-lg p-3 text-center text-muted text-label-lg">Monroe</div>
-          </div>
-          <div class="col-4 col-md-2">
-            <div class="bg-surface-elevated rounded-lg p-3 text-center text-muted text-label-lg">Bosch</div>
-          </div>
+        <!-- Categories grid — 4×2 -->
+        <div class="categories-grid">
+
+          <!-- Card 1 — Air Conditioning تكييف -->
+          <a href="/category/ac" class="category-card" aria-label="تكييف">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/AC.png" alt="تكييف" loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="تكييف" data-en="Air Conditioning">
+                تكييف
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 2 — Brakes الفرامل -->
+          <a href="/category/brakes" class="category-card" aria-label="الفرامل">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/breaks.png" alt="الفرامل" loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="الفرامل" data-en="Brakes">
+                الفرامل
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 3 — Filters الفلاتر -->
+          <a href="/category/filters" class="category-card" aria-label="الفلاتر">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/filters.png" alt="الفلاتر" loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="الفلاتر" data-en="Filters">
+                الفلاتر
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 4 — Oils & Fluids الزيوت والسوائل -->
+          <a href="/category/oils" class="category-card" aria-label="الزيوت والسوائل">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/oils.png" alt="الزيوت والسوائل"
+                loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="الزيوت والسوائل" data-en="Oils & Fluids">
+                الزيوت والسوائل
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 5 — Car Care العناية بالسيارة -->
+          <a href="/category/care" class="category-card" aria-label="العناية بالسيارة">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/accessories.png" alt="العناية بالسيارة"
+                loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="العناية بالسيارة" data-en="Car Care">
+                العناية بالسيارة
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 6 — Lighting إضاءة -->
+          <a href="/category/lighting" class="category-card" aria-label="إضاءة">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/lights.png" alt="إضاءة" loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="إضاءة" data-en="Lighting">
+                إضاءة
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 7 — Batteries البطاريات -->
+          <a href="/category/batteries" class="category-card" aria-label="البطاريات">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/battaries.png" alt="البطاريات"
+                loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="البطاريات" data-en="Batteries">
+                البطاريات
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 8 — Tires الإطارات -->
+          <a href="/category/tires" class="category-card" aria-label="الإطارات">
+            <div class="category-card__image-wrap">
+              <img class="category-card__image" src="assets/imgs/categories/tires.png" alt="الإطارات" loading="lazy">
+            </div>
+            <div class="category-card__content">
+              <p class="category-card__title" data-ar="الإطارات" data-en="Tires">
+                الإطارات
+              </p>
+            </div>
+          </a>
+
         </div>
+        <!-- /categories-grid -->
+
       </div>
     </section>
+    <!-- /categories-section -->
+
+    <!-- ══ Split Screen ══════════════════════════════════════════
+     Figma node 8922:68403
+════════════════════════════════════════════════════════════ -->
+    <section class="split-screen">
+
+      <!-- Car Owners — BG image via CSS -->
+      <div class="split-screen__col split-screen__col--owners">
+        <div class="split-screen__register">
+          <div class="split-screen__icon" aria-hidden="true">
+            <svg class="icon" width="24" height="24">
+              <use href="#icon-user"></use>
+            </svg>
+          </div>
+          <div class="split-screen__text">
+            <h2 class="split-screen__title" data-ar="لأصحاب السيارات" data-en="For Car Owners">
+              لأصحاب السيارات
+            </h2>
+            <p class="split-screen__desc"
+              data-ar="انضم إلى برنامج الولاء الخاص بنا للحصول على خصومات وعروض خاصة على جميع القطع."
+              data-en="Join our loyalty program for discounts and special offers on all parts.">
+              انضم إلى برنامج الولاء الخاص بنا للحصول على خصومات وعروض خاصة على جميع القطع.
+            </p>
+          </div>
+          <a href="/register/owner" class="split-screen__btn split-screen__btn--light" data-ar="سجل الآن"
+            data-en="Register Now">
+            سجل الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- Workshops & Businesses — BG image via CSS -->
+      <div class="split-screen__col split-screen__col--business">
+        <div class="split-screen__register">
+          <div class="split-screen__icon" aria-hidden="true">
+            <svg class="icon" width="24" height="24">
+              <use href="#icon-briefcase"></use>
+            </svg>
+          </div>
+          <div class="split-screen__text">
+            <h2 class="split-screen__title" data-ar="للورش والشركات" data-en="For Workshops & Businesses">
+              للورش والشركات
+            </h2>
+            <p class="split-screen__desc" data-ar="سجل للحصول على أسعار الجملة وإمكانية طلب كميات كبيرة."
+              data-en="Register for wholesale pricing and bulk ordering capabilities.">
+              سجل للحصول على أسعار الجملة وإمكانية طلب كميات كبيرة.
+            </p>
+          </div>
+          <a href="/register/business" class="split-screen__btn split-screen__btn--ghost"
+            data-ar="تقدم بطلب للحصول على حساب تجاري" data-en="Apply for Business Account">
+            تقدم بطلب للحصول على حساب تجاري
+          </a>
+        </div>
+      </div>
+
+    </section>
+    <!-- /split-screen -->
+
+    <!-- ══ Product Archive — أكثر قطع الغيار مبيعاً ═════════════════════════════════ -->
+<section class="product-archive">
+
+  <!-- Section Header -->
+  <div class="product-archive__header">
+    <h2 class="product-archive__title"
+        data-ar="أكثر قطع الغيار مبيعاً هذا الأسبوع"
+        data-en="Best Selling Parts This Week">
+      أكثر قطع الغيار مبيعاً هذا الأسبوع
+    </h2>
+    <p class="product-archive__subtitle"
+       data-ar="كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة."
+       data-en="Everything you need to keep your car running smoothly. Guaranteed original quality.">
+      كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة.
+    </p>
+  </div>
+
+  <!-- Grid — Row 1 + Banner + Row 2 -->
+  <div class="product-archive__grid">
+
+    <!-- ── Row 1 · Card 1 ── -->
+    <a href="/product/brake-pads" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="طقم تيل فرامل - أمامي" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="طقم تيل فرامل - أمامي" data-en="Brake Pad Set - Front">طقم تيل فرامل - أمامي</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(12 تقييمًا)" data-en="(12 reviews)">(12 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">199.99</span>
+          <span class="product-card__price-original">249.99</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 1 · Card 2 ── -->
+    <a href="/product/oil-filter" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="فلتر زيت - أصلي" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="فلتر زيت - أصلي" data-en="Oil Filter - OEM">فلتر زيت - أصلي</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="5 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(34 تقييمًا)" data-en="(34 reviews)">(34 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">49.99</span>
+          <span class="product-card__price-original">69.99</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 1 · Card 3 ── -->
+    <a href="/product/spark-plugs" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="شمعات إشعال NGK" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="شمعات إشعال NGK - طقم 4" data-en="NGK Spark Plugs - Set of 4">شمعات إشعال NGK - طقم 4</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(8 تقييمات)" data-en="(8 reviews)">(8 تقييمات)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">89.99</span>
+          <span class="product-card__price-original">119.99</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 1 · Card 4 ── -->
+    <a href="/product/air-filter" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="فلتر هواء K&N" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="فلتر هواء K&N عالي الأداء" data-en="K&N High-Performance Air Filter">فلتر هواء K&N عالي الأداء</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="5 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(21 تقييمًا)" data-en="(21 reviews)">(21 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">279.99</span>
+          <span class="product-card__price-original">320.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 1 · Card 5 ── -->
+    <a href="/product/battery" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="بطارية AC Delco" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="بطارية AC Delco 75AH" data-en="AC Delco Battery 75AH">بطارية AC Delco 75AH</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(17 تقييمًا)" data-en="(17 reviews)">(17 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">319.99</span>
+          <span class="product-card__price-original">380.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 1 · Card 6 ── -->
+    <a href="/product/shock-absorber" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="ماص صدمات Monroe" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="ماص صدمات Monroe - أمامي" data-en="Monroe Shock Absorber - Front">ماص صدمات Monroe - أمامي</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(6 تقييمات)" data-en="(6 reviews)">(6 تقييمات)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">449.99</span>
+          <span class="product-card__price-original">520.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ══ Ad Banner — spans all 3 columns ══════════════════════
+         BG: assets/imgs/banner-grid.png  via ::before in CSS
+    ════════════════════════════════════════════════════════════ -->
+    <div class="product-archive__banner" role="complementary" aria-label="عرض خاص">
+      <div class="product-archive-banner__content">
+        <h2 class="product-archive-banner__title"
+            data-ar="قلب سيارتك، يتم توصيله إليك."
+            data-en="Your car's heart, delivered to you.">
+          قلب سيارتك، يتم توصيله إليك.
+        </h2>
+        <p class="product-archive-banner__desc"
+           data-ar="محركات وناقلات حركة ومكونات رئيسية أصلية 100% مدعومة بضمان الشركة المصنعة."
+           data-en="Engines, transmissions and key components 100% original backed by manufacturer warranty.">
+          محركات وناقلات حركة ومكونات رئيسية أصلية 100% مدعومة بضمان الشركة المصنعة.
+        </p>
+      </div>
+      <div class="product-archive-banner__visual" aria-hidden="true">
+        <img src="assets/imgs/categories/oils.png" alt="">
+      </div>
+    </div>
+    <!-- /banner -->
+
+    <!-- ── Row 2 · Card 7 ── -->
+    <a href="/product/timing-belt" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="حزام توقيت Gates" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="حزام توقيت Gates - مع بكرات" data-en="Gates Timing Belt Kit">حزام توقيت Gates - مع بكرات</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="5 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(29 تقييمًا)" data-en="(29 reviews)">(29 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">389.99</span>
+          <span class="product-card__price-original">450.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 2 · Card 8 ── -->
+    <a href="/product/radiator" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="ردياتير تبريد أصلي" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="ردياتير تبريد - أصلي OEM" data-en="Radiator - OEM Replacement">ردياتير تبريد - أصلي OEM</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(11 تقييمًا)" data-en="(11 reviews)">(11 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">699.99</span>
+          <span class="product-card__price-original">850.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 2 · Card 9 ── -->
+    <a href="/product/alternator" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="دينمو شارجة Bosch" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="دينمو شارجة Bosch - مُجدَّد" data-en="Bosch Alternator - Remanufactured">دينمو شارجة Bosch - مُجدَّد</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(5 تقييمات)" data-en="(5 reviews)">(5 تقييمات)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">549.99</span>
+          <span class="product-card__price-original">680.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 2 · Card 10 ── -->
+    <a href="/product/wheel-bearing" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="تريلر عجلة SKF" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="تريلر عجلة SKF - أمامي" data-en="SKF Wheel Bearing - Front">تريلر عجلة SKF - أمامي</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="5 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(43 تقييمًا)" data-en="(43 reviews)">(43 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">159.99</span>
+          <span class="product-card__price-original">199.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 2 · Card 11 ── -->
+    <a href="/product/drive-shaft" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="عمود دريف شافت" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="عمود دريف شافت - يسار" data-en="Drive Shaft Assembly - Left">عمود دريف شافت - يسار</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="4 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(9 تقييمات)" data-en="(9 reviews)">(9 تقييمات)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">829.99</span>
+          <span class="product-card__price-original">950.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+    <!-- ── Row 2 · Card 12 ── -->
+    <a href="/product/cabin-filter" class="product-card">
+      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+      <div class="product-card__image">
+        <img src="assets/imgs/products/product-placeholder.png" alt="فلتر مقصورة Bosch" loading="lazy">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title" data-ar="فلتر مقصورة Bosch - كابن فلتر" data-en="Bosch Cabin Air Filter">فلتر مقصورة Bosch - كابن فلتر</h3>
+        <div class="product-card__rating">
+          <div class="product-card__stars" aria-label="5 من 5 نجوم">
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+          </div>
+          <span class="product-card__rating-count" data-ar="(38 تقييمًا)" data-en="(38 reviews)">(38 تقييمًا)</span>
+        </div>
+        <div class="product-card__price">
+          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
+          <span class="product-card__price-current">59.99</span>
+          <span class="product-card__price-original">79.00</span>
+        </div>
+      </div>
+      <div class="product-card__actions">
+        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
+          أضف إلى السلة
+        </button>
+      </div>
+    </a>
+
+  </div>
+  <!-- /product-archive__grid -->
+
+</section>
+<!-- /product-archive -->
+
 
   </main>
   <!-- /main -->
 
   <script src="JS/script.js"></script>
 </body>
+
 </html>

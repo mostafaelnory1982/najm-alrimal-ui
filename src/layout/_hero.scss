@@ -239,9 +239,9 @@ html.dark .search-tab {
 }
 
 html.dark .search-field {
-  &__label {
-    // --color-on-surface already flips to #EEEEEE in dark — no override needed
-  }
+  // &__label {
+  //   // --color-on-surface already flips to #EEEEEE in dark — no override needed
+  // }
   &__select {
     background:   rgba(255, 255, 255, 0.10);
     border-color: rgba(255, 255, 255, 0.20);

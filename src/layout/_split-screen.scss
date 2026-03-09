@@ -1,0 +1,213 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Split Screen  —  Figma node 8922:68403
+//
+// KEY TRANSITION FIX:
+// .split-screen__register is position:absolute, anchored to the
+// bottom corner of each column. It has a fixed width so it NEVER
+// reflows when the column flexes. The column clips it with
+// overflow:hidden as it shrinks. This prevents any jumping.
+//
+// Only flex transitions on the column — nothing else moves.
+// ════════════════════════════════════════════════════════════
+
+.split-screen {
+  display:  flex;
+  width:    100%;
+  height:   460px;
+  overflow: hidden;
+}
+
+// ── Column ─────────────────────────────────────────────────
+.split-screen__col {
+  position:            relative;
+  flex:                1;
+  overflow:            hidden;       // clips register block when shrinking
+  background-size:     cover;
+  background-position: center top;
+  background-repeat:   no-repeat;
+
+  // Only flex transitions — no other layout properties animate
+  transition:          flex 550ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Column divider
+  & + .split-screen__col {
+    border-inline-start: 1px solid rgba(255, 255, 255, 0.40);
+  }
+
+  // Gradient overlay — ::before, zero DOM nodes
+  &::before {
+    content:        '';
+    position:       absolute;
+    inset:          0;
+    z-index:        0;
+    background:     linear-gradient(
+      to bottom,
+      rgba(39, 78, 162, 0.10) 0%,
+      rgba(39, 78, 162, 1.00) 100%
+    );
+    pointer-events: none;
+  }
+
+  // Hover: this column expands to 75%
+  &:hover {
+    flex: 3;
+  }
+}
+
+// ── Per-column background images ───────────────────────────
+.split-screen__col--owners {
+  background-image: url("https://www.figma.com/api/mcp/asset/e8d5c299-81f1-4dca-b2bb-5b12168488d1");
+  // local: url("../assets/imgs/split-owners.jpg")
+}
+
+.split-screen__col--business {
+  background-image: url("https://www.figma.com/api/mcp/asset/68f84e08-664c-4485-8347-0a6757e209ec");
+  // local: url("../assets/imgs/split-business.jpg")
+}
+
+// ── Register block ─────────────────────────────────────────
+// CRITICAL: position:absolute so it is OUT OF FLOW.
+// Fixed width = original 50vw minus padding (96px each side).
+// Anchored to bottom inset-inline-end corner of each column.
+// It never reflows — the column simply clips it on shrink.
+.split-screen__register {
+  position:       absolute;
+  bottom:         p.$space-10;        // 40px from bottom
+  inset-inline-end:     p.$space-24;        // 96px from edge (RTL-aware)
+  z-index:        1;
+  display:        flex;
+  flex-direction: column;
+  align-items:    flex-end;
+  gap:            p.$space-4;         // 16px
+  width:          calc(50vw - 6rem);  // fixed: half viewport minus padding
+  max-width:      480px;
+}
+
+// ── Icon badge ─────────────────────────────────────────────
+.split-screen__icon {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           48px;
+  height:          48px;
+  padding:         12px;
+  background:      rgba(255, 255, 255, 0.10);
+  border-radius:   p.$radius-md;
+  backdrop-filter: blur(4px);
+  flex-shrink:     0;
+
+  .icon {
+    width:   24px;
+    height:  24px;
+    filter:  brightness(0) invert(1);
+  }
+}
+
+// ── Text ───────────────────────────────────────────────────
+.split-screen__text {
+  display:        flex;
+  flex-direction: column;
+  gap:            p.$space-1;
+  align-items:    flex-end;
+  width:          100%;
+}
+
+.split-screen__title {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-xl);   // 24px
+  font-weight:  p.$font-weight-semibold;
+  line-height:  1.33;
+  color:        #ffffff;
+  text-align:   right;
+  white-space:  nowrap;
+  margin:       0;
+}
+
+.split-screen__desc {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-body-md);      // 14px
+  font-weight:  p.$font-weight-regular;
+  line-height:  1.43;
+  color:        rgba(255, 255, 255, 0.80);
+  text-align:   right;
+  white-space:  normal;
+  margin:       0;
+}
+
+// ── Buttons ────────────────────────────────────────────────
+.split-screen__btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  height:          44px;
+  padding-inline:  p.$space-4;
+  border-radius:   p.$radius-sm;
+  font-family:     var(--font-primary);
+  font-size:       var(--font-size-body-lg);
+  font-weight:     p.$font-weight-semibold;
+  white-space:     nowrap;
+  text-decoration: none;
+  flex-shrink:     0;
+  transition:      background  p.$transition-speed ease,
+                   border-color p.$transition-speed ease;
+}
+
+.split-screen__btn--light {
+  background: #e5e7eb;
+  color:      #161616;
+  border:     1px solid transparent;
+  &:hover { background: #ffffff; }
+}
+
+.split-screen__btn--ghost {
+  background:      rgba(255, 255, 255, 0.20);
+  color:           #ffffff;
+  border:          1px solid rgba(255, 255, 255, 0.40);
+  backdrop-filter: blur(4px);
+  &:hover {
+    background:   rgba(255, 255, 255, 0.30);
+    border-color: rgba(255, 255, 255, 0.70);
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 960px) {
+  .split-screen { height: auto; min-height: 380px; }
+
+  .split-screen__register {
+    width:      calc(50vw - 2rem);
+    inset-inline-end: p.$space-8;
+    bottom:     p.$space-8;
+  }
+}
+
+@media (max-width: 640px) {
+  .split-screen {
+    flex-direction: column;
+    height:         auto;
+  }
+
+  .split-screen__col {
+    flex:       unset;
+    width:      100%;
+    min-height: 300px;
+    &:hover { flex: unset; }
+    & + .split-screen__col {
+      border-inline-start: none;
+      border-block-start:  1px solid rgba(255, 255, 255, 0.40);
+    }
+  }
+
+  .split-screen__register {
+    // On mobile: revert to normal flow so columns stack naturally
+    position:   relative;
+    bottom:     unset;
+    inset-inline-end: unset;
+    width:      100%;
+    padding:    p.$space-6 p.$space-4;
+  }
+}

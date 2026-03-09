@@ -1,0 +1,195 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Main Categories Section
+// Figma node 8922:23537
+//
+// Layout : white bg, px-96 py-64, centered column, gap-32
+// Header : title (24px bold brand-blue) + subtitle (18px regular muted)
+// Grid   : display:grid 4×2, gap-24px
+// Card   : white bg, shadow-md, radius-8, p-8
+//   Image  : h-160px, radius-4, object-contain
+//   Title  : 18px bold, on-surface, text-center
+// Hover  : card lifts, shadow deepens, image scales subtly
+// ════════════════════════════════════════════════════════════
+
+// ── Figma shadow-md token ──────────────────────────────────
+// Figma: DROP_SHADOW #10182806 0 2 4 -2 + #1018281A 0 4 8 -2
+$shadow-card:
+  0  2px  4px -2px rgba(16, 24, 40, 0.06),
+  0  4px  8px -2px rgba(16, 24, 40, 0.10);
+
+$shadow-card-hover:
+  0  4px  8px  -2px rgba(16, 24, 40, 0.10),
+  0 12px 20px  -4px rgba(16, 24, 40, 0.14);
+
+// ── Section wrapper ────────────────────────────────────────
+.categories-section {
+  width:      100%;
+  background: rgb(var(--color-surface));
+}
+
+.categories-section__inner {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             p.$space-8;    // 32px — Figma spacing-4xl
+  max-width:       1280px;
+  margin-inline:   auto;
+  padding-inline:  p.$space-24;   // 96px — Figma spacing-9xl
+  padding-block:   p.$space-16;   // 64px — Figma spacing-7xl
+}
+
+// ── Section header ─────────────────────────────────────────
+.categories-section__header {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            p.$space-1;     // 4px — Figma spacing-xs
+  width:          100%;
+  text-align:     center;
+}
+
+.categories-section__title {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-xl);  // 1.5rem = 24px — Figma display-xs
+  font-weight:  p.$font-weight-bold;          // 700
+  line-height:  1.33;                         // 32px — Figma line-heights-display-xs
+  color:        rgb(var(--color-primary));    // brand blue #274ea2
+  margin:       0;
+}
+
+.categories-section__subtitle {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-md);  // 1.125rem = 18px — Figma text-Ig
+  font-weight:  p.$font-weight-regular;       // 400
+  line-height:  1.56;                         // 28px — Figma line-heights-text-Ig
+  color:        rgb(var(--color-on-surface-variant));  // muted #6c737f
+  margin:       0;
+}
+
+// ── Categories grid — 4 × 2 ────────────────────────────────
+.categories-grid {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);   // exactly 4 columns on desktop
+  gap:                   p.$space-6;       // 24px — Figma spacing-3xl
+  width:                 100%;
+}
+
+// ── Category card ──────────────────────────────────────────
+// Figma: white bg, shadow-md, radius-8, p-8px, flex-col gap-8
+.category-card {
+  display:         flex;
+  flex-direction:  column;
+  gap:             p.$space-2;             // 8px — Figma spacing-md
+  padding:         p.$space-2;             // 8px
+  background:      rgb(var(--color-surface-elevated));
+  border-radius:   p.$radius-md;           // 8px
+  box-shadow:      $shadow-card;
+  text-decoration: none;
+  cursor:          pointer;
+  transition:      box-shadow  p.$transition-speed ease,
+                   transform   p.$transition-speed ease;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    transform:  translateY(-3px);
+
+    .category-card__image {
+      transform: scale(1.04);
+    }
+  }
+}
+
+// ── Card image wrapper ─────────────────────────────────────
+// Figma: h-160px, radius-4, overflow hidden to clip the image
+.category-card__image-wrap {
+  position:      relative;
+  width:         100%;
+  height:        160px;              // Figma fixed height
+  border-radius: p.$radius-sm;       // 4px — Figma radius-4
+  overflow:      hidden;
+  background:    rgb(var(--color-surface-container)); // subtle bg while loading
+  flex-shrink:   0;
+}
+
+// Figma: object-contain — show full part image, no crop
+.category-card__image {
+  position:   absolute;
+  inset:      0;
+  width:      100%;
+  height:     100%;
+  object-fit: contain;               // Figma: object-contain
+  transition: transform 300ms ease;
+}
+
+// ── Card content ───────────────────────────────────────────
+.category-card__content {
+  display:   flex;
+  flex-direction: column;
+  gap:       p.$space-2;             // 8px
+  width:     100%;
+}
+
+.category-card__title {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-md);  // 18px — Figma text-Ig/bold
+  font-weight:  p.$font-weight-bold;          // 700
+  line-height:  1.56;                         // 28px
+  color:        rgb(var(--color-on-surface)); // dark #1f2a37
+  text-align:   center;
+  margin:       0;
+}
+
+// ════════════════════════════════════════════════════════════
+// Dark mode
+// ════════════════════════════════════════════════════════════
+html.dark {
+  .category-card {
+    background:  rgb(var(--color-surface-elevated));
+    // Shadow is too subtle on dark — boost it slightly
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30),
+                0 4px 16px rgba(0, 0, 0, 0.20);
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.40),
+                  0 12px 24px rgba(0, 0, 0, 0.30);
+    }
+  }
+
+  .category-card__image-wrap {
+    background: rgb(var(--color-surface-container));
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 1280px) {
+  .categories-section__inner {
+    padding-inline: p.$space-8;   // 32px
+  }
+}
+
+@media (max-width: 960px) {
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);   // 3 cols on tablet
+  }
+}
+
+@media (max-width: 640px) {
+  .categories-section__inner {
+    padding-inline: p.$space-4;   // 16px
+    padding-block:  p.$space-10;  // 40px
+    gap:            p.$space-6;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);   // 2 cols on mobile
+    gap:                   p.$space-3;       // 12px
+  }
+
+  .category-card__image-wrap {
+    height: 120px;
+  }
+}

@@ -1,0 +1,152 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Trust Signal Bar
+// Figma node 8922:61199 — TrustSignalBar
+//
+// Layout : full-width white band, px-96px py-24px
+// Items  : 4 equal-flex cards, gap-24px, border #f3f4f6
+// Each   : icon-wrap (bg primary-container) + text column (RTL)
+// ════════════════════════════════════════════════════════════
+
+.trust-bar {
+  width:            100%;
+  background:       rgb(var(--color-surface));
+  border-bottom:    1px solid rgb(var(--color-outline-variant));
+}
+
+.trust-bar__container {
+  display:         flex;
+  align-items:     stretch;        // all cards same height
+  gap:             p.$space-6;     // 24px — Figma spacing-3xl
+  max-width:       1280px;
+  margin-inline:   auto;
+  padding-inline:  p.$space-24;    // 96px — Figma spacing-9xl
+  padding-block:   p.$space-6;     // 24px — Figma spacing-3xl
+}
+
+// ── Trust card ─────────────────────────────────────────────
+.trust-item {
+  flex:            1 0 0;          // 4 equal columns
+  display:         flex;
+  flex-direction:  row;            // icon on left (RTL = visual right), text on right
+  align-items:     flex-start;
+  justify-content: flex-end;       // RTL: content pushes to inset-inline-end
+  gap:             p.$space-4;     // 16px — Figma spacing-xl
+  padding-inline:  p.$space-4;     // 16px
+  padding-block:   p.$space-2;     // 8px
+  border:          1px solid #f3f4f6; // Figma border-neutral-tertiary
+  border-radius:   p.$radius-md;   // 8px
+  min-height:      84px;           // Figma fixed card height
+  transition:      border-color p.$transition-speed ease,
+                   box-shadow    p.$transition-speed ease;
+
+  &:hover {
+    border-color: rgb(var(--color-primary-container));
+    box-shadow:   0 2px 8px rgba(39, 78, 162, 0.08);
+  }
+}
+
+// ── Text content (right side in RTL) ───────────────────────
+.trust-item__body {
+  flex:           1 0 0;
+  display:        flex;
+  flex-direction: column;
+  gap:            p.$space-1;      // 4px — Figma spacing-xs
+  align-items:    flex-end;        // RTL text align
+  min-width:      0;               // allow text to truncate
+}
+
+.trust-item__title {
+  font-family:   var(--font-primary);
+  font-size:     var(--font-size-body-lg);   // 16px — Figma text-md
+  font-weight:   p.$font-weight-medium;      // 500
+  line-height:   1.5;                        // 24px — Figma line-heights-text-md
+  color:         rgb(var(--color-on-surface));
+  text-align:    right;
+  white-space:   nowrap;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  width:         100%;
+  margin:        0;
+}
+
+.trust-item__desc {
+  font-family: var(--font-primary);
+  font-size:   var(--font-size-body-md);     // 14px — Figma text-sm
+  font-weight: p.$font-weight-regular;       // 400
+  line-height: 1.43;                         // 20px — Figma line-heights-text-sm
+  color:       rgb(var(--color-on-surface-variant));
+  text-align:  right;
+  width:       100%;
+  margin:      0;
+}
+
+// ── Icon wrap (left side in RTL = visual left) ─────────────
+// Figma: bg primary-container (#d6e0f5), p-12px, radius-md
+.trust-item__icon {
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-shrink:      0;
+  width:            48px;          // 24px icon + 12px padding each side
+  height:           48px;
+  padding:          12px;
+  background:       rgb(var(--color-primary-container));
+  border-radius:    p.$radius-md;  // 8px
+  color:            rgb(var(--color-primary));
+
+  .icon {
+    width:  24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Dark mode
+// ════════════════════════════════════════════════════════════
+html.dark {
+  .trust-item {
+    border-color: rgb(var(--color-outline-variant));
+    &:hover { border-color: rgb(var(--color-primary)); }
+  }
+
+  .trust-item__icon {
+    // In dark mode primary-container flips to #274EA2 (the brand blue)
+    // Use a muted alpha tint instead for better contrast on dark bg
+    background: rgba(var(--color-primary), 0.15);
+    color:      rgb(var(--color-primary-container));
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 1024px) {
+  .trust-bar__container {
+    padding-inline: p.$space-8;    // 32px
+    gap:            p.$space-4;    // 16px
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-bar__container {
+    flex-wrap:      wrap;
+    padding-inline: p.$space-6;
+    padding-block:  p.$space-4;
+  }
+
+  .trust-item {
+    flex:     1 0 calc(50% - p.$space-2); // 2 columns on tablet
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-bar__container { padding-inline: p.$space-4; }
+
+  .trust-item {
+    flex: 1 0 100%;   // full width on mobile
+  }
+}

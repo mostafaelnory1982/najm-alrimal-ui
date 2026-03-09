@@ -1,0 +1,144 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Trusted Brands Section
+// Figma node 8922:23519
+//
+// Layout : full-width, bg surface-container, px-96 py-64
+// Heading: primary blue, display-xs/bold, centered
+// Grid   : flex-wrap 6 cols × 2 rows, gap-24, square cards
+// Logos  : mix-blend-luminosity — renders all logos greyscale
+//          on the light bg; in dark mode we switch to
+//          mix-blend-normal + invert filter for visibility
+// CTA    : .btn.btn-secondary, centered
+// ════════════════════════════════════════════════════════════
+
+.brands-section {
+  width:            100%;
+  background:       rgb(var(--color-surface));
+
+}
+
+.brands-section__inner {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             p.$space-8;       // 32px — Figma spacing-4xl
+  max-width:       1280px;
+  margin-inline:   auto;
+  padding-inline:  p.$space-24;      // 96px — Figma spacing-9xl
+  padding-block:   p.$space-16;      // 64px — Figma spacing-7xl
+}
+
+// ── Heading ─────────────────────────────────────────────────
+.brands-section__header {
+  width:      100%;
+  text-align: center;
+}
+
+.brands-section__title {
+  font-family:    var(--font-primary);
+  font-size:      var(--font-size-display-xs);  // 24px — Figma display-xs
+  font-weight:    p.$font-weight-bold;           // 700
+  line-height:    1.33;                          // 32px — Figma line-heights-display-xs
+  color:          rgb(var(--color-primary));     // brand blue #274ea2
+  margin:         0;
+}
+
+// ── Brand logo grid ─────────────────────────────────────────
+// Strict 6 × 2 on desktop using display:grid
+// Responsive: 4 cols tablet, 3 cols mobile
+.brands-grid {
+  display:               grid;
+  grid-template-columns: repeat(6, 1fr);  // exactly 6 columns on desktop
+  gap:                   p.$space-6;      // 24px — Figma spacing-3xl
+  width:                 100%;
+}
+
+.brand-card {
+  aspect-ratio:    1 / 1;                 // square cards — Figma 296×296
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  padding:         p.$space-2;   // 8px — Figma spacing-md
+  border-radius:   p.$radius-md; // 8px
+  background:      transparent;
+  transition:      background p.$transition-speed ease,
+                   transform  p.$transition-speed ease;
+  cursor:          pointer;
+
+  &:hover {
+    background: rgb(var(--color-surface));
+    transform:  translateY(-2px);
+  }
+}
+
+.brand-card__logo {
+  // mix-blend-luminosity renders colour logos in greyscale
+  // against the surface-container background — matches Figma exactly
+  display:       block;
+  width:         100%;
+  height:        100%;
+  object-fit:    contain;
+  mix-blend-mode: luminosity;
+  transition:    mix-blend-mode p.$transition-speed ease,
+                 filter        p.$transition-speed ease,
+                 opacity       p.$transition-speed ease;
+
+  .brand-card:hover & {
+    mix-blend-mode: normal;  // reveal full colour on hover
+    opacity:        1;
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Dark mode
+// ════════════════════════════════════════════════════════════
+html.dark {
+  .brands-section {
+    border-color: rgb(var(--color-outline-variant));
+  }
+
+  .brand-card__logo {
+    // On dark bg, luminosity blend shows logos almost invisible.
+    // Switch to normal blend + invert so dark logos become light.
+    mix-blend-mode: normal;
+    filter:         invert(1) grayscale(1) opacity(0.7);
+  }
+
+  .brand-card:hover .brand-card__logo {
+    filter: invert(1) grayscale(0) opacity(1); // full colour inverted on hover
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 1280px) {
+  .brands-section__inner {
+    padding-inline: p.$space-8;   // 32px
+  }
+}
+
+@media (max-width: 960px) {
+  .brands-grid {
+    grid-template-columns: repeat(4, 1fr);  // 4 cols on tablet
+  }
+}
+
+@media (max-width: 640px) {
+  .brands-section__inner {
+    padding-inline: p.$space-4;   // 16px
+    padding-block:  p.$space-10;  // 40px
+    gap:            p.$space-6;   // 24px
+  }
+
+  .brands-grid {
+    grid-template-columns: repeat(3, 1fr);  // 3 cols on mobile
+    gap:                   p.$space-3;      // 12px
+  }
+
+  .brand-card {
+    padding: p.$space-1;
+  }
+}
