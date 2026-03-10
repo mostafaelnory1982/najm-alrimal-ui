@@ -1,0 +1,89 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Testimonials Section
+// Figma node 8922:23662
+//
+// Structure:
+//   .testimonials                   — section wrapper, bg-surface
+//     .testimonials__header         — title + subtitle, centered
+//       .testimonials__title        — display-xs/Bold, primary color
+//       .testimonials__subtitle     — text-lg/Regular, muted
+//     .testimonials__grid           — 3-col flex row of cards
+//       .testimonial-card × 3       — see _testimonial-card.scss
+// ════════════════════════════════════════════════════════════
+
+.testimonials {
+  background:     rgb(var(--color-surface));
+  padding-inline: p.$space-24;     // 96px — Figma spacing-9xl
+  padding-block:  p.$space-16;     // 64px — Figma spacing-7xl
+}
+
+// ── Header ─────────────────────────────────────────────────
+.testimonials__header {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            p.$space-1;      // 4px — Figma spacing-xs
+  text-align:     center;
+  margin-bottom:  p.$space-8;      // 32px — Figma spacing-4xl
+}
+
+// Figma: display-xs/Bold, 24px, color-primary (#274ea2)
+.testimonials__title {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-xl);   // 1.5rem = 24px
+  font-weight:  p.$font-weight-bold;
+  line-height:  1.33;                          // 32px
+  color:        rgb(var(--color-primary));
+  text-align:   center;
+  margin:       0;
+}
+
+// Figma: text-lg/Regular, 18px, #6c737f
+.testimonials__subtitle {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-md);   // 1.125rem ≈ 18px
+  font-weight:  p.$font-weight-regular;
+  line-height:  1.56;                          // 28px
+  color:        #6c737f;
+  text-align:   center;
+  margin:       0;
+}
+
+// ── Cards grid ─────────────────────────────────────────────
+// Figma: flex row, gap 24px, max-width 1280px, centered
+.testimonials__grid {
+  display:         flex;
+  flex-direction:  row;
+  gap:             p.$space-6;     // 24px
+  align-items:     stretch;        // equal-height cards
+  max-width:       1280px;
+  margin-inline:   auto;
+
+  // Each card takes equal width
+  .testimonial-card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 1024px) {
+  .testimonials {
+    padding-inline: p.$space-8;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials__grid {
+    flex-direction: column;
+  }
+
+  .testimonials {
+    padding-inline: p.$space-4;
+    padding-block:  p.$space-8;
+  }
+}

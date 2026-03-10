@@ -1,0 +1,170 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Testimonial Card Component
+// Figma node 8922:23669 / 23670 / 23671  (Quote component)
+//
+// Structure:
+//   .testimonial-card             — white card, radius-24, p-12
+//     .testimonial-card__quote-mark--open   — decorative " top-end
+//     .testimonial-card__quote-mark--close  — decorative " bottom-start
+//     .testimonial-card__body     — quote text, px-64
+//     .testimonial-card__rating   — score number + stars row
+//     .testimonial-card__author   — avatar + name + role
+//       .testimonial-card__avatar — 48px circle image
+//       .testimonial-card__info   — name + role stacked
+// ════════════════════════════════════════════════════════════
+
+// ── Card shell ─────────────────────────────────────────────
+.testimonial-card {
+  position:        relative;
+  display:         flex;
+  flex-direction:  column;
+  gap:             p.$space-6;       // 24px — Figma spacing-3xl
+  align-items:     flex-end;         // RTL: align end
+  padding:         p.$space-3;       // 12px — Figma spacing-lg
+  background:      rgb(var(--color-surface-elevated));
+  border-radius:   p.$radius-2xl;    // 24px — Figma radius-24
+  box-shadow:      p.$shadow-card;
+  // NO overflow:hidden — would clip decorative quote marks
+  min-width:       0;                // allow flex shrink in grid
+}
+
+// ── Decorative quotation marks ─────────────────────────────
+// Figma: 128px, color #142852 (text-primary-sa-flag), absolute
+.testimonial-card__quote-mark {
+  position:    absolute;
+  font-family: var(--font-primary);
+  font-size:   8rem;       // 128px
+  line-height:    0.25;               // collapse vertical space
+  color:       #142852;
+  font-weight: p.$font-weight-regular;
+  user-select: none;
+  pointer-events: none;
+  z-index:        0;                  // behind body text (z-index: 1)
+
+  // --open: top-end corner (Figma: right 7px, top 20px)
+  &--open {
+    top:              1.25rem;         // 20px
+    inset-inline-end: 0.4375rem;       // 7px
+  }
+
+  // --close: bottom-start corner (Figma: left 23px, top 148px)
+  &--close {
+    top:              9.25rem;         // 148px
+    inset-inline-start: 1.4375rem;     // 23px
+  }
+}
+
+// ── Body — quote text ──────────────────────────────────────
+.testimonial-card__body {
+  position:       relative;
+  z-index:        1;
+  width:          100%;
+  padding-inline: p.$space-16;     // 64px — Figma spacing-7xl
+}
+
+// Figma: text-xl/Regular, 20px, #384250
+.testimonial-card__text {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-lg);   // 1.25rem ≈ 20px
+  font-weight:  p.$font-weight-regular;
+  line-height:  1.5;                           // 30px
+  color:        #384250;
+  text-align:   right;
+  margin:       0;
+}
+
+// ── Rating row ─────────────────────────────────────────────
+.testimonial-card__rating {
+  position:    relative;
+  z-index:     1;
+  display:     flex;
+  align-items: center;
+  gap:         0.5rem;             // 8px
+  flex-direction: row-reverse;     // RTL: score on left of stars
+}
+
+// Score number — Figma: text-lg/Semibold, 18px, #364153
+.testimonial-card__score {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-md);   // 1.125rem ≈ 18px
+  font-weight:  p.$font-weight-semibold;
+  line-height:  1.56;
+  color:        #364153;
+  white-space:  nowrap;
+}
+
+// Stars row — reuse .product-card__stars pattern
+.testimonial-card__stars {
+  display:        flex;
+  flex-direction: row-reverse;     // RTL
+  gap:            p.$space-1;      // 4px
+
+  .star {
+    width:  24px;
+    height: 24px;
+    color:  #f59e0b;               // amber
+
+    &--empty { color: #d1d5db; }
+    &--half  { color: #f59e0b; }   // half handled via SVG clip
+  }
+}
+
+// ── Author row ─────────────────────────────────────────────
+.testimonial-card__author {
+  position:        relative;
+  z-index:         1;
+  display:         flex;
+  align-items:     center;
+  gap:             p.$space-4;     // 16px
+  flex-direction:  row-reverse;    // RTL: avatar on right
+}
+
+// Avatar — 48px circle, 2px white ring
+.testimonial-card__avatar {
+  flex-shrink: 0;
+  width:       48px;
+  height:      48px;
+  border-radius: p.$radius-full;
+  border:      2px solid rgb(var(--color-surface-elevated));
+  overflow:    hidden;
+  background:  rgb(var(--color-surface-container));
+
+  img {
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    display:    block;
+  }
+}
+
+// Author info — name + role stacked, text-align right
+.testimonial-card__info {
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;              // Figma spacing-xxs
+  text-align:     right;
+}
+
+// Figma: text-xl/Medium, 20px, #161616
+.testimonial-card__name {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-heading-lg);   // 1.25rem ≈ 20px
+  font-weight:  p.$font-weight-medium;
+  line-height:  1.5;
+  color:        #161616;
+  margin:       0;
+  white-space:  nowrap;
+}
+
+// Figma: text-sm/Regular, 14px, #6c737f
+.testimonial-card__role {
+  font-family:  var(--font-primary);
+  font-size:    var(--font-size-body-md);      // 0.875rem = 14px
+  font-weight:  p.$font-weight-regular;
+  line-height:  1.43;                          // 20px
+  color:        #6c737f;
+  margin:       0;
+  white-space:  nowrap;
+}

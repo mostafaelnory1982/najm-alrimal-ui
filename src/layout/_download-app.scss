@@ -1,0 +1,301 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// Download App Section — Figma node 8922:23689
+//
+// RTL (Arabic):  mockup on the LEFT,  text on the RIGHT
+// LTR (English): mockup on the RIGHT, text on the LEFT
+//
+// Direction is driven purely by CSS [dir] attribute on <html>
+// — no JS needed beyond the existing lang toggle.
+//
+// Structure:
+//   .download-app
+//     .download-app__bg         — wave background (CSS bg-image)
+//     .download-app__inner      — flex row, 96px padding
+//       .download-app__mockup-col  — phone image column
+//           img.download-app__mockup-img
+//       .download-app__content-col — text + badges column
+//           .download-app__text
+//               h2.download-app__heading
+//               p.download-app__subtitle
+//           .download-app__badges
+//               a.download-app__badge × 2
+// ════════════════════════════════════════════════════════════
+
+// ── Section root ───────────────────────────────────────────
+.download-app {
+  position:   relative;
+  overflow:   hidden;
+  background: rgb(var(--color-surface));
+  height:     688px;
+}
+
+// ── Abstract wave background ───────────────────────────────
+.download-app__bg {
+  position:            absolute;
+  inset:               0;
+  width:               100%;
+  height:              100%;
+  background-image:    url("../assets/imgs/download-app-bg.png");      // ← insert wave asset URL here
+  background-size:     cover;
+  background-position: center center;
+  background-repeat:   no-repeat;
+  pointer-events:      none;
+  z-index:             0;
+}
+
+// ── Inner layout ───────────────────────────────────────────
+.download-app__inner {
+  position:        relative;
+  z-index:         1;
+  display:         flex;
+  flex-direction:  row;
+  align-items:     stretch;
+  height:          100%;
+  padding-inline:  p.$space-24;      // 96px
+  max-width:       1440px;
+  margin-inline:   auto;
+}
+
+// ════════════════════════════════════════════════════════════
+// Mockup column
+// — in RTL it is the FIRST flex child → renders on the left
+// — in LTR it is swapped to the END   → renders on the right
+// ════════════════════════════════════════════════════════════
+.download-app__mockup-col {
+  flex-shrink:  0;
+  position:     relative;
+  width:        380px;
+  // Default order for RTL (Arabic) — start side
+  order:        0;
+}
+
+// LTR (English): push mockup to the end (right)
+[dir="ltr"] .download-app__mockup-col {
+  order: 1;
+}
+
+// Image: anchored to the bottom, overflows upward out of the section
+// The section has overflow:hidden so the top bleed is clipped.
+.download-app__mockup-img {
+  display:    block;
+  position:   absolute;
+  bottom:     0;
+  left:       50%;
+  transform:  translateX(-50%);
+  width:      auto;
+  height:     750px;          // taller than 688px → bleeds above section
+  max-width:  none;
+  object-fit: contain;
+  z-index:    2;
+}
+
+// ════════════════════════════════════════════════════════════
+// Content column
+// — in RTL: order 1 → renders on the right
+// — in LTR: order 0 → renders on the left
+// ════════════════════════════════════════════════════════════
+.download-app__content-col {
+  flex:            1 0 0;
+  display:         flex;
+  align-items:     center;
+  align-self:      stretch;
+  padding-block:   p.$space-10;      // 40px
+  order:           1;                // RTL default: text on the right
+}
+
+[dir="ltr"] .download-app__content-col {
+  order: 0;                          // LTR: text on the left
+}
+
+// ── Text block ─────────────────────────────────────────────
+.download-app__text {
+  display:         flex;
+  flex-direction:  column;
+  gap:             p.$space-4;       // 16px
+  width:           100%;
+}
+
+// RTL: text aligns right; LTR: text aligns left
+[dir="rtl"] .download-app__text {
+  align-items: flex-end;
+}
+[dir="ltr"] .download-app__text {
+  align-items: flex-start;
+}
+
+// Heading — Display-lg/Bold, 48px, primary blue, tracking -0.02em
+.download-app__heading {
+  font-family:    var(--font-primary);
+  font-size:      p.$font-size-display-xl;   // 3rem = 48px
+  font-weight:    p.$font-weight-bold;
+  line-height:    1.25;                      // 60px
+  letter-spacing: -0.02em;
+  color:          rgb(var(--color-primary));
+  margin:         0;
+
+  [dir="rtl"] & { text-align: right; }
+  [dir="ltr"] & { text-align: left;  }
+}
+
+// Subtitle — Text-xl/Medium, 20px, dark paragraph colour
+.download-app__subtitle {
+  font-family:  var(--font-primary);
+  font-size:    1.25rem;                     // 20px
+  font-weight:  p.$font-weight-medium;
+  line-height:  1.5;                         // 30px
+  color:        #384250;
+  margin:       0;
+
+  [dir="rtl"] & { text-align: right; }
+  [dir="ltr"] & { text-align: left;  }
+}
+
+// ── Store badges ───────────────────────────────────────────
+.download-app__badges {
+  display:        flex;
+  flex-direction: row;
+  align-items:    center;
+  gap:            p.$space-2;        // 8px
+  margin-top:     p.$space-2;
+
+  [dir="rtl"] & { justify-content: flex-end;   }
+  [dir="ltr"] & { justify-content: flex-start; }
+}
+
+// Badge pill — black, 1px #a6a6a6 border, radius 6px
+.download-app__badge {
+  display:         flex;
+  flex-direction:  row;
+  align-items:     center;
+  justify-content: center;
+  gap:             6px;
+  padding:         6px 8px;
+  background:      #000;
+  border:          1px solid #a6a6a6;
+  border-radius:   6px;
+  text-decoration: none;
+  overflow:        hidden;
+  cursor:          pointer;
+  transition:      opacity p.$transition-speed ease,
+                   transform p.$transition-speed ease;
+
+  &:hover  { opacity: 0.85; transform: translateY(-1px); }
+  &:active { opacity: 1;    transform: translateY(0);    }
+}
+
+.download-app__badge-text {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     flex-end;
+  justify-content: center;
+  gap:             2px;
+  width:           85px;
+}
+
+.download-app__badge-label {
+  font-size:      9px;
+  font-weight:    400;
+  color:          #fff;
+  text-align:     right;
+  letter-spacing: -0.27px;
+  text-transform: uppercase;
+  line-height:    1;
+  margin:         0;
+}
+
+.download-app__badge-wordmark {
+  display:   block;
+  height:    auto;
+  max-width: 100%;
+}
+
+.download-app__badge-icon {
+  display:     block;
+  flex-shrink: 0;
+
+  img { display: block; width: auto; height: auto; }
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 1024px) {
+  .download-app        { height: auto; }
+  .download-app__inner { padding-inline: p.$space-8; }
+  .download-app__mockup-col { width: 300px; }
+  .download-app__mockup-img { height: 620px; }
+  .download-app__heading    { font-size: p.$font-size-display-lg; }
+}
+
+@media (max-width: 768px) {
+  .download-app__inner {
+    flex-direction: column;
+    align-items:    center;
+    padding-inline: p.$space-4;
+    padding-block:  p.$space-8;
+    gap:            p.$space-6;
+  }
+
+  // On mobile, mockup always on top regardless of language
+  .download-app__mockup-col,
+  [dir="ltr"] .download-app__mockup-col {
+    order: 0;
+    width: 220px;
+    height: 420px;
+  }
+
+  .download-app__content-col,
+  [dir="ltr"] .download-app__content-col {
+    order: 1;
+    width: 100%;
+    padding-block: 0;
+  }
+
+  .download-app__mockup-img {
+    position: relative;
+    bottom:   auto;
+    left:     auto;
+    transform: none;
+    width:    100%;
+    height:   auto;
+  }
+
+  [dir="rtl"] .download-app__text,
+  [dir="ltr"] .download-app__text { align-items: center; }
+
+  .download-app__heading,
+  .download-app__subtitle {
+    text-align: center !important;
+    font-size:  p.$font-size-display-md;
+  }
+
+  .download-app__badges { justify-content: center !important; }
+}
+
+// ── Badge store name (e.g. "App Store", "Google Play") ─────
+.download-app__badge-store {
+  display:     block;
+  font-size:   0.9375rem;      // 15px — prominent store name
+  font-weight: p.$font-weight-semibold;
+  color:       #fff;
+  line-height: 1.2;
+  text-align:  right;
+  white-space: nowrap;
+}
+
+// Fix: badge-text now used for label + store name stacked
+// Override width to auto since we removed the fixed wordmark image
+.download-app__badge-text {
+  width: auto;
+  min-width: 80px;
+}
+
+// Fix: icon SVG sizing
+.download-app__badge-icon {
+  display:     block;
+  flex-shrink: 0;
+  width:       auto;
+  height:      auto;
+}

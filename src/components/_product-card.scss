@@ -18,11 +18,6 @@
 //   Favourite button becomes visible (opacity 0 → 1)
 // ════════════════════════════════════════════════════════════
 
-$shadow-card:       0 2px 4px -2px rgba(16, 24, 40, 0.06),
-                    0 4px 8px -2px rgba(16, 24, 40, 0.10);
-$shadow-card-hover: 0 4px 6px -2px rgba(16, 24, 40, 0.08),
-                    0 12px 16px -4px rgba(16, 24, 40, 0.14);
-
 // ── Card shell ─────────────────────────────────────────────
 .product-card {
   position:        relative;
@@ -32,7 +27,7 @@ $shadow-card-hover: 0 4px 6px -2px rgba(16, 24, 40, 0.08),
   padding:         p.$space-2;        // 8px
   background:      rgb(var(--color-surface-elevated));
   border-radius:   p.$radius-md;      // 8px
-  box-shadow:      $shadow-card;
+  box-shadow:      p.$shadow-card;
   text-decoration: none;
   color:           inherit;
   overflow:        hidden;
@@ -40,7 +35,7 @@ $shadow-card-hover: 0 4px 6px -2px rgba(16, 24, 40, 0.08),
                    transform   250ms ease;
 
   &:hover {
-    box-shadow: $shadow-card-hover;
+    box-shadow: p.$shadow-card-hover;
     transform:  translateY(-2px);
 
     .product-card__image img {
@@ -207,11 +202,11 @@ $shadow-card-hover: 0 4px 6px -2px rgba(16, 24, 40, 0.08),
 }
 
 // ── Favourite button ───────────────────────────────────────
-// Positioned top-inset-inline-end; fades in on card hover
+// Positioned top-inline-end; fades in on card hover
 .product-card__fav {
   position:        absolute;
   top:             p.$space-4;        // 16px
-  inset-inset-inline-end: p.$space-4;       // 16px — RTL-aware
+  inset-inline-end: p.$space-4;       // 16px — RTL-aware
   z-index:         1;
   display:         flex;
   align-items:     center;

@@ -1,0 +1,209 @@
+@use '../base/primitives' as p;
+
+// ════════════════════════════════════════════════════════════
+// YouTube Channel Section
+// Figma node 8922:23672
+//
+// Structure:
+//   .yt-channel                     — section wrapper
+//     .yt-channel__header           — title + subtitle, centered
+//       .yt-channel__title          — display-xs/Bold, primary color
+//       .yt-channel__subtitle       — text-lg/Regular, muted
+//     .yt-channel__body             — playlist + video player row
+//       .yt-channel__playlist       — left: scrollable list of cards
+//         .thumbnail-card × N       — see _thumbnail-card.scss
+//       .yt-channel__player         — right: main video embed
+//         .yt-channel__video-wrap   — responsive 16:9 wrapper
+//           iframe / img            — YouTube embed or thumbnail
+//         .yt-channel__play-btn     — centered play button overlay
+// ════════════════════════════════════════════════════════════
+
+.yt-channel {
+  background:     rgb(var(--color-surface));
+  padding-inline: p.$space-24;        // 96px — Figma spacing-9xl
+  padding-block:  p.$space-16;        // 64px — Figma spacing-7xl
+}
+
+// ── Header ─────────────────────────────────────────────────
+.yt-channel__header {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            p.$space-1;         // 4px — Figma spacing-xs
+  text-align:     center;
+  margin-bottom:  p.$space-8;         // 32px — Figma spacing-4xl
+}
+
+// Figma: display-xs/Bold, 24px, color-primary
+.yt-channel__title {
+  font-family:  var(--font-primary);
+  font-size:    p.$font-size-heading-xl;   // 1.5rem = 24px
+  font-weight:  p.$font-weight-bold;
+  line-height:  1.33;                      // 32px
+  color:        rgb(var(--color-primary));
+  margin:       0;
+}
+
+// Figma: text-lg/Regular, 18px, text-secondary-paragraph
+.yt-channel__subtitle {
+  font-family:  var(--font-primary);
+  font-size:    p.$font-size-heading-md;   // 1.125rem = 18px
+  font-weight:  p.$font-weight-regular;
+  line-height:  1.56;                      // 28px
+  color:        #6c737f;
+  margin:       0;
+}
+
+// ── Body: playlist + player ────────────────────────────────
+// Figma: flex row, gap 24px, height 508.5px
+.yt-channel__body {
+  display:         flex;
+  flex-direction:  row;
+  gap:             p.$space-6;        // 24px
+  align-items:     flex-start;
+  max-width:       1248px;
+  margin-inline:   auto;
+}
+
+// ── Playlist sidebar ───────────────────────────────────────
+// Figma: w-320px, flex col, gap 16px, padding 8px, overflow-y auto
+.yt-channel__playlist {
+  flex-shrink:    0;
+  width:          320px;
+  height:         508px;
+  display:        flex;
+  flex-direction: column;
+  gap:            p.$space-4;         // 16px — Figma spacing-xl
+  padding:        p.$space-2;         // 8px — Figma spacing-md
+  overflow-y:     auto;
+  overflow-x:     hidden;
+  background:     rgb(var(--color-surface));
+  border-radius:  p.$radius-xl;
+
+  // Thin custom scrollbar
+  &::-webkit-scrollbar       { width: 4px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb {
+    background:    rgba(var(--color-primary), 0.25);
+    border-radius: p.$radius-full;
+  }
+}
+
+// ── Main video player ──────────────────────────────────────
+// Figma: flex-1, aspect-ratio 1280/720 ≈ 16/9, radius-16
+.yt-channel__player {
+  flex:           1 0 0;
+  min-width:      0;
+  position:       relative;
+  border-radius:  p.$radius-xl;       // 16px
+  overflow:       hidden;
+  background:     #000;
+  aspect-ratio:   16 / 9;
+  max-height:     508px;
+}
+
+// The YouTube iframe fills the player
+.yt-channel__iframe {
+  position:   absolute;
+  inset:      0;
+  width:      100%;
+  height:     100%;
+  border:     none;
+  display:    block;
+}
+
+// Fallback thumbnail shown before JS loads / no-JS
+.yt-channel__thumbnail {
+  position:   absolute;
+  inset:      0;
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+  display:    block;
+}
+
+// Centered play button overlay (visible on thumbnail state)
+.yt-channel__play-btn {
+  position:        absolute;
+  inset:           0;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  background:      transparent;
+  border:          none;
+  cursor:          pointer;
+  transition:      background p.$transition-speed ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  // Circle pill — Figma: rgba(255,255,255,0.2), 44×44, radius-full
+  &-circle {
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    width:           44px;
+    height:          44px;
+    border-radius:   p.$radius-full;
+    background:      rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition:      background p.$transition-speed ease,
+                     transform p.$transition-speed ease;
+
+    svg {
+      width:  24px;
+      height: 24px;
+      color:  #fff;
+      fill:   #fff;
+    }
+  }
+
+  &:hover &-circle {
+    background: rgba(255, 255, 255, 0.35);
+    transform:  scale(1.1);
+  }
+}
+
+// Hide play button when video is active/playing
+.yt-channel__player.is-playing .yt-channel__play-btn {
+  display: none;
+}
+
+// ════════════════════════════════════════════════════════════
+// Responsive
+// ════════════════════════════════════════════════════════════
+@media (max-width: 1024px) {
+  .yt-channel {
+    padding-inline: p.$space-8;
+  }
+
+  .yt-channel__body {
+    flex-direction: column;
+  }
+
+  .yt-channel__playlist {
+    width:  100%;
+    height: 240px;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    .thumbnail-card {
+      flex-shrink: 0;
+      width:       280px;
+    }
+  }
+
+  .yt-channel__player {
+    max-height: none;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .yt-channel {
+    padding-inline: p.$space-4;
+    padding-block:  p.$space-8;
+  }
+}

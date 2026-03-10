@@ -229,6 +229,55 @@ if (document.readyState === 'loading') {
   init();
 }
 
+// <!-- ══ Vanilla JS — YouTube Channel Player ══════════════════
+//      ─────────────────────────────────────────────────────────
+(function () {
+  const cards    = document.querySelectorAll('.yt-channel__playlist .thumbnail-card');
+  const iframe   = document.getElementById('yt-iframe');
+  const thumb    = document.getElementById('yt-thumbnail');
+  const playBtn  = document.getElementById('yt-play-btn');
+  const player   = document.getElementById('yt-player');
+
+  function activateCard(card) {
+    cards.forEach(c => {
+      c.classList.remove('is-active');
+      c.setAttribute('aria-pressed', 'false');
+    });
+    card.classList.add('is-active');
+    card.setAttribute('aria-pressed', 'true');
+
+    const videoId = card.dataset.videoId;
+    // Reset player to thumbnail state
+    player.classList.remove('is-playing');
+    iframe.style.display = 'none';
+    iframe.src = '';
+    thumb.src  = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    thumb.style.display = 'block';
+    playBtn.style.display = 'flex';
+  }
+
+  function playVideo(videoId) {
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    iframe.style.display = 'block';
+    thumb.style.display  = 'none';
+    playBtn.style.display = 'none';
+    player.classList.add('is-playing');
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      activateCard(card);
+    });
+  });
+
+  playBtn.addEventListener('click', () => {
+    const activeCard = document.querySelector('.thumbnail-card.is-active');
+    if (activeCard) playVideo(activeCard.dataset.videoId);
+  });
+})();
+// ══════════════════════════════════════════════════════════════ -->
+
+
 // ─────────────────────────────────────────────────────────────────────────────
 // FOUC PREVENTION — paste this in <head> BEFORE stylesheet links
 // ─────────────────────────────────────────────────────────────────────────────
