@@ -1689,11 +1689,11 @@ html.dark .category-card__image-wrap {
 }
 
 .split-screen__col--owners {
-  background-image: url("https://www.figma.com/api/mcp/asset/e8d5c299-81f1-4dca-b2bb-5b12168488d1");
+  background-image: url("../assets/imgs/car-owner.png");
 }
 
 .split-screen__col--business {
-  background-image: url("https://www.figma.com/api/mcp/asset/68f84e08-664c-4485-8347-0a6757e209ec");
+  background-image: url("../assets/imgs/workshop-manager.png");
 }
 
 .split-screen__register {
