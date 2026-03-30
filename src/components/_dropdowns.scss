@@ -44,7 +44,7 @@ $dropdown-shadow-panel:
     }
   }
 
-  // 2b. Select shell (.select-field__control)
+// 2b. Select shell (.select-field__control)
   .select-field__control {
     position:        relative;
     display:         flex;
@@ -70,8 +70,8 @@ $dropdown-shadow-panel:
       min-width:          0;
       height:             100%;
       padding-block:      0;
-      padding-inline:     p.$space-4;
-      padding-inset-inline-end: calc(p.$space-4 + 20px + p.$space-1);
+      padding-inline-start: p.$space-4; // تظبيط البادينج
+      padding-inline-end: calc(p.$space-4 + 20px + p.$space-1); // الكلمة اتصلحت هنا
       border:             none;
       border-radius:      0;
       background:         transparent;
@@ -95,7 +95,7 @@ $dropdown-shadow-panel:
 
     .select-field__chevron {
       position:          absolute;
-      inset-inset-inline-end:  p.$space-4;
+      inset-inline-end:  p.$space-4; // الكلمة اتصلحت هنا وهتحدف السهم للشمال
       top:               50%;
       transform:         translateY(-50%);
       display:           flex;
@@ -106,7 +106,6 @@ $dropdown-shadow-panel:
       .icon { width: 20px; height: 20px;  transition: transform p.$transition-speed ease; }
     }
   }
-
   // 2c. Helper text
   .select-field__helper {
     display:     flex;

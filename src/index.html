@@ -41,154 +41,103 @@
 ════════════════════════════════════════════════════════════════ -->
   <script src="assets/icons/sprite.js"></script>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       HEADER
-  ════════════════════════════════════════════════════════════════ -->
-  <header class="site-header" id="site-header">
+  <!-- ═════════ HEADER ══════════════════════════ -->
+<header class="site-header" id="site-header">
 
-    <!-- ══ Row 1: Utility Bar ════════════════════════════════════
-         Figma: bg primary-50 (#eaeffa), 3-col flex, px-32px, py-8px
-         LEFT  (RTL start): Language pill + Mode toggle
-         CENTER: Promo message
-         RIGHT (RTL end):  تتبع الطلب | مركز المساعدة + WhatsApp
-    ═══════════════════════════════════════════════════════════ -->
     <div class="header-utility">
 
-      <!-- RIGHT (RTL): Utility links -->
-      <div class="header-utility__actions">
-        <a href="#" class="btn-utility">
-          <span data-ar="تتبع الطلب" data-en="Track Order">تتبع الطلب</span>
-        </a>
-        <a href="#" class="btn-utility">
-          <span data-ar="مركز المساعدة" data-en="Help Center">مركز المساعدة</span>
-          <!-- WhatsApp icon sits AFTER the text per Figma -->
-          <svg class="icon icon-branded" aria-hidden="true" width="32" height="32">
-            <use href="#brand-whatsapp"></use>
-          </svg>
-        </a>
-      </div>
-
-      <!-- CENTER: Promo -->
-      <div class="header-utility__promo">
-        <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚" data-en="Free delivery on orders over 1000 SAR 🚚">
-          توصيل مجاني للطلبات أكثر من 1000 ريال 🚚
-        </span>
-      </div>
-
-      <!-- LEFT (RTL): Language + Mode toggle -->
-      <div class="header-utility__actions">
-
-        <!-- Language switcher pill: flag + text -->
-        <button class="btn-language" id="lang-toggle" aria-label="Switch to English">
-          <span class="header-flag">
-            <!-- Saudi flag inline SVG (no external file dependency) -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" aria-hidden="true">
-              <rect width="20" height="14" fill="#006923" />
-              <text x="10" y="10" text-anchor="middle" font-size="6" fill="white"
-                font-family="serif">&#x627;&#x644;&#x633;&#x639;&#x648;&#x62F;&#x64A;&#x629;</text>
-            </svg>
-          </span>
-          <span data-ar="العربية" data-en="English">العربية</span>
-        </button>
-
-        <!-- Dark / Light mode toggle — transparent round button -->
-        <button class="btn-mode-switch" id="theme-toggle" aria-label="تفعيل الوضع المظلم" aria-pressed="false">
-          <svg class="icon icon-ui dark-hide" aria-hidden="true" width="24" height="24">
-            <use href="#icon-sun"></use>
-          </svg>
-          <svg class="icon icon-ui dark-show" aria-hidden="true" width="24" height="24">
-            <use href="#icon-moon"></use>
-          </svg>
-        </button>
-
-      </div>
-    </div>
-    <!-- /header-utility -->
-
-    <!-- ══ Row 2: Main Header ═════════════════════════════════════
-         Figma: px-32px, Logo 168×80px right, Nav center, Actions left
-         Actions: Cart(32px)+badge | Wallet(44px) | Avatar(44px)
-    ═══════════════════════════════════════════════════════════ -->
-    <!-- ══ Row 2: Main Header ═════════════════════════════════════
-         Figma: RTL source order = Logo first → Nav → Actions last (leftmost)
-         In dir="rtl": first child renders RIGHTMOST
-         Logo: 168×80px fixed right | Nav: flex-1 center | Actions: fixed left
-    ═══════════════════════════════════════════════════════════ -->
-    <div class="header-main">
-
-      <!-- Logo — fixed 168×80px, first in source = rightmost in RTL -->
-      <a href="/" class="header-logo" aria-label="نجم الرمال - الرئيسية">
-        <img src="assets/brand/Logo.svg" alt="نجم الرمال" width="168" height="80">
-      </a>
-
-      <!-- Nav — flex:1, fills space between logo and actions -->
-      <nav class="header-nav" aria-label="القائمة الرئيسية">
-        <ul class="header-nav__list" role="list">
-
-          <li class="header-nav-item">
-            <button type="button" aria-expanded="false" aria-haspopup="true">
-              <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
-                <use href="#icon-chevron-down"></use>
-              </svg>
-              <span data-ar="تصفح الأقسام" data-en="Browse Categories">تصفح الأقسام</span>
+        <div class="header-utility__actions">
+            <button class="btn-language" id="lang-toggle" aria-label="Switch Language">
+                <span class="hide-on-mobile" data-ar="English" data-en="عربي">English</span>
+                <img src="assets/icons/us-flag.svg" alt="EN" width="20" height="15" class="hide-on-desktop">
             </button>
-          </li>
-          <li class="header-nav-item">
-            <a href="#" data-ar="العروض" data-en="Offers">العروض</a>
-          </li>
-          <li class="header-nav-item">
-            <a href="#" data-ar="الماركات" data-en="Brands">الماركات</a>
-          </li>
-          <li class="header-nav-item">
-            <a href="#" data-ar="خدمات الورش" data-en="Workshop Services">خدمات الورش</a>
-          </li>
-          <li class="header-nav-item">
-            <a href="#" data-ar="الأكثر مبيعاً" data-en="Best Sellers">الأكثر مبيعاً</a>
-          </li>
 
-        </ul>
-      </nav>
-
-      <!-- LAST in source = LEFTMOST in RTL: Cart, Wallet, Avatar -->
-      <div class="header-actions">
-
-        <!-- Cart 32×32 with badge -->
-        <div class="btn-cart-wrapper">
-          <a href="#" class="btn-action btn-cart" aria-label="السلة">
-            <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
-              <use href="#icon-cart"></use>
-            </svg>
-            <span class="cart-badge" aria-label="1 منتج في السلة">1</span>
-          </a>
+            <button class="btn-mode-switch" id="theme-toggle" aria-label="Toggle Theme">
+                <svg class="icon icon-ui dark-hide" aria-hidden="true" width="24" height="24">
+                    <use href="#icon-sun"></use>
+                </svg>
+                <svg class="icon icon-ui dark-show" aria-hidden="true" width="24" height="24">
+                    <use href="#icon-moon"></use>
+                </svg>
+            </button>
         </div>
 
-        <!-- Wallet 44×44 -->
-        <a href="#" class="btn-action" aria-label="محفظتي">
-          <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
-            <use href="#icon-wallet"></use>
-          </svg>
-        </a>
+        <div class="header-utility__promo">
+            <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚" data-en="Free delivery on orders over 1000 SAR 🚚">توصيل مجاني للطلبات أكثر من 1000 ريال 🚚</span>
+        </div>
 
-        <!-- Avatar 44×44 -->
-        <a href="#" class="header-avatar" aria-label="حسابي">
-          <div class="avatar-icon">
-            <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-              <use href="#icon-user"></use>
-            </svg>
-          </div>
-        </a>
-
-      </div>
-      <!-- /header-actions -->
+        <div class="header-utility__actions">
+            <a href="#" class="btn-utility hide-on-mobile">
+                <span data-ar="تتبع الطلب" data-en="Track Order">تتبع الطلب</span>
+            </a>
+            <a href="#" class="btn-utility">
+                <span class="hide-on-mobile" data-ar="مركز المساعدة" data-en="Help Center">مركز المساعدة</span>
+                <svg class="icon icon-branded" aria-hidden="true" width="32" height="32">
+                    <use href="#brand-whatsapp"></use>
+                </svg>
+            </a>
+        </div>
 
     </div>
-    <!-- /header-main -->
 
-    <!-- ══ Row 3: Category Strip ══════════════════════════════════
-         Figma: bg-body (#f9fafb), px-32px, py-8px
-         Tabs flow RIGHT→LEFT (RTL), icon 16px BEFORE text in source
-         Active: الإطارات
-    ═══════════════════════════════════════════════════════════ -->
+    <div class="header-main">
+
+        <div class="header-mobile-left hide-on-desktop">
+            <button class="btn-action" aria-label="More">
+                <svg class="icon icon-ui" width="24" height="24"><use href="#icon-more-vertical"></use></svg>
+            </button>
+            <button class="btn-action" aria-label="Search">
+                <svg class="icon icon-ui" width="24" height="24"><use href="#icon-search"></use></svg>
+            </button>
+        </div>
+
+        <div class="header-actions hide-on-mobile">
+            <div class="btn-cart-wrapper">
+                <a href="#" class="btn-action btn-cart" aria-label="السلة">
+                    <svg class="icon icon-ui" width="20" height="20"><use href="#icon-cart"></use></svg>
+                    <span class="cart-badge">1</span>
+                </a>
+            </div>
+            <a href="#" class="btn-action" aria-label="محفظتي">
+                <svg class="icon icon-ui" width="24" height="24"><use href="#icon-wallet"></use></svg>
+            </a>
+            <a href="#" class="header-avatar" aria-label="حسابي">
+                <div class="avatar-icon">
+                    <svg class="icon icon-ui" width="16" height="16"><use href="#icon-user"></use></svg>
+                </div>
+            </a>
+        </div>
+
+        <nav class="header-nav hide-on-mobile" aria-label="القائمة الرئيسية">
+            <ul class="header-nav__list" role="list">
+                <li class="header-nav-item">
+                    <button type="button" aria-expanded="false" aria-haspopup="true">
+                        <svg class="icon icon-ui" width="20" height="20"><use href="#icon-chevron-down"></use></svg>
+                        <span data-ar="تصفح الأقسام" data-en="Browse Categories">تصفح الأقسام</span>
+                    </button>
+                </li>
+                <li class="header-nav-item"><a href="#" data-ar="العروض" data-en="Offers">العروض</a></li>
+                <li class="header-nav-item"><a href="#" data-ar="الماركات" data-en="Brands">الماركات</a></li>
+                <li class="header-nav-item"><a href="#" data-ar="خدمات الورش" data-en="Workshop Services">خدمات الورش</a></li>
+                <li class="header-nav-item"><a href="#" data-ar="الأكثر مبيعاً" data-en="Best Sellers">الأكثر مبيعاً</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-logo-container">
+            
+            <a href="/" class="header-logo" aria-label="نجم الرمال">
+                <img src="assets/brand/Logo.svg" alt="نجم الرمال" width="168" height="80">
+            </a>
+
+            <div class="header-mobile-menu hide-on-desktop">
+                <button class="btn-hamburger" id="mobile-menu-btn" aria-label="Menu">
+                    <svg class="icon icon-ui" width="28" height="28"><use href="#icon-menu"></use></svg>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
     <nav class="header-category-strip" aria-label="تصفح الفئات">
 
       <a href="#" class="category-tab">
@@ -241,8 +190,7 @@
       </a>
 
     </nav>
-
-  </header>
+</header>
   <!-- /site-header -->
 
 

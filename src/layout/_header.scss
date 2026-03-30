@@ -2,483 +2,1106 @@
 @use '../base/themes'     as t;
 @use '../base/typography' as ty;
 
+
+
 // ════════════════════════════════════════════════════════════
 // 1. Site Header Wrapper
 // ════════════════════════════════════════════════════════════
+
 .site-header {
+
   position:       fixed;
+
   top:            0;
+
   left:           0;
+
   right:          0;
+
   z-index:        1030;
+
   width:          100%;
+
   background:     rgb(var(--color-surface));
+
   display:        flex;
+
   flex-direction: column;
-  // Only transition visual properties — never layout/size props
-  // Avoids the height-collapse glitch caused by `transition: all`
+
   transition:
     background              300ms ease,
     backdrop-filter         300ms ease,
     -webkit-backdrop-filter 300ms ease,
     box-shadow              300ms ease;
 
-  // ── Scrolled / sticky state ─────────────────────────────────
-  // Figma node 8043:8393 — afterscroll=true, height 80px
-  // backdrop-blur-lg (24px) + rgba(255,255,255,0.70)
+
+
+  // ── Scrolled state ──────────────────────────────────────────
+
   &.is-scrolled {
+
     background:              rgba(255, 255, 255, 0.70);
+
     -webkit-backdrop-filter: blur(24px);
+
     backdrop-filter:         blur(24px);
+
     box-shadow:              0 1px 0 rgba(var(--color-outline), 0.15),
                              0 2px 16px rgba(16, 24, 40, 0.08);
 
-    // Collapse rows 1 & 3 using max-height animation
-    // display:none would snap instantly — max-height:0 transitions smoothly
     .header-utility,
     .header-category-strip {
+
       max-height:     0 !important;
+
       padding-block:  0 !important;
+
       opacity:        0 !important;
+
       pointer-events: none;
+
     }
 
     .header-main { padding-block: 0; }
+
   }
+
 }
 
-// Dark mode scrolled — .dark lives on <html> so this must be outside .site-header
+
+
 html.dark .site-header.is-scrolled {
+
   background:              rgba(20, 27, 52, 0.80);
+
   -webkit-backdrop-filter: blur(24px);
+
   backdrop-filter:         blur(24px);
+
 }
+
+
+
+// ════════════════════════════════════════════════════════════
+// ── RESPONSIVE VISIBILITY CONTROL ────────────────────────
+//
+//    Problem: the .hide-on-mobile / .hide-on-desktop utility
+//    classes in the base stylesheet have unknown breakpoints
+//    that do NOT necessarily match our 960px / 600px boundaries.
+//    This causes elements to show/hide at the wrong time, giving:
+//      – duplicate search icons (both mobile-left + logo-search visible)
+//      – actions disappearing + kabob appearing at wrong widths
+//
+//    Solution: _header.scss takes FULL OWNERSHIP of visibility
+//    for every header element, using .site-header parent for
+//    specificity that beats any utility class.
+//
+//    Final matrix:
+//    ┌─────────────────────────────┬────────┬─────────┬────────┐
+//    │ Element                     │ >960   │ 601-960 │ <600   │
+//    ├─────────────────────────────┼────────┼─────────┼────────┤
+//    │ .header-nav                 │  show  │  hide   │  hide  │
+//    │ .header-actions             │  show  │  show   │  hide  │
+//    │ .header-mobile-menu (☰)     │  hide  │  show   │  show  │
+//    │ .header-mobile-left (⋮ 🔍)  │  hide  │  hide   │  show  │
+//    │ logo-container > .btn-action│  show  │  hide   │  hide  │
+//    └─────────────────────────────┴────────┴─────────┴────────┘
+// ════════════════════════════════════════════════════════════
+
+// ── Desktop base (> 960px) ───────────────────────────────────
+
+.site-header {
+
+  // Hidden by default — only shown via breakpoints below
+  .header-mobile-left { display: none !important; }
+
+  .header-mobile-menu { display: none !important; }
+
+  // Shown by default at desktop
+  .header-nav     { display: flex !important; }
+
+  .header-actions { display: flex !important; }
+
+  .header-logo-container > .btn-action { display: flex !important; }
+
+}
+
+
+
+// ── Tablet (601px – 960px) ───────────────────────────────────
+
+@media (max-width: 960px) {
+
+  .site-header {
+
+    .header-nav     { display: none !important; }
+
+    .header-mobile-menu { display: flex !important; }
+
+    // Logo-container search btn hidden — mobile-left provides search at < 600
+    .header-logo-container > .btn-action { display: none !important; }
+
+  }
+
+}
+
+
+
+// ── Mobile (< 600px) ─────────────────────────────────────────
+
+@media (max-width: 599px) {
+
+  .site-header {
+
+    .header-actions { display: none !important; }
+
+    .header-mobile-left { display: flex !important; }
+
+  }
+
+}
+
+
 
 // ════════════════════════════════════════════════════════════
 // Smooth collapse — base state for collapsible rows
-// max-height transitions from 200px → 0 when is-scrolled applies
-// overflow: hidden is required for max-height animation to work
 // ════════════════════════════════════════════════════════════
+
 .header-utility,
 .header-category-strip {
+
   max-height:  200px;
+
   opacity:     1;
+
+  overflow:    hidden;
+
   transition:
     max-height    300ms ease,
     opacity       200ms ease,
     padding-block 300ms ease;
+
 }
 
+
+
 // ════════════════════════════════════════════════════════════
-// 2. Utility Bar  — background: primary-50 (#eaeffa)
-//    Figma: UtilityBar — 3-col flex, px-32px, py-8px
+// 2. Utility Bar
+//    Figma: bg #eaeffa, px-32px, py-8px — visible at all breakpoints
 // ════════════════════════════════════════════════════════════
+
 .header-utility {
+
   display:         flex;
+
   align-items:     center;
+
   justify-content: space-between;
+
   width:           100%;
+
   padding-inline:  p.$space-8;   // 32px
+
   padding-block:   p.$space-2;   // 8px
+
   background:      rgb(var(--color-primary-container));
 
+
+
   .header-utility__actions {
+
     display:     flex;
+
     align-items: center;
-    gap:         p.$space-4; // 16px
+
+    gap:         p.$space-4; // 16px desktop (overridden below at tablet/mobile)
+
     flex-shrink: 0;
+
   }
 
-  // Utility text links — تتبع الطلب / مركز المساعدة
+
+
   .btn-utility {
+
     display:         flex;
+
     align-items:     center;
-    gap:             p.$space-1;       // 4px
+
+    gap:             p.$space-1;
+
     height:          44px;
-    padding-inline:  p.$space-4;      // 16px
+
+    padding-inline:  p.$space-4;
+
     border-radius:   p.$radius-sm;
+
     background:      transparent;
+
     border:          none;
+
     cursor:          pointer;
+
     font-family:     var(--font-primary);
+
     font-size:       p.$font-size-body-md;
+
     font-weight:     p.$font-weight-semibold;
+
     color:           rgb(var(--color-primary));
+
     text-decoration: none;
+
     .icon-branded { width: 32px; height: 32px; }
+
     &:hover { opacity: 0.80; }
+
   }
 
-  // Language pill — rounded-full, bg neutral, flag + text
+
+
   .btn-language {
+
     display:        flex;
+
     align-items:    center;
-    gap:            p.$space-1;       // 4px
+
+    gap:            p.$space-1;
+
     height:         44px;
-    padding-inline: p.$space-4;      // 16px
+
+    padding-inline: p.$space-4;
+
     border-radius:  p.$radius-full;
+
     background:     rgb(var(--color-surface-container));
+
     border:         none;
+
     cursor:         pointer;
+
     font-family:    var(--font-primary);
+
     font-size:      p.$font-size-body-md;
+
     font-weight:    p.$font-weight-semibold;
+
     color:          rgb(var(--color-on-surface));
 
-    .header-flag {
+    white-space:    nowrap;
+
+    > img {
+
       width:         20px;
-      height:        14px;
+
+      height:        15px;
+
       border-radius: 2px;
-      overflow:      hidden;
+
+      object-fit:    cover;
+
       flex-shrink:   0;
-      img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
     }
+
   }
 
-  // Mode switch — transparent 44×44 round button
+
+
   .btn-mode-switch {
+
     display:         flex;
+
     align-items:     center;
+
     justify-content: center;
+
     width:           44px;
+
     height:          44px;
+
     border-radius:   p.$radius-full;
+
     border:          none;
+
     background:      transparent;
+
     cursor:          pointer;
+
     color:           rgb(var(--color-on-surface));
+
     transition:      background p.$transition-speed;
+
     .icon { width: 24px; height: 24px; }
+
     &:hover { background: rgba(var(--color-outline), 0.12); }
+
   }
 
-  // Promo message — centered
+
+
   .header-utility__promo {
+
     flex:            1 0 0;
+
     display:         flex;
+
     align-items:     center;
+
     justify-content: center;
+
     font-family:     var(--font-primary);
+
     font-size:       p.$font-size-body-md;
+
     font-weight:     p.$font-weight-semibold;
+
     color:           rgb(var(--color-on-primary-cont));
+
     white-space:     nowrap;
+
   }
+
 }
+
+
 
 // ════════════════════════════════════════════════════════════
 // 3. Main Header Row — Logo + Nav + Actions
-//    Figma: px-32px, height driven by logo (80px), no padding-block
-//    RTL source order: logo-nav first (rightmost) → actions last (leftmost)
+//
+//    HTML DOM order:                 RTL visual default:
+//      1. header-mobile-left    →    RIGHT  (wrong — should be left)
+//      2. header-actions        →    left
+//      3. header-nav            →    center
+//      4. header-logo-container →    LEFT   (wrong — logo should be right)
+//
+//    FIX via CSS order property:
+//      In RTL flex, lower order value → closer to RIGHT (start)
+//      order 1 = logo rightmost, order 2 = nav center, order 3 = actions leftmost
 // ════════════════════════════════════════════════════════════
+
 .header-main {
+
   display:         flex;
+
   align-items:     center;
+
   justify-content: space-between;
+
   width:           100%;
+
   padding-inline:  p.$space-8; // 32px
 
-  // Logo — fixed 168×80px, anchored to the right (first in RTL source)
-  .header-logo {
-    flex:            0 0 168px;
-    width:           168px;
-    height:          80px;
-    display:         flex;
-    align-items:     center;
-    overflow:        hidden;
-    text-decoration: none;
-    img {
-      width:      100%;
-      height:     100%;
-      object-fit: contain;
-      display:    block;
+
+
+  // ── RTL layout order fix ────────────────────────────────────
+
+  .header-logo-container { order: 1; } // → rightmost (RTL start)
+
+  .header-nav            { order: 2; } // → center
+
+  .header-actions        { order: 3; } // → leftmost (RTL end)
+
+  .header-mobile-left    { order: 3; } // → same end, shown at < 600 only
+
+
+
+  // ── Logo Container ──────────────────────────────────────────
+
+  .header-logo-container {
+
+    display:     flex;
+
+    align-items: center;
+
+    gap:         p.$space-2; // 8px
+
+    flex-shrink: 0;
+
+    // Search button inside container
+
+    .btn-action {
+
+      display:         flex;
+
+      align-items:     center;
+
+      justify-content: center;
+
+      width:           44px;
+
+      height:          44px;
+
+      border-radius:   p.$radius-full;
+
+      background:      rgb(var(--color-surface-container));
+
+      border:          none;
+
+      cursor:          pointer;
+
+      color:           rgb(var(--color-on-surface));
+
+      text-decoration: none;
+
+      transition:      background p.$transition-speed;
+
+      .icon { width: 24px; height: 24px; }
+
+      &:hover { background: rgb(var(--color-outline-variant)); }
+
     }
+
   }
 
-  // Nav wrapper — the <nav> element is the direct flex child, must carry flex:1
-  .header-nav {
+
+
+  // ── Logo ────────────────────────────────────────────────────
+
+  .header-logo {
+
+    flex:            0 0 168px;
+
+    width:           168px;
+
+    height:          80px;
+
     display:         flex;
+
     align-items:     center;
+
+    overflow:        hidden;
+
+    text-decoration: none;
+
+    img {
+
+      width:      100%;
+
+      height:     100%;
+
+      object-fit: contain;
+
+      display:    block;
+
+    }
+
+  }
+
+
+
+  // ── Nav wrapper ─────────────────────────────────────────────
+
+  .header-nav {
+
+    display:         flex;
+
+    align-items:     center;
+
     justify-content: center;
-    flex:            1 1 auto;  // fills space between logo and actions
+
+    flex:            1 1 auto;
+
     min-width:       0;
 
-    // The <ul> inside — reset list styles, mirrors the flex display
     &__list {
+
       display:       flex;
+
       align-items:   center;
+
       list-style:    none;
+
       margin:        0;
+
       padding:       0;
+
       gap:           0;
+
     }
+
   }
 
-  // Actions — cart/wallet/avatar, fixed left side
+
+
+  // ── Desktop Actions ─────────────────────────────────────────
+
   .header-actions {
+
     display:              flex;
+
     align-items:          center;
-    gap:                  p.$space-4;  // 16px
-    padding-inline-start: p.$space-3; // 12px
+
+    gap:                  p.$space-4;
+
+    padding-inline-start: p.$space-3;
+
     flex-shrink:          0;
 
-    // Base round button — 44×44, bg #f3f4f6
+
+
     .btn-action {
+
       display:         flex;
+
       align-items:     center;
+
       justify-content: center;
+
       width:           44px;
+
       height:          44px;
+
       border-radius:   p.$radius-full;
+
       background:      rgb(var(--color-surface-container));
+
       border:          none;
+
       cursor:          pointer;
+
       color:           rgb(var(--color-on-surface));
+
       text-decoration: none;
+
       transition:      background p.$transition-speed;
+
       .icon { width: 24px; height: 24px; }
+
       &:hover { background: rgb(var(--color-outline-variant)); }
+
     }
 
-    // Cart — 32×32 with badge
-    .btn-cart-wrapper {
-      position: relative;
-      display:  flex;
-    }
+
+
+    .btn-cart-wrapper { position: relative; display: flex; }
+
+
 
     .btn-cart {
+
       @extend .btn-action;
+
       width:  32px;
+
       height: 32px;
+
       .icon  { width: 20px; height: 20px; }
 
+
+
       .cart-badge {
+
         position:        absolute;
+
         top:             0;
+
         left:            0;
+
         min-width:       16px;
+
         height:          16px;
+
         border-radius:   p.$radius-full;
+
         background:      rgb(var(--color-error));
+
         display:         flex;
+
         align-items:     center;
+
         justify-content: center;
+
         padding-inline:  2px;
+
         font-family:     var(--font-primary);
+
         font-size:       10px;
+
         font-weight:     p.$font-weight-medium;
+
         color:           #ffffff;
+
         line-height:     1;
+
         pointer-events:  none;
+
       }
+
     }
+
   }
 
-  // Avatar
+
+
+  // ── Avatar ──────────────────────────────────────────────────
+
   .header-avatar {
+
     display:         flex;
+
     align-items:     center;
+
     text-decoration: none;
+
     cursor:          pointer;
 
     .avatar-icon {
+
       display:         flex;
+
       align-items:     center;
+
       justify-content: center;
+
       width:           44px;
+
       height:          44px;
+
       border-radius:   p.$radius-full;
+
       background:      rgb(var(--color-surface-container));
+
       border:          2px solid rgb(var(--color-surface));
+
       transition:      background p.$transition-speed;
+
       .icon { width: 16px; height: 16px; }
+
       &:hover { background: rgb(var(--color-outline-variant)); }
+
     }
+
   }
+
+
+
+  // ── Mobile-left group (⋮ more + 🔍 search — only at < 600) ──
+
+  .header-mobile-left {
+
+    display:     flex;
+
+    align-items: center;
+
+    gap:         p.$space-2;
+
+    flex:        1 0 0; // takes equal space to balance logo at center
+
+    .btn-action {
+
+      display:         flex;
+
+      align-items:     center;
+
+      justify-content: center;
+
+      width:           44px;
+
+      height:          44px;
+
+      border-radius:   p.$radius-sm;
+
+      background:      transparent;
+
+      border:          none;
+
+      cursor:          pointer;
+
+      color:           rgb(var(--color-on-surface));
+
+      transition:      background p.$transition-speed;
+
+      .icon { width: 24px; height: 24px; }
+
+      &:hover { background: rgb(var(--color-surface-container)); }
+
+    }
+
+  }
+
+
+
+  // ── Hamburger wrapper ────────────────────────────────────────
+
+  .header-mobile-menu { display: flex; align-items: center; }
+
 }
+
+
 
 // ════════════════════════════════════════════════════════════
 // 4. Navigation Items
-//    Figma: height 72px, px-16px, font-md/medium
+//    Figma: h-72px, px-16px, gap-4px, font-md/medium
 // ════════════════════════════════════════════════════════════
+
 .header-nav-item {
+
   position:   relative;
+
   list-style: none;
 
+
+
   > a, > button {
+
     display:         flex;
+
     align-items:     center;
+
     justify-content: center;
+
     gap:             p.$space-1;
+
     height:          72px;
+
     padding-inline:  p.$space-4;
+
     border-radius:   p.$radius-sm;
+
     background:      transparent;
+
     border:          none;
+
     cursor:          pointer;
+
     font-family:     var(--font-primary);
+
     font-size:       p.$font-size-body-md;
+
     font-weight:     p.$font-weight-medium;
+
     color:           rgb(var(--color-on-surface));
+
     text-decoration: none;
+
     white-space:     nowrap;
 
     .icon {
+
       width:      20px;
+
       height:     20px;
+
       transition: transform p.$transition-speed ease;
+
     }
 
     &[aria-expanded="true"] .icon { transform: rotate(180deg); }
+
     &:hover    { background: rgba(var(--color-outline), 0.10); }
+
     &.is-active {
+
       color:      rgb(var(--color-primary));
+
       background: rgba(var(--color-primary), 0.08);
+
     }
+
   }
+
 }
+
+
 
 // ════════════════════════════════════════════════════════════
 // 5. Dropdown Submenu
 // ════════════════════════════════════════════════════════════
+
 .header-submenu {
+
   position:           absolute;
+
   top:                100%;
+
   inset-inline-start: 0;
+
   min-width:          320px;
+
   background:         rgb(var(--color-surface));
+
   border:             1px solid rgb(var(--color-outline-variant));
+
   border-radius:      p.$radius-md;
+
   box-shadow:         0 8px 24px rgba(16, 24, 40, 0.10);
+
   padding:            p.$space-2;
+
   display:            none;
+
   z-index:            10;
 
   .header-nav-item:has(> [aria-expanded="true"]) > & { display: block; }
 
   .header-submenu__item {
+
     display:         flex;
+
     align-items:     flex-start;
+
     gap:             p.$space-2;
+
     padding:         p.$space-2 p.$space-4;
+
     border-radius:   p.$radius-sm;
+
     text-decoration: none;
+
     &:hover { background: rgb(var(--color-surface-container)); }
 
     .submenu-icon {
+
       display:         flex;
+
       align-items:     center;
+
       justify-content: center;
+
       width:           48px;
+
       height:          48px;
+
       border-radius:   p.$radius-sm;
+
       background:      rgb(var(--color-surface-container));
+
       flex-shrink:     0;
+
       .icon { width: 24px; height: 24px; }
+
     }
 
     .submenu-text {
+
       display:        flex;
+
       flex-direction: column;
+
       gap:            p.$space-1;
+
       .submenu-text__title {
+
         font-size:   p.$font-size-body-md;
+
         font-weight: p.$font-weight-medium;
+
         color:       rgb(var(--color-on-surface));
+
       }
+
       .submenu-text__desc {
+
         font-size: p.$font-size-body-sm;
+
         color:     rgb(var(--color-on-surface-variant));
+
       }
+
     }
+
   }
+
 }
+
+
 
 // ════════════════════════════════════════════════════════════
 // 6. Category Strip
-//    Figma: bg-body (#f9fafb), px-32px, py-8px, text-sm/medium
-//    RTL: flex-start = items anchor to right edge, flow leftward
+//    Figma: bg #f9fafb, px-32px, py-8px, text-sm/medium
 // ════════════════════════════════════════════════════════════
+
 .header-category-strip {
+
   display:         flex;
+
   align-items:     center;
-  justify-content: center;   // Fix 1: center the tabs row horizontally
+
+  justify-content: center;
+
   width:           100%;
+
   padding-inline:  p.$space-8;
+
   padding-block:   p.$space-2;
+
   background:      rgb(var(--color-surface-elevated));
-  overflow:        hidden;
+
   overflow-x:      auto;
+
   scrollbar-width: none;
+
   gap:             0;
+
   &::-webkit-scrollbar { display: none; }
 
+
+
   .category-tab {
+
     display:         flex;
+
     align-items:     center;
+
     gap:             p.$space-1;
+
     padding-inline:  p.$space-4;
+
     padding-block:   p.$space-2;
+
     border-radius:   p.$radius-sm;
+
     font-family:     var(--font-primary);
+
     font-size:       p.$font-size-body-sm;
-    font-weight:     p.$font-weight-semibold; // Fix 2: medium → semibold
+
+    font-weight:     p.$font-weight-medium;
+
     color:           rgb(var(--color-on-surface-variant));
+
     text-decoration: none;
+
     white-space:     nowrap;
+
     transition:      background p.$transition-speed, color p.$transition-speed;
 
     .icon { width: 16px; height: 16px; flex-shrink: 0; }
 
     &:hover {
+
       background: rgba(var(--color-primary), 0.06);
+
       color:      rgb(var(--color-primary));
+
     }
-    // Fix 3: .is-active removed — no active state on category tabs
+
   }
+
 }
 
+
+
 // ════════════════════════════════════════════════════════════
-// 7. Mobile Hamburger
+// 7. Hamburger Button
 // ════════════════════════════════════════════════════════════
-.header-hamburger {
-  display:         none;
+
+.btn-hamburger {
+
+  display:         flex;
+
   align-items:     center;
+
   justify-content: center;
+
   width:           44px;
+
   height:          44px;
+
   border-radius:   p.$radius-sm;
+
   border:          none;
+
   background:      transparent;
+
   color:           rgb(var(--color-on-surface));
+
   cursor:          pointer;
-  .icon { width: 24px; height: 24px; transition: transform p.$transition-speed; }
+
+  .icon { width: 28px; height: 28px; transition: transform p.$transition-speed; }
+
   &.is-open .icon { transform: rotate(90deg); }
+
   &:hover { background: rgb(var(--color-surface-container)); }
+
 }
 
+.header-hamburger { @extend .btn-hamburger; }
+
+
+
 // ════════════════════════════════════════════════════════════
-// 8. Responsive
+// 8. Responsive Layout
 // ════════════════════════════════════════════════════════════
+
+// ── Tablet: 601px – 960px ─────────────────────────────────
+// Category strip collapses; utility bar stays visible.
+// Hamburger replaces nav. Actions remain (shown at left of logo).
+
 @media (max-width: 960px) {
-  // Use max-height:0 for consistency with the scroll animation system
-  .header-utility,
+
   .header-category-strip {
+
     max-height:    0 !important;
+
     padding-block: 0 !important;
+
     opacity:       0 !important;
+
     overflow:      hidden !important;
+
+    pointer-events: none;
+
   }
-  .header-main      { padding-inline: p.$space-4; }
-  .header-logo      { flex: 0 0 120px !important; width: 120px !important; height: 56px !important; }
-  .header-nav       { display: none; }
-  .header-hamburger { display: flex; }
+
+  .header-main { padding-inline: p.$space-8; }
+
 }
+
+
+
+// Right-side utility actions gap tightens at tablet
+
+@media (min-width: 601px) and (max-width: 960px) {
+
+  .header-utility .header-utility__actions:last-child { gap: p.$space-2; } // 8px
+
+}
+
+
+
+// ── Mobile: ≤ 600px ───────────────────────────────────────
 
 @media (max-width: 600px) {
-  .header-main {
-    padding-inline: p.$space-3;
-    .header-actions .btn-action { width: 36px; height: 36px; }
+
+  .header-main { padding-inline: 1.25rem; } // 20px = spacing-2xl
+
+
+
+  // Logo shrinks to 134×64
+
+  .header-main .header-logo {
+
+    flex:   0 0 134px !important;
+
+    width:  134px !important;
+
+    height: 64px !important;
+
   }
-  .header-logo { flex: 0 0 100px !important; width: 100px !important; height: 48px !important; }
+
+
+
+  // Logo container becomes flexible to allow logo centering
+
+  .header-main .header-logo-container {
+
+    flex:            1 0 0;
+
+    justify-content: center;
+
+  }
+
+
+
+  // Utility bar tightens at mobile
+
+  .header-utility {
+
+    padding-inline: p.$space-4; // 16px
+
+    .header-utility__actions { gap: p.$space-1; } // 4px
+
+  }
+
 }

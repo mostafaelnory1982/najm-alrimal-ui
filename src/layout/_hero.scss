@@ -144,7 +144,7 @@
   font-family:     var(--font-primary);
   font-size:       var(--font-size-body-md);   // 14px — responsive
   font-weight:     p.$font-weight-medium;
-  color:           rgb(var(--color-on-surface-variant));
+  color:           rgba(255, 255, 255, 0.64);
   white-space:     nowrap;
   position:        relative;
   border-radius:   p.$radius-sm;
