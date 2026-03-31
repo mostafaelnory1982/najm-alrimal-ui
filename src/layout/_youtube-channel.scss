@@ -171,39 +171,74 @@
 }
 
 // ════════════════════════════════════════════════════════════
-// Responsive
+// Responsive Layout (Tablet & Mobile)
 // ════════════════════════════════════════════════════════════
+
 @media (max-width: 1024px) {
   .yt-channel {
-    padding-inline: p.$space-8;
+    padding-inline: p.$space-4; // تقليل البادينج الجانبي
+    padding-block:  p.$space-8;
   }
 
   .yt-channel__body {
-    flex-direction: column;
+    flex-direction: column; // نخلي العناصر تحت بعض
+    gap: p.$space-4;
   }
 
-  .yt-channel__playlist {
-    width:  100%;
-    height: 240px;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    .thumbnail-card {
-      flex-shrink: 0;
-      width:       280px;
-    }
-  }
-
+  // 1. الفيديو الكبير (نرفعه فوق خالص، نديله عرض الشاشة، ونمنعه من الاختفاء)
   .yt-channel__player {
+    order: 1 !important; // إجباري يطلع فوق
+    width: 100%;
+    flex: none !important; // السطر السحري اللي بيمنع الفيديو إنه يختفي أو يتفعص
     max-height: none;
     aspect-ratio: 16 / 9;
   }
+
+  // 2. البلاي ليست (ننزلها تحت الفيديو ونخليها سكرول بالعرض)
+  .yt-channel__playlist {
+    order: 2 !important; // تنزل تحت الفيديو
+    width:  100%;
+    height: auto; // نشيل الطول الثابت اللي كان مبوظ الكروت
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: p.$space-2; // مساحة للسكرول بار
+    -webkit-overflow-scrolling: touch;
+
+    // 3. ترويض الكروت جوه الموبايل عشان تبقى أفقي
+    .thumbnail-card {
+      flex: 0 0 260px; // عرض الكارت الثابت عشان السكرول يظبط
+      display: flex;
+      flex-direction: row; // نضمن إن الصورة والنص جنب بعض
+      align-items: center;
+      padding: p.$space-2;
+      height: max-content;
+
+      // تصغير الصورة المصغرة
+      .thumbnail-card__image {
+        width: 90px !important;
+        height: 50px !important;
+      }
+
+      // تظبيط مقاس النص عشان ميكسرش
+      .thumbnail-card__title {
+        font-size: 13px;
+      }
+    }
+  }
 }
 
-@media (max-width: 640px) {
-  .yt-channel {
-    padding-inline: p.$space-4;
-    padding-block:  p.$space-8;
+// 4. تظبيطة أخيرة للشاشات الصغيرة جداً (الموبايل بالطول)
+@media (max-width: 600px) {
+  .yt-channel__header {
+    margin-bottom: p.$space-4;
+  }
+
+  .yt-channel__title {
+    font-size: p.$font-size-heading-lg; // تصغير العنوان الرئيسي
+  }
+  
+  .yt-channel__playlist .thumbnail-card {
+    flex: 0 0 240px; // نصغر الكارت سِنة كمان في الموبايل الصغير
   }
 }
