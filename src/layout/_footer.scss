@@ -1,25 +1,12 @@
 @use '../base/primitives' as p;
 
 // ════════════════════════════════════════════════════════════
-// Site Footer
-// Figma node 8922:24073
-//
-// The footer ALWAYS uses the dark navy background (#0A1429)
-// regardless of light/dark mode — it is its own design token,
-// not tied to the page surface colour.
-//
-// Key design decisions:
-//   • $footer-bg is hardcoded to #0A1429 (Figma: colors/primary-gold/900)
-//   • $footer-border uses rgba white so it works on any dark bg
-//   • $footer-text / $footer-link are always white
-//   • Payment chips have white bg to show brand logos clearly
-//   • App badges are black with #a6a6a6 border (standard store style)
+// Site Footer (Auto-adapts to RTL/LTR)
 // ════════════════════════════════════════════════════════════
 
-// ── 1. Footer-scoped design tokens ────────────────────────
-$footer-bg:          #0a1429;                    // Figma: colors/primary-gold/900
-$footer-border:      rgba(255, 255, 255, 0.30);  // border/border-oncolor-transparent-30
-$social-btn-bg:      rgba(255, 255, 255, 0.20);  // button/button-background-transparent-hovered
+$footer-bg:          #0a1429;
+$footer-border:      rgba(255, 255, 255, 0.30);
+$social-btn-bg:      rgba(255, 255, 255, 0.20);
 $footer-text:        #ffffff;
 $footer-link:        #ffffff;
 $payment-badge-bg:   #ffffff;
@@ -32,7 +19,7 @@ $app-badge-border:   #a6a6a6;
   background:      $footer-bg;
   display:         flex;
   justify-content: center;
-  padding-inline:  p.$space-8;   // 32px
+  padding-inline:  p.$space-8;
 }
 
 // ── 3. Content Container ───────────────────────────────────
@@ -42,20 +29,20 @@ $app-badge-border:   #a6a6a6;
   width:           100%;
   display:         flex;
   flex-direction:  column;
-  gap:             p.$space-12;  // 48px
-  padding-top:     p.$space-10;  // 40px
-  padding-bottom:  p.$space-6;   // 24px
+  gap:             p.$space-12;
+  padding-top:     p.$space-10;
+  padding-bottom:  p.$space-6;
 }
 
 // ── 4. Navigation Row ──────────────────────────────────────
 .footer__nav {
   display:         flex;
   flex-wrap:       wrap;
-  gap:             p.$space-6;   // 24px
+  gap:             p.$space-6;
   align-items:     flex-start;
-  justify-content: flex-end;     // RTL: columns flow from right
-  padding-top:     p.$space-4;   // 16px
-  padding-bottom:  p.$space-10;  // 40px
+  justify-content: flex-start; // Start = Right in RTL, Left in LTR
+  padding-top:     p.$space-4;
+  padding-bottom:  p.$space-10;
   width:           100%;
 }
 
@@ -64,26 +51,23 @@ $app-badge-border:   #a6a6a6;
   flex:            1 0 0;
   display:         flex;
   flex-direction:  column;
-  align-items:     flex-end;     // RTL default: content aligns right
-  gap:             p.$space-2;   // 8px
+  align-items:     flex-start; // Start = Right in RTL, Left in LTR
+  gap:             p.$space-2;
   min-width:       180px;
 
-  // Brand column — logo + tagline
   &--brand {
-    align-items: flex-end;
+    align-items: flex-start;
 
     .footer__brand-logo {
       width:      233px;
       height:     auto;
       max-height: 115px;
       overflow:   hidden;
-
       img {
         display:    block;
         max-width:  100%;
         height:     auto;
         object-fit: contain;
-        // Logo is blue on white — invert to white on dark bg
         filter: brightness(0) invert(1);
       }
     }
@@ -94,50 +78,39 @@ $app-badge-border:   #a6a6a6;
       gap:            p.$space-2;
       width:          100%;
 
-      .footer__brand-title {
+      .footer__brand-title, .footer__brand-desc {
         font-family:  var(--font-primary);
-        font-size:    p.$font-size-body-lg;        // 16px
+        color:        $footer-text;
+        text-align:   start; // Start = Right in RTL, Left in LTR
+      }
+      .footer__brand-title {
+        font-size:    p.$font-size-body-lg;
         font-weight:  p.$font-weight-semibold;
         line-height:  p.$line-height-normal;
-        color:        $footer-text;
-        text-align:   right;
       }
-
       .footer__brand-desc {
-        font-family:  var(--font-primary);
-        font-size:    p.$font-size-body-md;        // 14px
+        font-size:    p.$font-size-body-md;
         font-weight:  p.$font-weight-regular;
         line-height:  p.$line-height-tight;
-        color:        $footer-text;
-        text-align:   right;
       }
     }
   }
 
-  // Social + payments column needs more gap between its two groups
   &--social { gap: p.$space-8; }
 }
-
-// LTR: flip column alignment to left
-[dir="ltr"] .footer__col { align-items: flex-start; }
-[dir="ltr"] .footer__col--brand .footer__brand-title,
-[dir="ltr"] .footer__col--brand .footer__brand-desc { text-align: left; }
-[dir="ltr"] .footer__nav { justify-content: flex-start; }
 
 // ── 6. Column Labels & Link Lists ──────────────────────────
 .footer__col-label {
   width:          100%;
-  padding-bottom: p.$space-2;                    // 8px
+  padding-bottom: p.$space-2;
   border-bottom:  1px solid $footer-border;
   font-family:    var(--font-primary);
-  font-size:      p.$font-size-body-lg;          // 16px
+  font-size:      p.$font-size-body-lg;
   font-weight:    p.$font-weight-medium;
   line-height:    p.$line-height-normal;
   color:          $footer-text;
   white-space:    nowrap;
-  text-align:     right;
-
-  [dir="ltr"] & { text-align: left; }
+  text-align:     start; // Start = Right in RTL, Left in LTR
 }
 
 .footer__link-list {
@@ -153,20 +126,19 @@ $app-badge-border:   #a6a6a6;
 .footer__link {
   display:         flex;
   align-items:     center;
-  justify-content: flex-end;                     // RTL: icon + text → right-aligned
-  gap:             p.$space-1;                   // 4px
+  justify-content: flex-start; // Start = Right in RTL, Left in LTR
+  gap:             p.$space-1;
   text-decoration: none;
   cursor:          pointer;
   background:      transparent;
   border:          none;
   font-family:     var(--font-primary);
-  font-size:       p.$font-size-body-md;         // 14px
+  font-size:       p.$font-size-body-md;
   font-weight:     p.$font-weight-regular;
   line-height:     p.$line-height-tight;
   color:           $footer-link;
   transition:      opacity p.$transition-speed ease;
 
-  // Contact icons (location, phone, mail) from sprite
   .icon {
     width:      16px;
     height:     16px;
@@ -178,8 +150,6 @@ $app-badge-border:   #a6a6a6;
 
   &:hover   { opacity: 0.75; text-decoration: underline; }
   &--full   { width: 100%; }
-
-  [dir="ltr"] & { justify-content: flex-start; }
 }
 
 // ── 7. Social Buttons ──────────────────────────────────────
@@ -200,18 +170,16 @@ $app-badge-border:   #a6a6a6;
     background:      $social-btn-bg;
     cursor:          pointer;
     text-decoration: none;
-    transition:      background p.$transition-speed ease,
-                     border-color p.$transition-speed ease;
+    transition:      background p.$transition-speed ease, border-color p.$transition-speed ease;
 
     .icon-branded {
       width:  32px;
       height: 32px;
-      // Brand SVG icons — force white so they're visible on dark bg
       color:  $footer-text;
       fill:   $footer-text;
     }
 
-    &:hover        { background: rgba(255,255,255,0.30); border-color: rgba(255,255,255,0.50); }
+    &:hover { background: rgba(255,255,255,0.30); border-color: rgba(255,255,255,0.50); }
     &:focus-visible { outline: 2px solid rgba(255,255,255,0.80); outline-offset: 2px; }
   }
 }
@@ -251,7 +219,7 @@ $app-badge-border:   #a6a6a6;
   padding-block:   p.$space-4;
   width:           100%;
   flex-wrap:       wrap;
-  border-top:      1px solid $footer-border;     // subtle separator
+  border-top:      1px solid $footer-border;
 }
 
 .footer__legal-info {
@@ -259,16 +227,16 @@ $app-badge-border:   #a6a6a6;
   display:        flex;
   flex-direction: column;
   gap:            p.$space-2;
-  align-items:    flex-end;                      // RTL
+  align-items:    flex-start; // Start = Right in RTL, Left in LTR
 
   .footer__copyright {
     font-family:  var(--font-primary);
-    font-size:    p.$font-size-body-md;          // 14px
+    font-size:    p.$font-size-body-md;
     font-weight:  p.$font-weight-semibold;
     line-height:  p.$line-height-tight;
     color:        $footer-text;
     white-space:  nowrap;
-    text-align:   right;
+    text-align:   start;
   }
 
   .footer__legal-links {
@@ -279,13 +247,7 @@ $app-badge-border:   #a6a6a6;
     list-style: none;
     margin:     0;
     padding:    0;
-    text-align: right;
-  }
-
-  [dir="ltr"] & {
-    align-items: flex-start;
-    .footer__copyright { text-align: left; }
-    .footer__legal-links { text-align: left; }
+    text-align: start;
   }
 }
 
@@ -310,7 +272,7 @@ $app-badge-border:   #a6a6a6;
   padding:         6px 8px;
   background:      $app-badge-bg;
   border:          1px solid $app-badge-border;
-  border-radius:   p.$radius-sm;                 // 4px
+  border-radius:   p.$radius-sm;
   text-decoration: none;
   cursor:          pointer;
   transition:      opacity p.$transition-speed ease;
@@ -322,7 +284,7 @@ $app-badge-border:   #a6a6a6;
     align-items:    flex-start;
 
     .app-badge__label {
-      font-size:      p.$font-size-caption;      // 11px
+      font-size:      p.$font-size-caption;
       color:          #ffffff;
       text-transform: uppercase;
       font-family:    'Roboto', sans-serif;
@@ -334,8 +296,7 @@ $app-badge-border:   #a6a6a6;
       display: block;
       line-height: 1;
 
-      img,
-      svg {
+      img, svg {
         height:    17px;
         width:     auto;
         display:   block;
@@ -355,9 +316,13 @@ $app-badge-border:   #a6a6a6;
 @media (max-width: 600px) {
   .footer__content { gap: p.$space-8; padding-top: p.$space-6; }
   .footer__nav     { flex-direction: column; gap: p.$space-6; justify-content: flex-start; }
-  .footer__col     { min-width: 100%; align-items: flex-end; }
+  
+  // غيرنا الـ flex-end هنا لـ flex-start عشان الموبايل كمان يظبط
+  .footer__col     { min-width: 100%; align-items: flex-start; } 
   .footer__col--brand .footer__brand-logo { width: 180px; }
-  .footer__legal   { flex-direction: column; align-items: flex-end; }
+  
+  // غيرنا الـ flex-end هنا لـ flex-start
+  .footer__legal   { flex-direction: column; align-items: flex-start; }
   .footer__app-download { width: 100%; }
   .footer__app-badges .app-badge { flex: 1 1 0; justify-content: center; }
   .footer__legal-info .footer__copyright { white-space: normal; }

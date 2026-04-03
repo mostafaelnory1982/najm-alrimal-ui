@@ -58,20 +58,17 @@
 
 // ── Per-column background images ───────────────────────────
 .split-screen__col--owners {
-  background-image: url("../assets/imgs/car-owner.png");
+  background-image: url("../src/assets/imgs/car-owner.png");
   // local: url("../assets/imgs/split-owners.jpg")
 }
 
 .split-screen__col--business {
-  background-image: url("../assets/imgs/workshop-manager.png");
+  background-image: url("../src/assets/imgs/workshop-manager.png");
   // local: url("../assets/imgs/split-business.jpg")
 }
 
 // ── Register block ─────────────────────────────────────────
-// CRITICAL: position:absolute so it is OUT OF FLOW.
-// Fixed width = original 50vw minus padding (96px each side).
-// Anchored to bottom inset-inline-end corner of each column.
-// It never reflows — the column simply clips it on shrink.
+
 .split-screen__register {
   position:       absolute;
   bottom:         p.$space-10;        // 40px from bottom

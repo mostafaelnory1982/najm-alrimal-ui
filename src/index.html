@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
 
   <!-- Project design system -->
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="../CSS/styles.css">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/brand/Favicon.png">
@@ -33,82 +33,73 @@
 
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════════
-     SVG SPRITE INJECTOR
-     Icons live in assets/icons/sprite.js
-     Works on file://, http://, and https:// — no fetch, no CORS.
-     All <use href="#icon-*"> references resolve normally.
-════════════════════════════════════════════════════════════════ -->
+  <!-- SVG SPRITE INJECTOR ══════════════════════════ -->
   <script src="assets/icons/sprite.js"></script>
 
- <!-- ═════════HEADER  —  najm-alrimal-ui ═══════════════ -->
-<header class="site-header" id="site-header">
+  <!-- ═════════HEADER  —  najm-alrimal-ui ═══════════════ -->
+  <header class="site-header" id="site-header">
 
-  <!-- ══ ROW 1: UTILITY BAR ══════════════════════════════════════ -->
-  <div class="header-utility">
+    <!-- ══ ROW 1: UTILITY BAR ══════════════════════════════════════ -->
+    <div class="header-utility">
 
-    <!--
+      <!--
       LEFT side in RTL visual (= flex END, last in DOM).
       Figma: Language-Switcher pill + ModeSwitch button.
       At <600: only flag icon shown (lang-text hidden via SCSS).
     -->
-    <div class="header-utility__start">
+      <div class="header-utility__start">
 
-      <button class="btn-language" id="lang-toggle" aria-label="Switch Language">
-        <!-- Flag SVG sprite — href swapped by lang-toggle JS -->
-        <svg class="icon icon-flag" width="20" height="15" aria-hidden="true">
-          <use href="#flag-us" id="lang-flag-icon"></use>
-        </svg>
-        <span class="lang-text" data-ar="English" data-en="عربي">English</span>
-      </button>
+        <button class="btn-language" id="lang-toggle" aria-label="Switch Language">
+          <!-- Flag SVG sprite — href swapped by lang-toggle JS -->
+          <svg class="icon icon-flag" width="20" height="15" aria-hidden="true">
+            <use href="#flag-us" id="lang-flag-icon"></use>
+          </svg>
+          <span class="lang-text" data-ar="English" data-en="عربي">English</span>
+        </button>
 
-      <button class="btn-mode-switch" id="theme-toggle" aria-label="Toggle Theme">
-        <svg class="icon icon-ui dark-hide" aria-hidden="true" width="24" height="24">
-          <use href="#icon-sun"></use>
-        </svg>
-        <svg class="icon icon-ui dark-show" aria-hidden="true" width="24" height="24">
-          <use href="#icon-moon"></use>
-        </svg>
-      </button>
+        <button class="btn-mode-switch" id="theme-toggle" aria-label="Toggle Theme">
+          <svg class="icon icon-ui dark-hide" aria-hidden="true" width="24" height="24">
+            <use href="#icon-sun"></use>
+          </svg>
+          <svg class="icon icon-ui dark-show" aria-hidden="true" width="24" height="24">
+            <use href="#icon-moon"></use>
+          </svg>
+        </button>
 
-    </div>
+      </div>
 
-    <!-- CENTER: Promo message -->
-    <div class="header-utility__promo">
-      <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚"
-            data-en="Free delivery on orders over 1000 SAR 🚚">
-        توصيل مجاني للطلبات أكثر من 1000 ريال 🚚
-      </span>
-    </div>
+      <!-- CENTER: Promo message -->
+      <div class="header-utility__promo">
+        <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚" data-en="Free delivery on orders over 1000 SAR 🚚">
+          توصيل مجاني للطلبات أكثر من 1000 ريال 🚚
+        </span>
+      </div>
 
-    <!--
+      <!--
       RIGHT side in RTL visual (= flex START, first in DOM).
       Figma desktop: "تتبع الطلب" text + WhatsApp icon+text.
       Figma tablet: same with slightly tighter gap.
       Figma mobile <600: ONLY WhatsApp icon (text + track-order hidden via SCSS).
     -->
-    <div class="header-utility__end">
+      <div class="header-utility__end">
 
-      <!-- Track Order — text only, hidden at <600 via SCSS -->
-      <a href="#" class="btn-utility btn-track-order"
-         data-ar="تتبع الطلب" data-en="Track Order">تتبع الطلب</a>
+        <!-- Track Order — text only, hidden at <600 via SCSS -->
+        <a href="#" class="btn-utility btn-track-order" data-ar="تتبع الطلب" data-en="Track Order">تتبع الطلب</a>
 
-      <!-- Help Center — icon always shown, text hidden at <600 via SCSS -->
-      <a href="#" class="btn-utility">
-        <span class="utility-link-text"
-              data-ar="مركز المساعدة"
-              data-en="Help Center">مركز المساعدة</span>
-        <svg class="icon icon-branded" aria-hidden="true" width="32" height="32">
-          <use href="#brand-whatsapp"></use>
-        </svg>
-      </a>
+        <!-- Help Center — icon always shown, text hidden at <600 via SCSS -->
+        <a href="#" class="btn-utility">
+          <span class="utility-link-text" data-ar="مركز المساعدة" data-en="Help Center">مركز المساعدة</span>
+          <svg class="icon icon-branded" aria-hidden="true" width="32" height="32">
+            <use href="#brand-whatsapp"></use>
+          </svg>
+        </a>
 
-    </div>
+      </div>
 
-  </div><!-- /header-utility -->
+    </div><!-- /header-utility -->
 
 
-  <!-- ══ ROW 2: MAIN HEADER ═══════════════════════════════════════
+    <!-- ══ ROW 2: MAIN HEADER ═══════════════════════════════════════
        RTL flex order is controlled entirely via CSS `order` in _header.scss.
        DOM order here is kept neutral; SCSS assigns each slot its position
        per breakpoint without any utility class on the HTML elements.
@@ -121,184 +112,181 @@
          .btn-hamburger          order:4  (far-left)   at ≤960   | hidden >960
          .header-mobile-actions  order:1  (rightmost)  at <600   | hidden ≥600
   ══════════════════════════════════════════════════════════════════ -->
-  <div class="header-main">
+    <div class="header-main">
 
-    <!-- ── SLOT 1: Logo + Desktop Search ─────────────────────────
+      <!-- ── SLOT 1: Logo + Desktop Search ─────────────────────────
          • order:1 at desktop & tablet → rightmost in RTL
          • order:2 at mobile → center
          Inside this container (RTL flex):
            .header-logo   first child  → sits on the RIGHT of the container
            .h-search-btn  second child → sits to the LEFT of the logo (desktop only)
     ──────────────────────────────────────────────────────────────-->
-    <div class="header-logo-container">
+      <div class="header-logo-container">
 
-      <a href="/" class="header-logo" aria-label="نجم الرمال">
-        <img src="assets/brand/Logo.svg" alt="نجم الرمال" width="168" height="80">
-      </a>
+        <a href="/" class="header-logo" aria-label="نجم الرمال">
+          <img src="assets/brand/Logo.svg" alt="نجم الرمال" width="168" height="80">
+        </a>
 
-    </div><!-- /header-logo-container -->
-
-
-    <!-- ── SLOT 2: Desktop Nav (hidden at ≤960) ──────────────── -->
-    <nav class="header-nav" aria-label="القائمة الرئيسية">
-      <ul class="header-nav__list" role="list">
-
-        <li class="header-nav-item">
-          <button type="button" aria-expanded="false" aria-haspopup="true">
-            <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
-              <use href="#icon-chevron-down"></use>
-            </svg>
-            <span data-ar="تصفح الأقسام" data-en="Browse Categories">تصفح الأقسام</span>
-          </button>
-        </li>
-
-        <li class="header-nav-item">
-          <a href="#" data-ar="العروض" data-en="Offers">العروض</a>
-        </li>
-
-        <li class="header-nav-item">
-          <a href="#" data-ar="الماركات" data-en="Brands">الماركات</a>
-        </li>
-
-        <li class="header-nav-item">
-          <a href="#" data-ar="خدمات الورش" data-en="Workshop Services">خدمات الورش</a>
-        </li>
-
-        <li class="header-nav-item">
-          <a href="#" data-ar="الأكثر مبيعاً" data-en="Best Sellers">الأكثر مبيعاً</a>
-        </li>
-
-      </ul>
-    </nav><!-- /header-nav -->
+      </div><!-- /header-logo-container -->
 
 
-    <!-- ── SLOT 3: Desktop + Tablet Actions ──────────────────────
+      <!-- ── SLOT 2: Desktop Nav (hidden at ≤960) ──────────────── -->
+      <nav class="header-nav" aria-label="القائمة الرئيسية">
+        <ul class="header-nav__list" role="list">
+
+          <li class="header-nav-item">
+            <button type="button" aria-expanded="false" aria-haspopup="true">
+              <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+                <use href="#icon-chevron-down"></use>
+              </svg>
+              <span data-ar="تصفح الأقسام" data-en="Browse Categories">تصفح الأقسام</span>
+            </button>
+          </li>
+
+          <li class="header-nav-item">
+            <a href="#" data-ar="العروض" data-en="Offers">العروض</a>
+          </li>
+
+          <li class="header-nav-item">
+            <a href="#" data-ar="الماركات" data-en="Brands">الماركات</a>
+          </li>
+
+          <li class="header-nav-item">
+            <a href="#" data-ar="خدمات الورش" data-en="Workshop Services">خدمات الورش</a>
+          </li>
+
+          <li class="header-nav-item">
+            <a href="#" data-ar="الأكثر مبيعاً" data-en="Best Sellers">الأكثر مبيعاً</a>
+          </li>
+
+        </ul>
+      </nav><!-- /header-nav -->
+
+
+      <!-- ── SLOT 3: Desktop + Tablet Actions ──────────────────────
          • order:3 → leftmost (RTL end) at >600
          • hidden at <600
          Contains:
            cart + wallet + avatar always (≥600)
            .h-search-tablet: extra search shown ONLY at 600-960
     ──────────────────────────────────────────────────────────────-->
-    <div class="header-actions">
+      <div class="header-actions">
 
-      <!-- Cart with badge -->
-      <div class="btn-cart-wrapper">
-        <a href="#" class="btn-action btn-cart" aria-label="السلة">
-          <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
-            <use href="#icon-cart"></use>
-          </svg>
-          <span class="cart-badge">1</span>
-        </a>
-      </div>
-
-      <!-- Wallet -->
-      <a href="#" class="btn-action" aria-label="محفظتي">
-        <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
-          <use href="#icon-wallet"></use>
-        </svg>
-      </a>
-
-      <!-- User / Avatar -->
-      <a href="#" class="header-avatar" aria-label="حسابي">
-        <div class="avatar-icon">
-          <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-            <use href="#icon-user"></use>
-          </svg>
+        <!-- Cart with badge -->
+        <div class="btn-cart-wrapper">
+          <a href="#" class="btn-action btn-cart" aria-label="السلة">
+            <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+              <use href="#icon-cart"></use>
+            </svg>
+            <span class="cart-badge">1</span>
+          </a>
         </div>
-      </a>
+
+        <!-- Wallet -->
+        <a href="#" class="btn-action" aria-label="محفظتي">
+          <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+            <use href="#icon-wallet"></use>
+          </svg>
+        </a>
+
+        <!-- User / Avatar -->
+        <a href="#" class="header-avatar" aria-label="حسابي">
+          <div class="avatar-icon">
+            <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+              <use href="#icon-user"></use>
+            </svg>
+          </div>
+        </a>
 
 
-    </div><!-- /header-actions -->
+      </div><!-- /header-actions -->
 
 
-    <!-- ── SLOT 4: Hamburger ──────────────────────────────────────
+      <!-- ── SLOT 4: Hamburger ──────────────────────────────────────
          • order:4 → far-left at 600-960 (after actions in RTL)
          • order:3 → far-left at <600 (after logo in RTL)
          • hidden at >960
     ──────────────────────────────────────────────────────────────-->
-    <button class="btn-hamburger" id="mobile-menu-btn" aria-label="Menu">
-      <svg class="icon icon-ui" aria-hidden="true" width="28" height="28">
-        <use href="#icon-menu"></use>
-      </svg>
-    </button>
-
-
-    <!-- ── SLOT 5: Mobile Actions (⋮ + Search) ───────────────────
-         • order:1 → rightmost at <600 (RTL start)
-         • hidden at ≥600
-    ──────────────────────────────────────────────────────────────-->
-    <div class="header-mobile-actions">
-
-      <button class="btn-action" aria-label="More">
-        <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
-          <use href="#icon-more-vertical"></use>
+      <button class="btn-hamburger" id="mobile-menu-btn" aria-label="Menu">
+        <svg class="icon icon-ui" aria-hidden="true" width="28" height="28">
+          <use href="#icon-menu"></use>
         </svg>
       </button>
 
 
-    </div><!-- /header-mobile-actions -->
+      <!-- ── SLOT 5: Mobile Actions (⋮ + Search) ───────────────────
+         • order:1 → rightmost at <600 (RTL start)
+         • hidden at ≥600
+    ──────────────────────────────────────────────────────────────-->
+      <div class="header-mobile-actions">
 
-  </div><!-- /header-main -->
+        <button class="btn-action" aria-label="More">
+          <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+            <use href="#icon-more-vertical"></use>
+          </svg>
+        </button>
 
 
-  <!-- ══ ROW 3: CATEGORY STRIP ════════════════════════════════════
-       Collapsed at ≤960 via SCSS smooth animation.
-       Collapses fully when .is-scrolled is added to .site-header.
-  ══════════════════════════════════════════════════════════════════ -->
-  <nav class="header-category-strip" aria-label="تصفح الفئات">
+      </div><!-- /header-mobile-actions -->
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-accessories"></use>
-      </svg>
-      <span data-ar="الإكسسوارات" data-en="Accessories">الإكسسوارات</span>
-    </a>
+    </div><!-- /header-main -->
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-light"></use>
-      </svg>
-      <span data-ar="الإنارة" data-en="Lighting">الإنارة</span>
-    </a>
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-battery"></use>
-      </svg>
-      <span data-ar="البطاريات" data-en="Batteries">البطاريات</span>
-    </a>
+    <!-- ══ ROW 3: CATEGORY STRIP ═════════════════════════════════════ -->
+    <nav class="header-category-strip" aria-label="تصفح الفئات">
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-tire"></use>
-      </svg>
-      <span data-ar="الإطارات" data-en="Tires">الإطارات</span>
-    </a>
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-accessories"></use>
+        </svg>
+        <span data-ar="الإكسسوارات" data-en="Accessories">الإكسسوارات</span>
+      </a>
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-brake"></use>
-      </svg>
-      <span data-ar="الفرامل" data-en="Brakes">الفرامل</span>
-    </a>
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-light"></use>
+        </svg>
+        <span data-ar="الإنارة" data-en="Lighting">الإنارة</span>
+      </a>
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-filter"></use>
-      </svg>
-      <span data-ar="فلاتر وصيانة" data-en="Filters & Maintenance">فلاتر وصيانة</span>
-    </a>
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-battery"></use>
+        </svg>
+        <span data-ar="البطاريات" data-en="Batteries">البطاريات</span>
+      </a>
 
-    <a href="#" class="category-tab">
-      <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-        <use href="#icon-oil"></use>
-      </svg>
-      <span data-ar="زيوت وسوائل" data-en="Oils & Fluids">زيوت وسوائل</span>
-    </a>
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-tire"></use>
+        </svg>
+        <span data-ar="الإطارات" data-en="Tires">الإطارات</span>
+      </a>
 
-  </nav><!-- /header-category-strip -->
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-brake"></use>
+        </svg>
+        <span data-ar="الفرامل" data-en="Brakes">الفرامل</span>
+      </a>
 
-</header>
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-filter"></use>
+        </svg>
+        <span data-ar="فلاتر وصيانة" data-en="Filters & Maintenance">فلاتر وصيانة</span>
+      </a>
+
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-oil"></use>
+        </svg>
+        <span data-ar="زيوت وسوائل" data-en="Oils & Fluids">زيوت وسوائل</span>
+      </a>
+
+    </nav><!-- /header-category-strip -->
+
+  </header>
 
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -786,1120 +774,1380 @@
     <!-- /split-screen -->
 
     <!-- ══ Product Archive — أكثر قطع الغيار مبيعاً ═════════════════════════════════ -->
-<section class="product-archive">
+    <section class="product-archive">
 
-  <!-- Section Header -->
-  <div class="product-archive__header">
-    <h2 class="product-archive__title"
-        data-ar="أكثر قطع الغيار مبيعاً هذا الأسبوع"
-        data-en="Best Selling Parts This Week">
-      أكثر قطع الغيار مبيعاً هذا الأسبوع
-    </h2>
-    <p class="product-archive__subtitle"
-       data-ar="كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة."
-       data-en="Everything you need to keep your car running smoothly. Guaranteed original quality.">
-      كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة.
-    </p>
-  </div>
-
-  <!-- Grid — Row 1 + Banner + Row 2 -->
-  <div class="product-archive__grid">
-
-    <!-- ── Row 1 · Card 1 ── -->
-    <a href="/product/brake-pads" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="طقم تيل فرامل - أمامي" loading="lazy">
+      <!-- Section Header -->
+      <div class="product-archive__header">
+        <h2 class="product-archive__title" data-ar="أكثر قطع الغيار مبيعاً هذا الأسبوع"
+          data-en="Best Selling Parts This Week">
+          أكثر قطع الغيار مبيعاً هذا الأسبوع
+        </h2>
+        <p class="product-archive__subtitle" data-ar="كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة."
+          data-en="Everything you need to keep your car running smoothly. Guaranteed original quality.">
+          كل ما تحتاجه للحفاظ على سيارتك تعمل بسلاسة. جودة أصلية مضمونة.
+        </p>
       </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="طقم تيل فرامل - أمامي" data-en="Brake Pad Set - Front">طقم تيل فرامل - أمامي</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+
+      <!-- Grid — Row 1 + Banner + Row 2 -->
+      <div class="product-archive__grid">
+
+        <!-- ── Row 1 · Card 1 ── -->
+        <a href="/product/brake-pads" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="طقم تيل فرامل - أمامي"
+              loading="lazy">
           </div>
-          <span class="product-card__rating-count" data-ar="(12 تقييمًا)" data-en="(12 reviews)">(12 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">199.99</span>
-          <span class="product-card__price-original">249.99</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 1 · Card 2 ── -->
-    <a href="/product/oil-filter" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="فلتر زيت - أصلي" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="فلتر زيت - أصلي" data-en="Oil Filter - OEM">فلتر زيت - أصلي</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="5 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="طقم تيل فرامل - أمامي" data-en="Brake Pad Set - Front">طقم تيل
+              فرامل - أمامي</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(12 تقييمًا)" data-en="(12 reviews)">(12 تقييمًا)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">199.99</span>
+              <span class="product-card__price-original">249.99</span>
+            </div>
           </div>
-          <span class="product-card__rating-count" data-ar="(34 تقييمًا)" data-en="(34 reviews)">(34 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">49.99</span>
-          <span class="product-card__price-original">69.99</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 1 · Card 3 ── -->
-    <a href="/product/spark-plugs" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="شمعات إشعال NGK" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="شمعات إشعال NGK - طقم 4" data-en="NGK Spark Plugs - Set of 4">شمعات إشعال NGK - طقم 4</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
           </div>
-          <span class="product-card__rating-count" data-ar="(8 تقييمات)" data-en="(8 reviews)">(8 تقييمات)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">89.99</span>
-          <span class="product-card__price-original">119.99</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
+        </a>
 
-    <!-- ── Row 1 · Card 4 ── -->
-    <a href="/product/air-filter" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="فلتر هواء K&N" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="فلتر هواء K&N عالي الأداء" data-en="K&N High-Performance Air Filter">فلتر هواء K&N عالي الأداء</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="5 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+        <!-- ── Row 1 · Card 2 ── -->
+        <a href="/product/oil-filter" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="فلتر زيت - أصلي"
+              loading="lazy">
           </div>
-          <span class="product-card__rating-count" data-ar="(21 تقييمًا)" data-en="(21 reviews)">(21 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">279.99</span>
-          <span class="product-card__price-original">320.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 1 · Card 5 ── -->
-    <a href="/product/battery" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="بطارية AC Delco" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="بطارية AC Delco 75AH" data-en="AC Delco Battery 75AH">بطارية AC Delco 75AH</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="فلتر زيت - أصلي" data-en="Oil Filter - OEM">فلتر زيت - أصلي</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="5 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(34 تقييمًا)" data-en="(34 reviews)">(34 تقييمًا)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">49.99</span>
+              <span class="product-card__price-original">69.99</span>
+            </div>
           </div>
-          <span class="product-card__rating-count" data-ar="(17 تقييمًا)" data-en="(17 reviews)">(17 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">319.99</span>
-          <span class="product-card__price-original">380.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 1 · Card 6 ── -->
-    <a href="/product/shock-absorber" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="ماص صدمات Monroe" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="ماص صدمات Monroe - أمامي" data-en="Monroe Shock Absorber - Front">ماص صدمات Monroe - أمامي</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
           </div>
-          <span class="product-card__rating-count" data-ar="(6 تقييمات)" data-en="(6 reviews)">(6 تقييمات)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">449.99</span>
-          <span class="product-card__price-original">520.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
+        </a>
 
-    <!-- ══ Ad Banner — spans all 3 columns ══════════════════════
+        <!-- ── Row 1 · Card 3 ── -->
+        <a href="/product/spark-plugs" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="شمعات إشعال NGK"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="شمعات إشعال NGK - طقم 4" data-en="NGK Spark Plugs - Set of 4">شمعات
+              إشعال NGK - طقم 4</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(8 تقييمات)" data-en="(8 reviews)">(8 تقييمات)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">89.99</span>
+              <span class="product-card__price-original">119.99</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 1 · Card 4 ── -->
+        <a href="/product/air-filter" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="فلتر هواء K&N"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="فلتر هواء K&N عالي الأداء"
+              data-en="K&N High-Performance Air Filter">فلتر هواء K&N عالي الأداء</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="5 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(21 تقييمًا)" data-en="(21 reviews)">(21 تقييمًا)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">279.99</span>
+              <span class="product-card__price-original">320.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 1 · Card 5 ── -->
+        <a href="/product/battery" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="بطارية AC Delco"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="بطارية AC Delco 75AH" data-en="AC Delco Battery 75AH">بطارية AC
+              Delco 75AH</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(17 تقييمًا)" data-en="(17 reviews)">(17 تقييمًا)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">319.99</span>
+              <span class="product-card__price-original">380.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 1 · Card 6 ── -->
+        <a href="/product/shock-absorber" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="ماص صدمات Monroe"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="ماص صدمات Monroe - أمامي" data-en="Monroe Shock Absorber - Front">
+              ماص صدمات Monroe - أمامي</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(6 تقييمات)" data-en="(6 reviews)">(6 تقييمات)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">449.99</span>
+              <span class="product-card__price-original">520.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ══ Ad Banner — spans all 3 columns ══════════════════════
          BG: assets/imgs/banner-grid.png  via ::before in CSS
     ════════════════════════════════════════════════════════════ -->
-    <div class="product-archive__banner" role="complementary" aria-label="عرض خاص">
-      <div class="product-archive-banner__content">
-        <h2 class="product-archive-banner__title"
-            data-ar="قلب سيارتك، يتم توصيله إليك."
-            data-en="Your car's heart, delivered to you.">
-          قلب سيارتك، يتم توصيله إليك.
-        </h2>
-        <p class="product-archive-banner__desc"
-           data-ar="محركات وناقلات حركة ومكونات رئيسية أصلية 100% مدعومة بضمان الشركة المصنعة."
-           data-en="Engines, transmissions and key components 100% original backed by manufacturer warranty.">
-          محركات وناقلات حركة ومكونات رئيسية أصلية 100% مدعومة بضمان الشركة المصنعة.
-        </p>
-      </div>
-      <div class="product-archive-banner__visual" aria-hidden="true">
-        <img src="assets/imgs/categories/oils.png" alt="">
-      </div>
-    </div>
-    <!-- /banner -->
-
-    <!-- ── Row 2 · Card 7 ── -->
-    <a href="/product/timing-belt" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="حزام توقيت Gates" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="حزام توقيت Gates - مع بكرات" data-en="Gates Timing Belt Kit">حزام توقيت Gates - مع بكرات</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="5 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
+        <div class="product-archive__banner" role="complementary" aria-label="عرض خاص">
+          <div class="product-archive-banner__content">
+            <h2 class="product-archive-banner__title" data-ar="قلب سيارتك، يتم توصيله إليك."
+              data-en="Your car's heart, delivered to you.">
+              قلب سيارتك، يتم توصيله إليك.
+            </h2>
+            <p class="product-archive-banner__desc"
+              data-ar="محركات وناقلات حركة ومكونات رئيسية أصلية 100% مدعومة بضمان الشركة المصنعة."
+              data-en="Engines, transmissions and key components 100% original backed by manufacturer warranty.">
+              محركات وناقلات حركة ومكونات رئيسية أصلية 100% مدعومة بضمان الشركة المصنعة.
+            </p>
           </div>
-          <span class="product-card__rating-count" data-ar="(29 تقييمًا)" data-en="(29 reviews)">(29 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">389.99</span>
-          <span class="product-card__price-original">450.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 2 · Card 8 ── -->
-    <a href="/product/radiator" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="ردياتير تبريد أصلي" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="ردياتير تبريد - أصلي OEM" data-en="Radiator - OEM Replacement">ردياتير تبريد - أصلي OEM</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
+          <div class="product-archive-banner__visual" aria-hidden="true">
+            <img src="assets/imgs/categories/oils.png" alt="">
           </div>
-          <span class="product-card__rating-count" data-ar="(11 تقييمًا)" data-en="(11 reviews)">(11 تقييمًا)</span>
         </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">699.99</span>
-          <span class="product-card__price-original">850.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
+        <!-- /banner -->
 
-    <!-- ── Row 2 · Card 9 ── -->
-    <a href="/product/alternator" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="دينمو شارجة Bosch" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="دينمو شارجة Bosch - مُجدَّد" data-en="Bosch Alternator - Remanufactured">دينمو شارجة Bosch - مُجدَّد</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
-          </div>
-          <span class="product-card__rating-count" data-ar="(5 تقييمات)" data-en="(5 reviews)">(5 تقييمات)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">549.99</span>
-          <span class="product-card__price-original">680.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 2 · Card 10 ── -->
-    <a href="/product/wheel-bearing" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="تريلر عجلة SKF" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="تريلر عجلة SKF - أمامي" data-en="SKF Wheel Bearing - Front">تريلر عجلة SKF - أمامي</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="5 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          </div>
-          <span class="product-card__rating-count" data-ar="(43 تقييمًا)" data-en="(43 reviews)">(43 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">159.99</span>
-          <span class="product-card__price-original">199.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 2 · Card 11 ── -->
-    <a href="/product/drive-shaft" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="عمود دريف شافت" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="عمود دريف شافت - يسار" data-en="Drive Shaft Assembly - Left">عمود دريف شافت - يسار</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="4 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
-          </div>
-          <span class="product-card__rating-count" data-ar="(9 تقييمات)" data-en="(9 reviews)">(9 تقييمات)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">829.99</span>
-          <span class="product-card__price-original">950.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-    <!-- ── Row 2 · Card 12 ── -->
-    <a href="/product/cabin-filter" class="product-card">
-      <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
-        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#icon-heart"></use></svg>
-      </button>
-      <div class="product-card__image">
-        <img src="/najm-alrimal-ui/src/assets/imgs/Products/Product-placeholder.png" alt="فلتر مقصورة Bosch" loading="lazy">
-      </div>
-      <div class="product-card__body">
-        <h3 class="product-card__title" data-ar="فلتر مقصورة Bosch - كابن فلتر" data-en="Bosch Cabin Air Filter">فلتر مقصورة Bosch - كابن فلتر</h3>
-        <div class="product-card__rating">
-          <div class="product-card__stars" aria-label="5 من 5 نجوم">
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-            <svg class="icon star"        viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          </div>
-          <span class="product-card__rating-count" data-ar="(38 تقييمًا)" data-en="(38 reviews)">(38 تقييمًا)</span>
-        </div>
-        <div class="product-card__price">
-          <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18"><use href="#icon-sar"></use></svg>
-          <span class="product-card__price-current">59.99</span>
-          <span class="product-card__price-original">79.00</span>
-        </div>
-      </div>
-      <div class="product-card__actions">
-        <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
-          <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-cart-add"></use></svg>
-          أضف إلى السلة
-        </button>
-      </div>
-    </a>
-
-  </div>
-  <!-- /product-archive__grid -->
-
-</section>
-<!-- /product-archive -->
-
-<!-- ══ Testimonials Section — ماذا يقول عملاؤنا ══════════════════════════════════════ -->
-<section class="testimonials">
-
-  <!-- Header -->
-  <div class="testimonials__header">
-    <h2 class="testimonials__title"
-        data-ar="ماذا يقول عملاؤنا"
-        data-en="What Our Customers Say">
-      ماذا يقول عملاؤنا
-    </h2>
-    <p class="testimonials__subtitle"
-       data-ar="موثوقون من الآلاف من قائدى المركبات فى جميع أنحاء المملكة"
-       data-en="Trusted by thousands of drivers across the Kingdom">
-      موثوقون من الآلاف من قائدى المركبات فى جميع أنحاء المملكة
-    </p>
-  </div>
-
-  <!-- Cards Grid -->
-  <div class="testimonials__grid">
-
-    <!-- ── Card 1 ── -->
-    <article class="testimonial-card">
-      <span class="testimonial-card__quote-mark testimonial-card__quote-mark--open" aria-hidden="true">“</span>
-      <span class="testimonial-card__quote-mark testimonial-card__quote-mark--close" aria-hidden="true">“</span>
-
-      <div class="testimonial-card__body">
-        <p class="testimonial-card__text"
-           data-ar="خدمة ممتازة وتوصيل سريع جداً. وجدت قطعة الغيار التي أحتاجها بسهولة وبسعر مناسب. أنصح الجميع بالتعامل مع نجم الرمال."
-           data-en="Excellent service and very fast delivery. I found the spare part I needed easily and at a good price. I recommend everyone to deal with Najm Al-Rimal.">
-          خدمة ممتازة وتوصيل سريع جداً. وجدت قطعة الغيار التي أحتاجها بسهولة وبسعر مناسب. أنصح الجميع بالتعامل مع نجم الرمال.
-        </p>
-      </div>
-
-      <div class="testimonial-card__rating">
-        <span class="testimonial-card__score">4.5</span>
-        <div class="testimonial-card__stars" aria-label="4.5 من 5 نجوم">
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
-        </div>
-      </div>
-
-      <div class="testimonial-card__author">
-        <div class="testimonial-card__avatar">
-          <img src="./assets/imgs/Author-male.png" alt="محمد العتيبي" loading="lazy">
-        </div>
-        <div class="testimonial-card__info">
-          <p class="testimonial-card__name" data-ar="محمد العتيبي" data-en="Mohammed Al-Otaibi">محمد العتيبي</p>
-          <p class="testimonial-card__role" data-ar="صاحب ورشة — الرياض" data-en="Workshop Owner — Riyadh">صاحب ورشة — الرياض</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- ── Card 2 ── -->
-    <article class="testimonial-card">
-      <span class="testimonial-card__quote-mark testimonial-card__quote-mark--open" aria-hidden="true">“</span>
-      <span class="testimonial-card__quote-mark testimonial-card__quote-mark--close" aria-hidden="true">“</span>
-
-      <div class="testimonial-card__body">
-        <p class="testimonial-card__text"
-           data-ar="منصة رائعة، يسهل البحث عن القطع حسب موديل السيارة. الجودة أصلية ومضمونة وما خذلتني ولا مرة."
-           data-en="Wonderful platform, easy to search for parts by car model. The quality is original and guaranteed, and it has never let me down.">
-          منصة رائعة، يسهل البحث عن القطع حسب موديل السيارة. الجودة أصلية ومضمونة وما خذلتني ولا مرة.
-        </p>
-      </div>
-
-      <div class="testimonial-card__rating">
-        <span class="testimonial-card__score">5.0</span>
-        <div class="testimonial-card__stars" aria-label="5 من 5 نجوم">
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-        </div>
-      </div>
-
-      <div class="testimonial-card__author">
-        <div class="testimonial-card__avatar">
-          <img src="./assets/imgs/Author-female.png" alt="سارة القحطاني" loading="lazy">
-        </div>
-        <div class="testimonial-card__info">
-          <p class="testimonial-card__name" data-ar="سارة القحطاني" data-en="Sara Al-Qahtani">سارة القحطاني</p>
-          <p class="testimonial-card__role" data-ar="مالكة سيارة — جدة" data-en="Car Owner — Jeddah">مالكة سيارة — جدة</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- ── Card 3 ── -->
-    <article class="testimonial-card">
-      <span class="testimonial-card__quote-mark testimonial-card__quote-mark--open" aria-hidden="true">“</span>
-      <span class="testimonial-card__quote-mark testimonial-card__quote-mark--close" aria-hidden="true">“</span>
-
-      <div class="testimonial-card__body">
-        <p class="testimonial-card__text"
-           data-ar="نقاط الولاء ميزة ممتازة. جمعت نقاط كافية خلال شهرين وحصلت على خصم كبير على طلبيتي التالية. شكراً نجم الرمال."
-           data-en="The loyalty points are an excellent feature. I accumulated enough points in two months and got a big discount on my next order. Thank you Najm Al-Rimal.">
-          نقاط الولاء ميزة ممتازة. جمعت نقاط كافية خلال شهرين وحصلت على خصم كبير على طلبيتي التالية. شكراً نجم الرمال.
-        </p>
-      </div>
-
-      <div class="testimonial-card__rating">
-        <span class="testimonial-card__score">4.5</span>
-        <div class="testimonial-card__stars" aria-label="4.5 من 5 نجوم">
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-filled"></use></svg>
-          <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star-empty"></use></svg>
-        </div>
-      </div>
-
-      <div class="testimonial-card__author">
-        <div class="testimonial-card__avatar">
-          <img src="./assets/imgs/Author-male.png" alt="خالد الشمري" loading="lazy">
-        </div>
-        <div class="testimonial-card__info">
-          <p class="testimonial-card__name" data-ar="خالد الشمري" data-en="Khalid Al-Shammari">خالد الشمري</p>
-          <p class="testimonial-card__role" data-ar="مدير أسطول — الدمام" data-en="Fleet Manager — Dammam">مدير أسطول — الدمام</p>
-        </div>
-      </div>
-    </article>
-
-  </div>
-  <!-- /testimonials__grid -->
-
-</section>
-<!-- /testimonials -->
-
-<!-- ══ YouTube Channel Section ═══════════════ -->
-<section class="yt-channel">
-
-  <div class="yt-channel__header">
-    <h2 class="yt-channel__title" data-ar="رؤى ودروس من الخبراء" data-en="Expert Insights &amp; Tutorials">رؤى ودروس من الخبراء</h2>
-    <p class="yt-channel__subtitle" data-ar="شاهد أحدث أدلتنا حول الصيانة وقطع الغيار الأصلية ونصائح العناية بالسيارة" data-en="Watch our latest guides on maintenance, genuine parts, and car care tips">شاهد أحدث أدلتنا حول الصيانة وقطع الغيار الأصلية ونصائح العناية بالسيارة</p>
-  </div>
-
-  <div class="yt-channel__body">
-
-    <div class="yt-channel__playlist" role="list" aria-label="قائمة تشغيل الفيديوهات">
-
-      <button class="thumbnail-card is-active" type="button" role="listitem" data-video-id="QvEYOJU3Ksw" data-title-ar="#VR12 سائل التبريد الرياضي المثالي" data-title-en="VR12 Ideal Sports Coolant" aria-pressed="true">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/QvEYOJU3Ksw/mqdefault.jpg" alt="سائل التبريد الرياضي" loading="eager">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="#VR12 سائل التبريد الرياضي المثالي" data-en="VR12 Ideal Sports Coolant">#VR12 سائل التبريد الرياضي المثالي</p>
-          <p class="thumbnail-card__duration">00:16</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="PSpDdTSEN7Y" data-title-ar="شركة نجم الرمال لقطع غيار السيارات" data-title-en="Najm Al Rimal Auto Parts" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/PSpDdTSEN7Y/mqdefault.jpg" alt="نجم الرمال" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="شركة نجم الرمال لقطع غيار السيارات" data-en="Najm Al Rimal Auto Parts">شركة نجم الرمال لقطع غيار السيارات</p>
-          <p class="thumbnail-card__duration">00:19</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="mYZVACsh2bc" data-title-ar="شرح طريقة تغيير زيت محرك السيارة بنفسك" data-title-en="How to Change Engine Oil Yourself" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/mYZVACsh2bc/mqdefault.jpg" alt="تغيير زيت المحرك" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="شرح طريقة تغيير زيت محرك السيارة بنفسك" data-en="How to Change Engine Oil Yourself">شرح طريقة تغيير زيت محرك السيارة بنفسك</p>
-          <p class="thumbnail-card__duration">05:42</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="NJgPmFus5dw" data-title-ar="الطريقة الصحيحة لفحص فرامل السيارة" data-title-en="Proper Way to Inspect Car Brakes" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/NJgPmFus5dw/mqdefault.jpg" alt="فحص فرامل السيارة" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="الطريقة الصحيحة لفحص فرامل السيارة" data-en="Proper Way to Inspect Car Brakes">الطريقة الصحيحة لفحص فرامل السيارة</p>
-          <p class="thumbnail-card__duration">07:15</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="LMo3iGNNoGY" data-title-ar="5 علامات تشير لتلف الفرامل لا تتجاهلها" data-title-en="5 Signs of Brake Wear You Shouldn't Ignore" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/LMo3iGNNoGY/mqdefault.jpg" alt="تلف الفرامل" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="5 علامات تشير لتلف الفرامل لا تتجاهلها" data-en="5 Signs of Brake Wear You Shouldn't Ignore">5 علامات تشير لتلف الفرامل لا تتجاهلها</p>
-          <p class="thumbnail-card__duration">04:55</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="k6n6GJfMRMI" data-title-ar="تعلم تكييف السيارات واختبار الكومبريسور" data-title-en="Learn Car AC & Compressor Testing" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/k6n6GJfMRMI/mqdefault.jpg" alt="تكييف السيارات" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="تعلم تكييف السيارات واختبار الكومبريسور" data-en="Learn Car AC & Compressor Testing">تعلم تكييف السيارات واختبار الكومبريسور</p>
-          <p class="thumbnail-card__duration">08:22</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="VD7Byl6HLAQ" data-title-ar="أضرار ومخاطر تأخير تغيير زيت المحرك" data-title-en="Risks of Delaying Engine Oil Change" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/VD7Byl6HLAQ/mqdefault.jpg" alt="تأخير تغيير الزيت" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="أضرار ومخاطر تأخير تغيير زيت المحرك" data-en="Risks of Delaying Engine Oil Change">أضرار ومخاطر تأخير تغيير زيت المحرك</p>
-          <p class="thumbnail-card__duration">05:18</p>
-        </div>
-      </button>
-
-      <button class="thumbnail-card" type="button" role="listitem" data-video-id="rS08Ip0wrVk" data-title-ar="طرق إصلاح مشاكل مكيف سيارتك بنفسك" data-title-en="Ways to Fix Your Car's AC Problems" aria-pressed="false">
-        <div class="thumbnail-card__image">
-          <img src="https://img.youtube.com/vi/rS08Ip0wrVk/mqdefault.jpg" alt="إصلاح المكيف" loading="lazy">
-        </div>
-        <div class="thumbnail-card__content">
-          <p class="thumbnail-card__title" data-ar="طرق إصلاح مشاكل مكيف سيارتك بنفسك" data-en="Ways to Fix Your Car's AC Problems">طرق إصلاح مشاكل مكيف سيارتك بنفسك</p>
-          <p class="thumbnail-card__duration">11:04</p>
-        </div>
-      </button>
-
-    </div>
-    <div class="yt-channel__player" id="yt-player" aria-label="مشغل الفيديو">
-
-      <img class="yt-channel__thumbnail" id="yt-thumbnail" src="https://img.youtube.com/vi/QvEYOJU3Ksw/maxresdefault.jpg" alt="Expert Insights &amp; Tutorials">
-
-      <button class="yt-channel__play-btn" id="yt-play-btn" type="button" aria-label="تشغيل الفيديو">
-        <span class="yt-channel__play-btn-circle" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5.14v14l11-7-11-7z" fill="white"></path>
-          </svg>
-        </span>
-      </button>
-
-      <iframe class="yt-channel__iframe" id="yt-iframe" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="display:none;">
-      </iframe>
-
-    </div>
-    </div>
-  </section>
-<!-- /yt-channel -->
-
-<!-- ══ Download App Section ══════════════════════════════ -->
-<section class="download-app">
-
-  <!-- Wave background — CSS bg-image in _download-app.scss -->
-  <div class="download-app__bg" aria-hidden="true"></div>
-
-  <div class="download-app__inner">
-
-    <!-- ── Phone Mockup ── -->
-    <div class="download-app__mockup-col">
-      <img class="download-app__mockup-img"
-           src="assets/imgs/Mockup.png"
-           alt="تطبيق نجم الرمال - قطع غيار السيارات الأمريكية"
-           loading="lazy">
-    </div>
-
-    <!-- ── Content ── -->
-    <div class="download-app__content-col">
-      <div class="download-app__text">
-
-        <h2 class="download-app__heading"
-            data-ar="خصم 15% عند الطلب لأول مرة من التطبيق"
-            data-en="Get 15% Off Your First Order on the App">
-          خصم 15% عند الطلب لأول مرة من التطبيق
-        </h2>
-
-        <p class="download-app__subtitle"
-           data-ar="تسوق أسرع وتتبع طلباتك بسهولة"
-           data-en="Shop faster and track your orders with ease">
-          تسوق أسرع وتتبع طلباتك بسهولة
-        </p>
-
-        <div class="download-app__badges">
-
-          <!-- ── App Store badge ── -->
-          <a class="download-app__badge"
-             href="#"
-             aria-label="حمل التطبيق من App Store"
-             rel="noopener noreferrer"
-             target="_blank">
-            <!-- Apple logo SVG -->
-            <svg class="download-app__badge-icon" viewBox="0 0 18 22" width="18" height="22" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M14.9757 11.6529C14.9652 9.76147 15.8831 8.33008 17.7368 7.27539C16.7031 5.82617 15.1431 5.02734 13.0878 4.87305C11.1489 4.72266 9.03516 5.99805 8.25391 5.99805C7.42578 5.99805 5.54883 4.92578 4.05469 4.92578C0.966797 4.97461 -0.28125 7.29883 -0.28125 11.9941C-0.28125 13.3184 -0.0410156 14.6865 0.439453 16.0986C1.08203 17.9395 3.4043 22.3682 5.82617 22.293C7.23047 22.2598 8.21875 21.3135 10.0371 21.3135C11.7988 21.3135 12.7168 22.293 14.2842 22.293C16.7266 22.2568 18.8242 18.2324 19.4375 16.3867C16.1504 14.8379 14.9757 11.748 14.9757 11.6529ZM11.9082 3.23438C13.418 1.45508 13.2822 -0.175781 13.2383 -0.75C11.9082 -0.666016 10.3672 0.494141 9.48438 1.82227C8.51172 3.23047 8.02539 4.76172 8.15625 6.16797C9.59961 6.27734 10.916 5.19336 11.9082 3.23438Z"/>
+        <!-- ── Row 2 · Card 7 ── -->
+        <a href="/product/timing-belt" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
             </svg>
-            <div class="download-app__badge-text">
-              <span class="download-app__badge-label"
-                    data-ar="حمله الآن"
-                    data-en="Download on the">
-                حمله الآن
-              </span>
-              <span class="download-app__badge-store">App Store</span>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="حزام توقيت Gates"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="حزام توقيت Gates - مع بكرات" data-en="Gates Timing Belt Kit">حزام
+              توقيت Gates - مع بكرات</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="5 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(29 تقييمًا)" data-en="(29 reviews)">(29 تقييمًا)</span>
             </div>
-          </a>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">389.99</span>
+              <span class="product-card__price-original">450.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
 
-          <!-- ── Google Play badge ── -->
-          <a class="download-app__badge"
-             href="#"
-             aria-label="حمل التطبيق من Google Play"
-             rel="noopener noreferrer"
-             target="_blank">
-            <!-- Google Play logo SVG -->
-            <svg class="download-app__badge-icon" viewBox="0 0 22 24" width="22" height="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M0.417969 0.84375C0.158203 1.12109 0 1.55469 0 2.11719V21.8828C0 22.4453 0.158203 22.8789 0.417969 23.1562L0.492188 23.2266L11.6602 12.0586V11.9414L0.492188 0.773438L0.417969 0.84375Z" fill="url(#paint0_linear)"/>
-              <path d="M15.3398 15.7383L11.6602 12.0586V11.9414L15.3438 8.26172L15.4336 8.3125L19.7695 10.7578C21.0195 11.4609 21.0195 12.5391 19.7695 13.2461L15.4336 15.6875L15.3398 15.7383Z" fill="url(#paint1_linear)"/>
-              <path d="M15.4375 15.6875L11.6602 11.9102L0.417969 23.1562C0.832031 23.5938 1.51172 23.6484 2.27344 23.2148L15.4375 15.6875Z" fill="url(#paint2_linear)"/>
-              <path d="M15.4375 8.3125L2.27344 0.789062C1.51172 0.351562 0.832031 0.410156 0.417969 0.847656L11.6602 12.0898L15.4375 8.3125Z" fill="url(#paint3_linear)"/>
-              <defs>
-                <linearGradient id="paint0_linear" x1="10.6484" y1="1.88672" x2="-4.00781" y2="16.543" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#00A0FF"/>
-                  <stop offset="0.00657" stop-color="#00A1FF"/>
-                  <stop offset="0.2601" stop-color="#00BEFF"/>
-                  <stop offset="0.5122" stop-color="#00D2FF"/>
-                  <stop offset="0.7604" stop-color="#00DFFF"/>
-                  <stop offset="1" stop-color="#00E3FF"/>
-                </linearGradient>
-                <linearGradient id="paint1_linear" x1="21.2109" y1="12" x2="-0.384766" y2="12" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FFE000"/>
-                  <stop offset="0.4087" stop-color="#FFBD00"/>
-                  <stop offset="0.7754" stop-color="#FFA500"/>
-                  <stop offset="1" stop-color="#FF9C00"/>
-                </linearGradient>
-                <linearGradient id="paint2_linear" x1="13.2383" y1="13.9414" x2="-7.60547" y2="34.7852" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FF3A44"/>
-                  <stop offset="1" stop-color="#C31162"/>
-                </linearGradient>
-                <linearGradient id="paint3_linear" x1="-2.03516" y1="-6.89453" x2="7.03516" y2="2.17578" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#32A071"/>
-                  <stop offset="0.0685" stop-color="#2DA771"/>
-                  <stop offset="0.4762" stop-color="#15CF74"/>
-                  <stop offset="0.8009" stop-color="#06E775"/>
-                  <stop offset="1" stop-color="#00F076"/>
-                </linearGradient>
-              </defs>
+        <!-- ── Row 2 · Card 8 ── -->
+        <a href="/product/radiator" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
             </svg>
-            <div class="download-app__badge-text">
-              <span class="download-app__badge-label"
-                    data-ar="حمله الآن"
-                    data-en="Get it on">
-                حمله الآن
-              </span>
-              <span class="download-app__badge-store">Google Play</span>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="ردياتير تبريد أصلي"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="ردياتير تبريد - أصلي OEM" data-en="Radiator - OEM Replacement">
+              ردياتير تبريد - أصلي OEM</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(11 تقييمًا)" data-en="(11 reviews)">(11 تقييمًا)</span>
             </div>
-          </a>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">699.99</span>
+              <span class="product-card__price-original">850.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 2 · Card 9 ── -->
+        <a href="/product/alternator" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="دينمو شارجة Bosch"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="دينمو شارجة Bosch - مُجدَّد"
+              data-en="Bosch Alternator - Remanufactured">دينمو شارجة Bosch - مُجدَّد</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(5 تقييمات)" data-en="(5 reviews)">(5 تقييمات)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">549.99</span>
+              <span class="product-card__price-original">680.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 2 · Card 10 ── -->
+        <a href="/product/wheel-bearing" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="تريلر عجلة SKF"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="تريلر عجلة SKF - أمامي" data-en="SKF Wheel Bearing - Front">تريلر
+              عجلة SKF - أمامي</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="5 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(43 تقييمًا)" data-en="(43 reviews)">(43 تقييمًا)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">159.99</span>
+              <span class="product-card__price-original">199.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 2 · Card 11 ── -->
+        <a href="/product/drive-shaft" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="عمود دريف شافت"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="عمود دريف شافت - يسار" data-en="Drive Shaft Assembly - Left">عمود
+              دريف شافت - يسار</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="4 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-empty"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(9 تقييمات)" data-en="(9 reviews)">(9 تقييمات)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">829.99</span>
+              <span class="product-card__price-original">950.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+        <!-- ── Row 2 · Card 12 ── -->
+        <a href="/product/cabin-filter" class="product-card">
+          <button class="product-card__fav" type="button" aria-label="أضف إلى المفضلة">
+            <svg class="icon" width="20" height="20" aria-hidden="true">
+              <use href="#icon-heart"></use>
+            </svg>
+          </button>
+          <div class="product-card__image">
+            <img src="assets/imgs/Products/Product-placeholder.png" alt="فلتر مقصورة Bosch"
+              loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__title" data-ar="فلتر مقصورة Bosch - كابن فلتر" data-en="Bosch Cabin Air Filter">
+              فلتر مقصورة Bosch - كابن فلتر</h3>
+            <div class="product-card__rating">
+              <div class="product-card__stars" aria-label="5 من 5 نجوم">
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+                <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star-filled"></use>
+                </svg>
+              </div>
+              <span class="product-card__rating-count" data-ar="(38 تقييمًا)" data-en="(38 reviews)">(38 تقييمًا)</span>
+            </div>
+            <div class="product-card__price">
+              <svg class="icon icon--sar" role="img" aria-label="ريال سعودي" width="21" height="18" viewBox="0 0 21 18">
+                <use href="#icon-sar"></use>
+              </svg>
+              <span class="product-card__price-current">59.99</span>
+              <span class="product-card__price-original">79.00</span>
+            </div>
+          </div>
+          <div class="product-card__actions">
+            <button class="product-card__add-btn" type="button" data-ar="أضف إلى السلة" data-en="Add to Cart">
+              <svg class="icon" width="24" height="24" aria-hidden="true">
+                <use href="#icon-cart-add"></use>
+              </svg>
+              أضف إلى السلة
+            </button>
+          </div>
+        </a>
+
+      </div>
+      <!-- /product-archive__grid -->
+
+    </section>
+    <!-- /product-archive -->
+
+    <!-- ══ Testimonials Section — ماذا يقول عملاؤنا ══════════════════════════════════════ -->
+    <section class="testimonials">
+
+      <!-- Header -->
+      <div class="testimonials__header">
+        <h2 class="testimonials__title" data-ar="ماذا يقول عملاؤنا" data-en="What Our Customers Say">
+          ماذا يقول عملاؤنا
+        </h2>
+        <p class="testimonials__subtitle" data-ar="موثوقون من الآلاف من قائدى المركبات فى جميع أنحاء المملكة"
+          data-en="Trusted by thousands of drivers across the Kingdom">
+          موثوقون من الآلاف من قائدى المركبات فى جميع أنحاء المملكة
+        </p>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="testimonials__grid">
+
+        <!-- ── Card 1 ── -->
+        <article class="testimonial-card">
+          <span class="testimonial-card__quote-mark testimonial-card__quote-mark--open" aria-hidden="true">“</span>
+          <span class="testimonial-card__quote-mark testimonial-card__quote-mark--close" aria-hidden="true">“</span>
+
+          <div class="testimonial-card__body">
+            <p class="testimonial-card__text"
+              data-ar="خدمة ممتازة وتوصيل سريع جداً. وجدت قطعة الغيار التي أحتاجها بسهولة وبسعر مناسب. أنصح الجميع بالتعامل مع نجم الرمال."
+              data-en="Excellent service and very fast delivery. I found the spare part I needed easily and at a good price. I recommend everyone to deal with Najm Al-Rimal.">
+              خدمة ممتازة وتوصيل سريع جداً. وجدت قطعة الغيار التي أحتاجها بسهولة وبسعر مناسب. أنصح الجميع بالتعامل مع
+              نجم الرمال.
+            </p>
+          </div>
+
+          <div class="testimonial-card__rating">
+            <span class="testimonial-card__score">4.5</span>
+            <div class="testimonial-card__stars" aria-label="4.5 من 5 نجوم">
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-empty"></use>
+              </svg>
+            </div>
+          </div>
+
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              <img src="./assets/imgs/Author-male.png" alt="محمد العتيبي" loading="lazy">
+            </div>
+            <div class="testimonial-card__info">
+              <p class="testimonial-card__name" data-ar="محمد العتيبي" data-en="Mohammed Al-Otaibi">محمد العتيبي</p>
+              <p class="testimonial-card__role" data-ar="صاحب ورشة — الرياض" data-en="Workshop Owner — Riyadh">صاحب ورشة
+                — الرياض</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Card 2 ── -->
+        <article class="testimonial-card">
+          <span class="testimonial-card__quote-mark testimonial-card__quote-mark--open" aria-hidden="true">“</span>
+          <span class="testimonial-card__quote-mark testimonial-card__quote-mark--close" aria-hidden="true">“</span>
+
+          <div class="testimonial-card__body">
+            <p class="testimonial-card__text"
+              data-ar="منصة رائعة، يسهل البحث عن القطع حسب موديل السيارة. الجودة أصلية ومضمونة وما خذلتني ولا مرة."
+              data-en="Wonderful platform, easy to search for parts by car model. The quality is original and guaranteed, and it has never let me down.">
+              منصة رائعة، يسهل البحث عن القطع حسب موديل السيارة. الجودة أصلية ومضمونة وما خذلتني ولا مرة.
+            </p>
+          </div>
+
+          <div class="testimonial-card__rating">
+            <span class="testimonial-card__score">5.0</span>
+            <div class="testimonial-card__stars" aria-label="5 من 5 نجوم">
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+            </div>
+          </div>
+
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              <img src="./assets/imgs/Author-female.png" alt="سارة القحطاني" loading="lazy">
+            </div>
+            <div class="testimonial-card__info">
+              <p class="testimonial-card__name" data-ar="سارة القحطاني" data-en="Sara Al-Qahtani">سارة القحطاني</p>
+              <p class="testimonial-card__role" data-ar="مالكة سيارة — جدة" data-en="Car Owner — Jeddah">مالكة سيارة —
+                جدة</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Card 3 ── -->
+        <article class="testimonial-card">
+          <span class="testimonial-card__quote-mark testimonial-card__quote-mark--open" aria-hidden="true">“</span>
+          <span class="testimonial-card__quote-mark testimonial-card__quote-mark--close" aria-hidden="true">“</span>
+
+          <div class="testimonial-card__body">
+            <p class="testimonial-card__text"
+              data-ar="نقاط الولاء ميزة ممتازة. جمعت نقاط كافية خلال شهرين وحصلت على خصم كبير على طلبيتي التالية. شكراً نجم الرمال."
+              data-en="The loyalty points are an excellent feature. I accumulated enough points in two months and got a big discount on my next order. Thank you Najm Al-Rimal.">
+              نقاط الولاء ميزة ممتازة. جمعت نقاط كافية خلال شهرين وحصلت على خصم كبير على طلبيتي التالية. شكراً نجم
+              الرمال.
+            </p>
+          </div>
+
+          <div class="testimonial-card__rating">
+            <span class="testimonial-card__score">4.5</span>
+            <div class="testimonial-card__stars" aria-label="4.5 من 5 نجوم">
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-filled"></use>
+              </svg>
+              <svg class="icon star star--empty" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star-empty"></use>
+              </svg>
+            </div>
+          </div>
+
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              <img src="./assets/imgs/Author-male.png" alt="خالد الشمري" loading="lazy">
+            </div>
+            <div class="testimonial-card__info">
+              <p class="testimonial-card__name" data-ar="خالد الشمري" data-en="Khalid Al-Shammari">خالد الشمري</p>
+              <p class="testimonial-card__role" data-ar="مدير أسطول — الدمام" data-en="Fleet Manager — Dammam">مدير
+                أسطول — الدمام</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <!-- /testimonials__grid -->
+
+    </section>
+    <!-- /testimonials -->
+
+    <!-- ══ YouTube Channel Section ═══════════════ -->
+    <section class="yt-channel">
+
+      <div class="yt-channel__header">
+        <h2 class="yt-channel__title" data-ar="رؤى ودروس من الخبراء" data-en="Expert Insights &amp; Tutorials">رؤى ودروس
+          من الخبراء</h2>
+        <p class="yt-channel__subtitle"
+          data-ar="شاهد أحدث أدلتنا حول الصيانة وقطع الغيار الأصلية ونصائح العناية بالسيارة"
+          data-en="Watch our latest guides on maintenance, genuine parts, and car care tips">شاهد أحدث أدلتنا حول
+          الصيانة وقطع الغيار الأصلية ونصائح العناية بالسيارة</p>
+      </div>
+
+      <div class="yt-channel__body">
+
+        <div class="yt-channel__playlist" role="list" aria-label="قائمة تشغيل الفيديوهات">
+
+          <button class="thumbnail-card is-active" type="button" role="listitem" data-video-id="QvEYOJU3Ksw"
+            data-title-ar="#VR12 سائل التبريد الرياضي المثالي" data-title-en="VR12 Ideal Sports Coolant"
+            aria-pressed="true">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/QvEYOJU3Ksw/mqdefault.jpg" alt="سائل التبريد الرياضي"
+                loading="eager">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="#VR12 سائل التبريد الرياضي المثالي"
+                data-en="VR12 Ideal Sports Coolant">#VR12 سائل التبريد الرياضي المثالي</p>
+              <p class="thumbnail-card__duration">00:16</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="PSpDdTSEN7Y"
+            data-title-ar="شركة نجم الرمال لقطع غيار السيارات" data-title-en="Najm Al Rimal Auto Parts"
+            aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/PSpDdTSEN7Y/mqdefault.jpg" alt="نجم الرمال" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="شركة نجم الرمال لقطع غيار السيارات"
+                data-en="Najm Al Rimal Auto Parts">شركة نجم الرمال لقطع غيار السيارات</p>
+              <p class="thumbnail-card__duration">00:19</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="mYZVACsh2bc"
+            data-title-ar="شرح طريقة تغيير زيت محرك السيارة بنفسك" data-title-en="How to Change Engine Oil Yourself"
+            aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/mYZVACsh2bc/mqdefault.jpg" alt="تغيير زيت المحرك" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="شرح طريقة تغيير زيت محرك السيارة بنفسك"
+                data-en="How to Change Engine Oil Yourself">شرح طريقة تغيير زيت محرك السيارة بنفسك</p>
+              <p class="thumbnail-card__duration">05:42</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="NJgPmFus5dw"
+            data-title-ar="الطريقة الصحيحة لفحص فرامل السيارة" data-title-en="Proper Way to Inspect Car Brakes"
+            aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/NJgPmFus5dw/mqdefault.jpg" alt="فحص فرامل السيارة" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="الطريقة الصحيحة لفحص فرامل السيارة"
+                data-en="Proper Way to Inspect Car Brakes">الطريقة الصحيحة لفحص فرامل السيارة</p>
+              <p class="thumbnail-card__duration">07:15</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="LMo3iGNNoGY"
+            data-title-ar="5 علامات تشير لتلف الفرامل لا تتجاهلها"
+            data-title-en="5 Signs of Brake Wear You Shouldn't Ignore" aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/LMo3iGNNoGY/mqdefault.jpg" alt="تلف الفرامل" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="5 علامات تشير لتلف الفرامل لا تتجاهلها"
+                data-en="5 Signs of Brake Wear You Shouldn't Ignore">5 علامات تشير لتلف الفرامل لا تتجاهلها</p>
+              <p class="thumbnail-card__duration">04:55</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="k6n6GJfMRMI"
+            data-title-ar="تعلم تكييف السيارات واختبار الكومبريسور" data-title-en="Learn Car AC & Compressor Testing"
+            aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/k6n6GJfMRMI/mqdefault.jpg" alt="تكييف السيارات" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="تعلم تكييف السيارات واختبار الكومبريسور"
+                data-en="Learn Car AC & Compressor Testing">تعلم تكييف السيارات واختبار الكومبريسور</p>
+              <p class="thumbnail-card__duration">08:22</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="VD7Byl6HLAQ"
+            data-title-ar="أضرار ومخاطر تأخير تغيير زيت المحرك" data-title-en="Risks of Delaying Engine Oil Change"
+            aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/VD7Byl6HLAQ/mqdefault.jpg" alt="تأخير تغيير الزيت" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="أضرار ومخاطر تأخير تغيير زيت المحرك"
+                data-en="Risks of Delaying Engine Oil Change">أضرار ومخاطر تأخير تغيير زيت المحرك</p>
+              <p class="thumbnail-card__duration">05:18</p>
+            </div>
+          </button>
+
+          <button class="thumbnail-card" type="button" role="listitem" data-video-id="rS08Ip0wrVk"
+            data-title-ar="طرق إصلاح مشاكل مكيف سيارتك بنفسك" data-title-en="Ways to Fix Your Car's AC Problems"
+            aria-pressed="false">
+            <div class="thumbnail-card__image">
+              <img src="https://img.youtube.com/vi/rS08Ip0wrVk/mqdefault.jpg" alt="إصلاح المكيف" loading="lazy">
+            </div>
+            <div class="thumbnail-card__content">
+              <p class="thumbnail-card__title" data-ar="طرق إصلاح مشاكل مكيف سيارتك بنفسك"
+                data-en="Ways to Fix Your Car's AC Problems">طرق إصلاح مشاكل مكيف سيارتك بنفسك</p>
+              <p class="thumbnail-card__duration">11:04</p>
+            </div>
+          </button>
+
+        </div>
+        <div class="yt-channel__player" id="yt-player" aria-label="مشغل الفيديو">
+
+          <img class="yt-channel__thumbnail" id="yt-thumbnail"
+            src="https://img.youtube.com/vi/QvEYOJU3Ksw/maxresdefault.jpg" alt="Expert Insights &amp; Tutorials">
+
+          <button class="yt-channel__play-btn" id="yt-play-btn" type="button" aria-label="تشغيل الفيديو">
+            <span class="yt-channel__play-btn-circle" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5.14v14l11-7-11-7z" fill="white"></path>
+              </svg>
+            </span>
+          </button>
+
+          <iframe class="yt-channel__iframe" id="yt-iframe" title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen="" style="display:none;">
+          </iframe>
 
         </div>
       </div>
-    </div>
+    </section>
+    <!-- /yt-channel -->
 
-  </div>
-</section>
+    <!-- ══ Download App Section ══════════════════════════════ -->
+    <section class="download-app">
+
+      <!-- Wave background — CSS bg-image in _download-app.scss -->
+      <div class="download-app__bg" aria-hidden="true"></div>
+
+      <div class="download-app__inner">
+
+        <!-- ── Phone Mockup ── -->
+        <div class="download-app__mockup-col">
+          <img class="download-app__mockup-img" src="assets/imgs/Mockup.png"
+            alt="تطبيق نجم الرمال - قطع غيار السيارات الأمريكية" loading="lazy">
+        </div>
+
+        <!-- ── Content ── -->
+        <div class="download-app__content-col">
+          <div class="download-app__text">
+
+            <h2 class="download-app__heading" data-ar="خصم 15% عند الطلب لأول مرة من التطبيق"
+              data-en="Get 15% Off Your First Order on the App">
+              خصم 15% عند الطلب لأول مرة من التطبيق
+            </h2>
+
+            <p class="download-app__subtitle" data-ar="تسوق أسرع وتتبع طلباتك بسهولة"
+              data-en="Shop faster and track your orders with ease">
+              تسوق أسرع وتتبع طلباتك بسهولة
+            </p>
+
+            <div class="download-app__badges">
+
+              <!-- ── App Store badge ── -->
+              <a class="download-app__badge" href="#" aria-label="حمل التطبيق من App Store" rel="noopener noreferrer"
+                target="_blank">
+                <!-- Apple logo SVG -->
+                <svg class="download-app__badge-icon" viewBox="0 0 18 22" width="18" height="22" fill="white"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path
+                    d="M14.9757 11.6529C14.9652 9.76147 15.8831 8.33008 17.7368 7.27539C16.7031 5.82617 15.1431 5.02734 13.0878 4.87305C11.1489 4.72266 9.03516 5.99805 8.25391 5.99805C7.42578 5.99805 5.54883 4.92578 4.05469 4.92578C0.966797 4.97461 -0.28125 7.29883 -0.28125 11.9941C-0.28125 13.3184 -0.0410156 14.6865 0.439453 16.0986C1.08203 17.9395 3.4043 22.3682 5.82617 22.293C7.23047 22.2598 8.21875 21.3135 10.0371 21.3135C11.7988 21.3135 12.7168 22.293 14.2842 22.293C16.7266 22.2568 18.8242 18.2324 19.4375 16.3867C16.1504 14.8379 14.9757 11.748 14.9757 11.6529ZM11.9082 3.23438C13.418 1.45508 13.2822 -0.175781 13.2383 -0.75C11.9082 -0.666016 10.3672 0.494141 9.48438 1.82227C8.51172 3.23047 8.02539 4.76172 8.15625 6.16797C9.59961 6.27734 10.916 5.19336 11.9082 3.23438Z" />
+                </svg>
+                <div class="download-app__badge-text">
+                  <span class="download-app__badge-label" data-ar="حمله الآن" data-en="Download on the">
+                    حمله الآن
+                  </span>
+                  <span class="download-app__badge-store">App Store</span>
+                </div>
+              </a>
+
+              <!-- ── Google Play badge ── -->
+              <a class="download-app__badge" href="#" aria-label="حمل التطبيق من Google Play" rel="noopener noreferrer"
+                target="_blank">
+                <!-- Google Play logo SVG -->
+                <svg class="download-app__badge-icon" viewBox="0 0 22 24" width="22" height="24"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path
+                    d="M0.417969 0.84375C0.158203 1.12109 0 1.55469 0 2.11719V21.8828C0 22.4453 0.158203 22.8789 0.417969 23.1562L0.492188 23.2266L11.6602 12.0586V11.9414L0.492188 0.773438L0.417969 0.84375Z"
+                    fill="url(#paint0_linear)" />
+                  <path
+                    d="M15.3398 15.7383L11.6602 12.0586V11.9414L15.3438 8.26172L15.4336 8.3125L19.7695 10.7578C21.0195 11.4609 21.0195 12.5391 19.7695 13.2461L15.4336 15.6875L15.3398 15.7383Z"
+                    fill="url(#paint1_linear)" />
+                  <path
+                    d="M15.4375 15.6875L11.6602 11.9102L0.417969 23.1562C0.832031 23.5938 1.51172 23.6484 2.27344 23.2148L15.4375 15.6875Z"
+                    fill="url(#paint2_linear)" />
+                  <path
+                    d="M15.4375 8.3125L2.27344 0.789062C1.51172 0.351562 0.832031 0.410156 0.417969 0.847656L11.6602 12.0898L15.4375 8.3125Z"
+                    fill="url(#paint3_linear)" />
+                  <defs>
+                    <linearGradient id="paint0_linear" x1="10.6484" y1="1.88672" x2="-4.00781" y2="16.543"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#00A0FF" />
+                      <stop offset="0.00657" stop-color="#00A1FF" />
+                      <stop offset="0.2601" stop-color="#00BEFF" />
+                      <stop offset="0.5122" stop-color="#00D2FF" />
+                      <stop offset="0.7604" stop-color="#00DFFF" />
+                      <stop offset="1" stop-color="#00E3FF" />
+                    </linearGradient>
+                    <linearGradient id="paint1_linear" x1="21.2109" y1="12" x2="-0.384766" y2="12"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FFE000" />
+                      <stop offset="0.4087" stop-color="#FFBD00" />
+                      <stop offset="0.7754" stop-color="#FFA500" />
+                      <stop offset="1" stop-color="#FF9C00" />
+                    </linearGradient>
+                    <linearGradient id="paint2_linear" x1="13.2383" y1="13.9414" x2="-7.60547" y2="34.7852"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FF3A44" />
+                      <stop offset="1" stop-color="#C31162" />
+                    </linearGradient>
+                    <linearGradient id="paint3_linear" x1="-2.03516" y1="-6.89453" x2="7.03516" y2="2.17578"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#32A071" />
+                      <stop offset="0.0685" stop-color="#2DA771" />
+                      <stop offset="0.4762" stop-color="#15CF74" />
+                      <stop offset="0.8009" stop-color="#06E775" />
+                      <stop offset="1" stop-color="#00F076" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="download-app__badge-text">
+                  <span class="download-app__badge-label" data-ar="حمله الآن" data-en="Get it on">
+                    حمله الآن
+                  </span>
+                  <span class="download-app__badge-store">Google Play</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
   <!-- /main -->
 
-<!-- ══ Site Footer ═══════════════════════════════════════════
-     Layout  : layout/_footer.scss  (all classes pre-coded)
-     Figma   : node 8922:24073
+  <!-- ══ Site Footer ══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__content">
 
-     Assets to replace (Figma CDN expires 7 days):
-       • Logo          → src/assets/brand/Logo.svg  (already local)
-       • Payment icons → replace Figma CDN srcs with local files
-         - Mada, Apple Pay, Mastercard, Visa
-       • App badge wordmarks → keep inline SVGs (no expiry)
+      <!-- ══ NAV ROW ════════════════════════════════════════ -->
+      <div class="footer__nav">
 
-     RTL/LTR: driven by [dir] on <html> — no extra JS needed.
-     Figma default is RTL (Arabic). justify-content / text-align
-     in the SCSS already handle both directions.
-══════════════════════════════════════════════════════════════ -->
-<footer class="site-footer" role="contentinfo">
-  <div class="footer__content">
-
-    <!-- ══ NAV ROW ════════════════════════════════════════ -->
-    <div class="footer__nav">
-
-      <!-- ── Col 1: Brand + Tagline ─────────────────────── -->
-      <div class="footer__col footer__col--brand">
-        <div class="footer__brand-logo">
-          <img src="assets/brand/Logo.svg"
-               alt="نجم الرمال"
-               loading="lazy">
-        </div>
-        <div class="footer__brand-text">
-          <p class="footer__brand-title"
-             data-ar="قطع غيار أصلية. مضمونة."
-             data-en="Genuine Parts. Guaranteed.">
-            قطع غيار أصلية. مضمونة.
-          </p>
-          <p class="footer__brand-desc"
-             data-ar="وجهتك الأولى لقطع الغيار الأصلية في المملكة. نخدم ملاك السيارات والورش بأسرع توصيل."
-             data-en="Your first destination for genuine spare parts in the Kingdom. Serving car owners and workshops with the fastest delivery.">
-            وجهتك الأولى لقطع الغيار الأصلية في المملكة. نخدم ملاك السيارات والورش بأسرع توصيل.
-          </p>
-        </div>
-      </div>
-
-      <!-- ── Col 2: عن الشركة ────────────────────────────── -->
-      <div class="footer__col">
-        <p class="footer__col-label"
-           data-ar="عن الشركة"
-           data-en="About Us">
-          عن الشركة
-        </p>
-        <ul class="footer__link-list" role="list">
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="من نحن" data-en="Who We Are">من نحن</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="برنامج الورش" data-en="Workshop Program">برنامج الورش</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="انضم إلينا" data-en="Join Us">انضم إلينا</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="الشروط والأحكام" data-en="Terms & Conditions">الشروط والأحكام</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- ── Col 3: المساعدة والدعم ─────────────────────── -->
-      <div class="footer__col">
-        <p class="footer__col-label"
-           data-ar="المساعدة والدعم"
-           data-en="Help & Support">
-          المساعدة والدعم
-        </p>
-        <ul class="footer__link-list" role="list">
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="معلومات الشحن والتوصيل" data-en="Shipping & Delivery">معلومات الشحن والتوصيل</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="سياسة الاستبدال والاسترجاع" data-en="Returns & Exchange">سياسة الاستبدال والاسترجاع</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="تتبع حالة الطلب" data-en="Track Order">تتبع حالة الطلب</a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="#"
-               data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- ── Col 4: تواصل معنا ───────────────────────────── -->
-      <div class="footer__col">
-        <p class="footer__col-label"
-           data-ar="تواصل معنا"
-           data-en="Contact Us">
-          تواصل معنا
-        </p>
-        <ul class="footer__link-list" role="list">
-          <li>
-            <a class="footer__link footer__link--full" href="https://maps.google.com" target="_blank" rel="noopener">
-              <!-- location icon from sprite -->
-              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#icon-location"></use></svg>
-              <span data-ar="الرياض، المملكة العربية السعودية"
-                    data-en="Riyadh, Saudi Arabia">
-                الرياض، المملكة العربية السعودية
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="tel:+966508486565">
-              <!-- phone icon from sprite -->
-              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#icon-phone"></use></svg>
-              <span dir="ltr">+966 50 848 6565</span>
-            </a>
-          </li>
-          <li>
-            <a class="footer__link footer__link--full" href="mailto:care@nijm.sa">
-              <!-- mail icon from sprite -->
-              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#icon-mail"></use></svg>
-              <span dir="ltr">care@nijm.sa</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- ── Col 5: Social + Payments ──────────────────── -->
-      <div class="footer__col footer__col--social">
-
-        <!-- تابعنا على -->
-        <div>
-          <p class="footer__col-label"
-             data-ar="تابعنا على"
-             data-en="Follow Us">
-            تابعنا على
-          </p>
-         <div class="footer__social">
-  <a class="btn-social" href="#" aria-label="Twitter / X" target="_blank" rel="noopener">
-    <svg class="icon-branded" aria-hidden="true">
-      <use href="#brand-x-twitter"></use>
-    </svg>
-  </a>
-  <a class="btn-social" href="#" aria-label="YouTube" target="_blank" rel="noopener">
-    <svg class="icon-branded" aria-hidden="true">
-      <use href="#brand-youtube"></use>
-    </svg>
-  </a>
-  <a class="btn-social" href="#" aria-label="Instagram" target="_blank" rel="noopener">
-    <svg class="icon-branded" aria-hidden="true">
-      <use href="#brand-instagram"></use>
-    </svg>
-  </a>
-  <a class="btn-social" href="#" aria-label="Snapchat" target="_blank" rel="noopener">
-    <svg class="icon-branded" aria-hidden="true">
-      <use href="#brand-snapchat"></use>
-    </svg>
-  </a>
-</div>
-        </div>
-
-        <!-- دفع آمن 100% -->
-        <div>
-          <p class="footer__col-label"
-             data-ar="دفع آمن 100%"
-             data-en="100% Secure Payment">
-            دفع آمن 100%
-          </p>
-          <div class="footer__payments">
-            <!-- Mada -->
-            <div class="payment-chip" title="مدى">
-              <img class="icon-branded"
-                   src="./assets/imgs/Payment_Methods/Mada.png"
-                   alt="مدى" loading="lazy">
-            </div>
-            <!-- Apple Pay -->
-            <div class="payment-chip" title="Apple Pay">
-              <img class="icon-branded"
-                   src="./assets/imgs/Payment_Methods/Applepay.png"
-                   alt="Apple Pay" loading="lazy">
-            </div>
-            <!-- Mastercard -->
-            <div class="payment-chip" title="Mastercard">
-              <img class="icon-branded"
-                   src="./assets/imgs/Payment_Methods/Mastercard.png"
-                   alt="Mastercard" loading="lazy">
-            </div>
-            <!-- Visa -->
-            <div class="payment-chip" title="Visa">
-              <img class="icon-branded"
-                   src="./assets/imgs/Payment_Methods/Visa.png"
-                   alt="Visa" loading="lazy">
-            </div>
+        <!-- ── Col 1: Brand + Tagline ─────────────────────── -->
+        <div class="footer__col footer__col--brand">
+          <div class="footer__brand-logo">
+            <img src="assets/brand/Logo.svg" alt="نجم الرمال" loading="lazy">
+          </div>
+          <div class="footer__brand-text">
+            <p class="footer__brand-title" data-ar="قطع غيار أصلية. مضمونة." data-en="Genuine Parts. Guaranteed.">
+              قطع غيار أصلية. مضمونة.
+            </p>
+            <p class="footer__brand-desc"
+              data-ar="وجهتك الأولى لقطع الغيار الأصلية في المملكة. نخدم ملاك السيارات والورش بأسرع توصيل."
+              data-en="Your first destination for genuine spare parts in the Kingdom. Serving car owners and workshops with the fastest delivery.">
+              وجهتك الأولى لقطع الغيار الأصلية في المملكة. نخدم ملاك السيارات والورش بأسرع توصيل.
+            </p>
           </div>
         </div>
 
+        <!-- ── Col 2: عن الشركة ────────────────────────────── -->
+        <div class="footer__col">
+          <p class="footer__col-label" data-ar="عن الشركة" data-en="About Us">
+            عن الشركة
+          </p>
+          <ul class="footer__link-list" role="list">
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="من نحن" data-en="Who We Are">من نحن</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="برنامج الورش"
+                data-en="Workshop Program">برنامج الورش</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="انضم إلينا" data-en="Join Us">انضم إلينا</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="سياسة الخصوصية"
+                data-en="Privacy Policy">سياسة الخصوصية</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="الشروط والأحكام"
+                data-en="Terms & Conditions">الشروط والأحكام</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── Col 3: المساعدة والدعم ─────────────────────── -->
+        <div class="footer__col">
+          <p class="footer__col-label" data-ar="المساعدة والدعم" data-en="Help & Support">
+            المساعدة والدعم
+          </p>
+          <ul class="footer__link-list" role="list">
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة
+                الشائعة</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="معلومات الشحن والتوصيل"
+                data-en="Shipping & Delivery">معلومات الشحن والتوصيل</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="سياسة الاستبدال والاسترجاع"
+                data-en="Returns & Exchange">سياسة الاستبدال والاسترجاع</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="تتبع حالة الطلب" data-en="Track Order">تتبع
+                حالة الطلب</a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="#" data-ar="تواصل معنا" data-en="Contact Us">تواصل
+                معنا</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── Col 4: تواصل معنا ───────────────────────────── -->
+        <div class="footer__col">
+          <p class="footer__col-label" data-ar="تواصل معنا" data-en="Contact Us">
+            تواصل معنا
+          </p>
+          <ul class="footer__link-list" role="list">
+            <li>
+              <a class="footer__link footer__link--full" href="https://maps.google.com" target="_blank" rel="noopener">
+                <!-- location icon from sprite -->
+                <svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#icon-location"></use>
+                </svg>
+                <span data-ar="الرياض، المملكة العربية السعودية" data-en="Riyadh, Saudi Arabia">
+                  الرياض، المملكة العربية السعودية
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="tel:+966508486565">
+                <!-- phone icon from sprite -->
+                <svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#icon-phone"></use>
+                </svg>
+                <span dir="ltr">+966 50 848 6565</span>
+              </a>
+            </li>
+            <li>
+              <a class="footer__link footer__link--full" href="mailto:care@nijm.sa">
+                <!-- mail icon from sprite -->
+                <svg class="icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#icon-mail"></use>
+                </svg>
+                <span dir="ltr">care@nijm.sa</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── Col 5: Social + Payments ──────────────────── -->
+        <div class="footer__col footer__col--social">
+
+          <!-- تابعنا على -->
+          <div>
+            <p class="footer__col-label" data-ar="تابعنا على" data-en="Follow Us">
+              تابعنا على
+            </p>
+            <div class="footer__social">
+              <a class="btn-social" href="#" aria-label="Twitter / X" target="_blank" rel="noopener">
+                <svg class="icon-branded" aria-hidden="true">
+                  <use href="#brand-x-twitter"></use>
+                </svg>
+              </a>
+              <a class="btn-social" href="#" aria-label="YouTube" target="_blank" rel="noopener">
+                <svg class="icon-branded" aria-hidden="true">
+                  <use href="#brand-youtube"></use>
+                </svg>
+              </a>
+              <a class="btn-social" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+                <svg class="icon-branded" aria-hidden="true">
+                  <use href="#brand-instagram"></use>
+                </svg>
+              </a>
+              <a class="btn-social" href="#" aria-label="Snapchat" target="_blank" rel="noopener">
+                <svg class="icon-branded" aria-hidden="true">
+                  <use href="#brand-snapchat"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- دفع آمن 100% -->
+          <div>
+            <p class="footer__col-label" data-ar="دفع آمن 100%" data-en="100% Secure Payment">
+              دفع آمن 100%
+            </p>
+            <div class="footer__payments">
+              <!-- Mada -->
+              <div class="payment-chip" title="مدى">
+                <img class="icon-branded" src="./assets/imgs/Payment_Methods/Mada.png" alt="مدى" loading="lazy">
+              </div>
+              <!-- Apple Pay -->
+              <div class="payment-chip" title="Apple Pay">
+                <img class="icon-branded" src="./assets/imgs/Payment_Methods/Applepay.png" alt="Apple Pay"
+                  loading="lazy">
+              </div>
+              <!-- Mastercard -->
+              <div class="payment-chip" title="Mastercard">
+                <img class="icon-branded" src="./assets/imgs/Payment_Methods/Mastercard.png" alt="Mastercard"
+                  loading="lazy">
+              </div>
+              <!-- Visa -->
+              <div class="payment-chip" title="Visa">
+                <img class="icon-branded" src="./assets/imgs/Payment_Methods/Visa.png" alt="Visa" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /col--social -->
+
       </div>
-      <!-- /col--social -->
+      <!-- /footer__nav -->
 
-    </div>
-    <!-- /footer__nav -->
+      <!-- ══ LEGAL ROW ══════════════════════════════════════ -->
+      <div class="footer__legal">
 
-    <!-- ══ LEGAL ROW ══════════════════════════════════════ -->
-    <div class="footer__legal">
+        <!-- حمل التطبيق -->
+        <div class="footer__app-download">
+          <p class="footer__col-label" data-ar="حمل التطبيق" data-en="Download the App">
+            حمل التطبيق
+          </p>
+          <div class="footer__app-badges" style="display: flex; gap: 8px;">
 
-      <!-- حمل التطبيق -->
-      <div class="footer__app-download">
-        <p class="footer__col-label"
-           data-ar="حمل التطبيق"
-           data-en="Download the App">
-          حمل التطبيق
-        </p>
-        <div class="footer__app-badges" style="display: flex; gap: 8px;">
+            <a class="download-app__badge" href="#" aria-label="حمل التطبيق من App Store" rel="noopener noreferrer"
+              target="_blank">
+              <svg class="download-app__badge-icon" viewBox="0 0 18 22" width="18" height="22" fill="white"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M14.9757 11.6529C14.9652 9.76147 15.8831 8.33008 17.7368 7.27539C16.7031 5.82617 15.1431 5.02734 13.0878 4.87305C11.1489 4.72266 9.03516 5.99805 8.25391 5.99805C7.42578 5.99805 5.54883 4.92578 4.05469 4.92578C0.966797 4.97461 -0.28125 7.29883 -0.28125 11.9941C-0.28125 13.3184 -0.0410156 14.6865 0.439453 16.0986C1.08203 17.9395 3.4043 22.3682 5.82617 22.293C7.23047 22.2598 8.21875 21.3135 10.0371 21.3135C11.7988 21.3135 12.7168 22.293 14.2842 22.293C16.7266 22.2568 18.8242 18.2324 19.4375 16.3867C16.1504 14.8379 14.9757 11.748 14.9757 11.6529ZM11.9082 3.23438C13.418 1.45508 13.2822 -0.175781 13.2383 -0.75C11.9082 -0.666016 10.3672 0.494141 9.48438 1.82227C8.51172 3.23047 8.02539 4.76172 8.15625 6.16797C9.59961 6.27734 10.916 5.19336 11.9082 3.23438Z">
+                </path>
+              </svg>
+              <div class="download-app__badge-text">
+                <span class="download-app__badge-label" data-ar="حمله الآن" data-en="Download on the">حمله الآن</span>
+                <span class="download-app__badge-store">App Store</span>
+              </div>
+            </a>
 
-  <a class="download-app__badge" href="#" aria-label="حمل التطبيق من App Store" rel="noopener noreferrer" target="_blank">
-    <svg class="download-app__badge-icon" viewBox="0 0 18 22" width="18" height="22" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M14.9757 11.6529C14.9652 9.76147 15.8831 8.33008 17.7368 7.27539C16.7031 5.82617 15.1431 5.02734 13.0878 4.87305C11.1489 4.72266 9.03516 5.99805 8.25391 5.99805C7.42578 5.99805 5.54883 4.92578 4.05469 4.92578C0.966797 4.97461 -0.28125 7.29883 -0.28125 11.9941C-0.28125 13.3184 -0.0410156 14.6865 0.439453 16.0986C1.08203 17.9395 3.4043 22.3682 5.82617 22.293C7.23047 22.2598 8.21875 21.3135 10.0371 21.3135C11.7988 21.3135 12.7168 22.293 14.2842 22.293C16.7266 22.2568 18.8242 18.2324 19.4375 16.3867C16.1504 14.8379 14.9757 11.748 14.9757 11.6529ZM11.9082 3.23438C13.418 1.45508 13.2822 -0.175781 13.2383 -0.75C11.9082 -0.666016 10.3672 0.494141 9.48438 1.82227C8.51172 3.23047 8.02539 4.76172 8.15625 6.16797C9.59961 6.27734 10.916 5.19336 11.9082 3.23438Z"></path>
-    </svg>
-    <div class="download-app__badge-text">
-      <span class="download-app__badge-label" data-ar="حمله الآن" data-en="Download on the">حمله الآن</span>
-      <span class="download-app__badge-store">App Store</span>
-    </div>
-  </a>
+            <a class="download-app__badge" href="#" aria-label="حمل التطبيق من Google Play" rel="noopener noreferrer"
+              target="_blank">
+              <svg class="download-app__badge-icon" viewBox="0 0 22 24" width="22" height="24"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M0.417969 0.84375C0.158203 1.12109 0 1.55469 0 2.11719V21.8828C0 22.4453 0.158203 22.8789 0.417969 23.1562L0.492188 23.2266L11.6602 12.0586V11.9414L0.492188 0.773438L0.417969 0.84375Z"
+                  fill="url(#paint0_linear)"></path>
+                <path
+                  d="M15.3398 15.7383L11.6602 12.0586V11.9414L15.3438 8.26172L15.4336 8.3125L19.7695 10.7578C21.0195 11.4609 21.0195 12.5391 19.7695 13.2461L15.4336 15.6875L15.3398 15.7383Z"
+                  fill="url(#paint1_linear)"></path>
+                <path
+                  d="M15.4375 15.6875L11.6602 11.9102L0.417969 23.1562C0.832031 23.5938 1.51172 23.6484 2.27344 23.2148L15.4375 15.6875Z"
+                  fill="url(#paint2_linear)"></path>
+                <path
+                  d="M15.4375 8.3125L2.27344 0.789062C1.51172 0.351562 0.832031 0.410156 0.417969 0.847656L11.6602 12.0898L15.4375 8.3125Z"
+                  fill="url(#paint3_linear)"></path>
+                <defs>
+                  <linearGradient id="paint0_linear" x1="10.6484" y1="1.88672" x2="-4.00781" y2="16.543"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00A0FF"></stop>
+                    <stop offset="0.00657" stop-color="#00A1FF"></stop>
+                    <stop offset="0.2601" stop-color="#00BEFF"></stop>
+                    <stop offset="0.5122" stop-color="#00D2FF"></stop>
+                    <stop offset="0.7604" stop-color="#00DFFF"></stop>
+                    <stop offset="1" stop-color="#00E3FF"></stop>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear" x1="21.2109" y1="12" x2="-0.384766" y2="12"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FFE000"></stop>
+                    <stop offset="0.4087" stop-color="#FFBD00"></stop>
+                    <stop offset="0.7754" stop-color="#FFA500"></stop>
+                    <stop offset="1" stop-color="#FF9C00"></stop>
+                    </linear.Gradient>
+                    <linearGradient id="paint2_linear" x1="13.2383" y1="13.9414" x2="-7.60547" y2="34.7852"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FF3A44"></stop>
+                      <stop offset="1" stop-color="#C31162"></stop>
+                    </linearGradient>
+                    <linearGradient id="paint3_linear" x1="-2.03516" y1="-6.89453" x2="7.03516" y2="2.17578"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#32A071"></stop>
+                      <stop offset="0.0685" stop-color="#2DA771"></stop>
+                      <stop offset="0.4762" stop-color="#15CF74"></stop>
+                      <stop offset="0.8009" stop-color="#06E775"></stop>
+                      <stop offset="1" stop-color="#00F076"></stop>
+                    </linearGradient>
+                </defs>
+              </svg>
+              <div class="download-app__badge-text">
+                <span class="download-app__badge-label" data-ar="حمله الآن" data-en="Get it on">حمله الآن</span>
+                <span class="download-app__badge-store">Google Play</span>
+              </div>
+            </a>
 
-  <a class="download-app__badge" href="#" aria-label="حمل التطبيق من Google Play" rel="noopener noreferrer" target="_blank">
-    <svg class="download-app__badge-icon" viewBox="0 0 22 24" width="22" height="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M0.417969 0.84375C0.158203 1.12109 0 1.55469 0 2.11719V21.8828C0 22.4453 0.158203 22.8789 0.417969 23.1562L0.492188 23.2266L11.6602 12.0586V11.9414L0.492188 0.773438L0.417969 0.84375Z" fill="url(#paint0_linear)"></path>
-      <path d="M15.3398 15.7383L11.6602 12.0586V11.9414L15.3438 8.26172L15.4336 8.3125L19.7695 10.7578C21.0195 11.4609 21.0195 12.5391 19.7695 13.2461L15.4336 15.6875L15.3398 15.7383Z" fill="url(#paint1_linear)"></path>
-      <path d="M15.4375 15.6875L11.6602 11.9102L0.417969 23.1562C0.832031 23.5938 1.51172 23.6484 2.27344 23.2148L15.4375 15.6875Z" fill="url(#paint2_linear)"></path>
-      <path d="M15.4375 8.3125L2.27344 0.789062C1.51172 0.351562 0.832031 0.410156 0.417969 0.847656L11.6602 12.0898L15.4375 8.3125Z" fill="url(#paint3_linear)"></path>
-      <defs>
-        <linearGradient id="paint0_linear" x1="10.6484" y1="1.88672" x2="-4.00781" y2="16.543" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00A0FF"></stop>
-          <stop offset="0.00657" stop-color="#00A1FF"></stop>
-          <stop offset="0.2601" stop-color="#00BEFF"></stop>
-          <stop offset="0.5122" stop-color="#00D2FF"></stop>
-          <stop offset="0.7604" stop-color="#00DFFF"></stop>
-          <stop offset="1" stop-color="#00E3FF"></stop>
-        </linearGradient>
-        <linearGradient id="paint1_linear" x1="21.2109" y1="12" x2="-0.384766" y2="12" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FFE000"></stop>
-          <stop offset="0.4087" stop-color="#FFBD00"></stop>
-          <stop offset="0.7754" stop-color="#FFA500"></stop>
-          <stop offset="1" stop-color="#FF9C00"></stop>
-        </linear.Gradient>
-        <linearGradient id="paint2_linear" x1="13.2383" y1="13.9414" x2="-7.60547" y2="34.7852" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FF3A44"></stop>
-          <stop offset="1" stop-color="#C31162"></stop>
-        </linearGradient>
-        <linearGradient id="paint3_linear" x1="-2.03516" y1="-6.89453" x2="7.03516" y2="2.17578" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#32A071"></stop>
-          <stop offset="0.0685" stop-color="#2DA771"></stop>
-          <stop offset="0.4762" stop-color="#15CF74"></stop>
-          <stop offset="0.8009" stop-color="#06E775"></stop>
-          <stop offset="1" stop-color="#00F076"></stop>
-        </linearGradient>
-      </defs>
-    </svg>
-    <div class="download-app__badge-text">
-      <span class="download-app__badge-label" data-ar="حمله الآن" data-en="Get it on">حمله الآن</span>
-      <span class="download-app__badge-store">Google Play</span>
-    </div>
-  </a>
+          </div>
+        </div>
 
-</div>
+        <!-- Legal Info: copyright + tax number -->
+        <div class="footer__legal-info">
+          <p class="footer__copyright" data-ar="© 2026 نجم الرمال. جميع الحقوق محفوظة."
+            data-en="© 2026 Najm Alremal. All rights reserved.">
+            © 2026 نجم الرمال. جميع الحقوق محفوظة.
+          </p>
+          <ul class="footer__legal-links" role="list">
+            <li>
+              <span class="footer__link" data-ar="الرقم الضريبي: 325200300400003" data-en="Tax Number: 325200300400003">
+                الرقم الضريبي: 325200300400003
+              </span>
+            </li>
+          </ul>
+        </div>
+
       </div>
-
-      <!-- Legal Info: copyright + tax number -->
-      <div class="footer__legal-info">
-        <p class="footer__copyright"
-           data-ar="© 2026 نجم الرمال. جميع الحقوق محفوظة."
-           data-en="© 2026 Najm Alremal. All rights reserved.">
-          © 2026 نجم الرمال. جميع الحقوق محفوظة.
-        </p>
-        <ul class="footer__legal-links" role="list">
-          <li>
-            <span class="footer__link"
-                  data-ar="الرقم الضريبي: 325200300400003"
-                  data-en="Tax Number: 325200300400003">
-              الرقم الضريبي: 325200300400003
-            </span>
-          </li>
-        </ul>
-      </div>
+      <!-- /footer__legal -->
 
     </div>
-    <!-- /footer__legal -->
-
-  </div>
-  <!-- /footer__content -->
-</footer>
+    <!-- /footer__content -->
+  </footer>
 
   <script src="JS/script.js"></script>
 </body>
