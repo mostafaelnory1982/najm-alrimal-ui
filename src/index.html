@@ -36,18 +36,18 @@
   <script src="assets/icons/sprite.js"></script>
 
   <!-- ═════════HEADER  —  najm-alrimal-ui ═══════════════ -->
-  <header class="site-header" id="site-header">
-
+<header class="site-header" id="site-header">
+ 
     <!-- ══ ROW 1: UTILITY BAR ══════════════════════════════════════ -->
     <div class="header-utility">
-
+ 
       <!--
       LEFT side in RTL visual (= flex END, last in DOM).
       Figma: Language-Switcher pill + ModeSwitch button.
       At <600: only flag icon shown (lang-text hidden via SCSS).
     -->
       <div class="header-utility__start">
-
+ 
         <button class="btn-language" id="lang-toggle" aria-label="Switch Language">
           <!-- Flag SVG sprite — href swapped by lang-toggle JS -->
           <svg class="icon icon-flag" width="20" height="15" aria-hidden="true">
@@ -55,7 +55,7 @@
           </svg>
           <span class="lang-text" data-ar="English" data-en="عربي">English</span>
         </button>
-
+ 
         <button class="btn-mode-switch" id="theme-toggle" aria-label="Toggle Theme">
           <svg class="icon icon-ui dark-hide" aria-hidden="true" width="24" height="24">
             <use href="#icon-sun"></use>
@@ -64,16 +64,16 @@
             <use href="#icon-moon"></use>
           </svg>
         </button>
-
+ 
       </div>
-
+ 
       <!-- CENTER: Promo message -->
       <div class="header-utility__promo">
         <span data-ar="توصيل مجاني للطلبات أكثر من 1000 ريال 🚚" data-en="Free delivery on orders over 1000 SAR 🚚">
           توصيل مجاني للطلبات أكثر من 1000 ريال 🚚
         </span>
       </div>
-
+ 
       <!--
       RIGHT side in RTL visual (= flex START, first in DOM).
       Figma desktop: "تتبع الطلب" text + WhatsApp icon+text.
@@ -81,10 +81,10 @@
       Figma mobile <600: ONLY WhatsApp icon (text + track-order hidden via SCSS).
     -->
       <div class="header-utility__end">
-
+ 
         <!-- Track Order — text only, hidden at <600 via SCSS -->
         <a href="#" class="btn-utility btn-track-order" data-ar="تتبع الطلب" data-en="Track Order">تتبع الطلب</a>
-
+ 
         <!-- Help Center — icon always shown, text hidden at <600 via SCSS -->
         <a href="#" class="btn-utility">
           <span class="utility-link-text" data-ar="مركز المساعدة" data-en="Help Center">مركز المساعدة</span>
@@ -92,17 +92,17 @@
             <use href="#brand-whatsapp"></use>
           </svg>
         </a>
-
+ 
       </div>
-
+ 
     </div><!-- /header-utility -->
-
-
+ 
+ 
     <!-- ══ ROW 2: MAIN HEADER ═══════════════════════════════════════
        RTL flex order is controlled entirely via CSS `order` in _header.scss.
        DOM order here is kept neutral; SCSS assigns each slot its position
        per breakpoint without any utility class on the HTML elements.
-
+ 
        Slot assignments:
          .header-logo-container  order:1  (rightmost) at >960 & 600-960
                                  order:2  (center)     at <600
@@ -112,7 +112,7 @@
          .header-mobile-actions  order:1  (rightmost)  at <600   | hidden ≥600
   ══════════════════════════════════════════════════════════════════ -->
     <div class="header-main">
-
+ 
       <!-- ── SLOT 1: Logo + Desktop Search ─────────────────────────
          • order:1 at desktop & tablet → rightmost in RTL
          • order:2 at mobile → center
@@ -121,18 +121,18 @@
            .h-search-btn  second child → sits to the LEFT of the logo (desktop only)
     ──────────────────────────────────────────────────────────────-->
       <div class="header-logo-container">
-
+ 
         <a href="/" class="header-logo" aria-label="نجم الرمال">
           <img src="assets/brand/Logo.svg" alt="نجم الرمال" width="168" height="80">
         </a>
-
+ 
       </div><!-- /header-logo-container -->
-
-
+ 
+ 
       <!-- ── SLOT 2: Desktop Nav (hidden at ≤960) ──────────────── -->
       <nav class="header-nav" aria-label="القائمة الرئيسية">
         <ul class="header-nav__list" role="list">
-
+ 
           <li class="header-nav-item">
             <button type="button" aria-expanded="false" aria-haspopup="true">
               <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
@@ -141,27 +141,27 @@
               <span data-ar="تصفح الأقسام" data-en="Browse Categories">تصفح الأقسام</span>
             </button>
           </li>
-
+ 
           <li class="header-nav-item">
             <a href="#" data-ar="العروض" data-en="Offers">العروض</a>
           </li>
-
+ 
           <li class="header-nav-item">
             <a href="#" data-ar="الماركات" data-en="Brands">الماركات</a>
           </li>
-
+ 
           <li class="header-nav-item">
             <a href="#" data-ar="خدمات الورش" data-en="Workshop Services">خدمات الورش</a>
           </li>
-
+ 
           <li class="header-nav-item">
             <a href="#" data-ar="الأكثر مبيعاً" data-en="Best Sellers">الأكثر مبيعاً</a>
           </li>
-
+ 
         </ul>
       </nav><!-- /header-nav -->
-
-
+ 
+ 
       <!-- ── SLOT 3: Desktop + Tablet Actions ──────────────────────
          • order:3 → leftmost (RTL end) at >600
          • hidden at <600
@@ -170,7 +170,7 @@
            .h-search-tablet: extra search shown ONLY at 600-960
     ──────────────────────────────────────────────────────────────-->
       <div class="header-actions">
-
+ 
         <!-- Cart with badge -->
         <div class="btn-cart-wrapper">
           <a href="#" class="btn-action btn-cart" aria-label="السلة">
@@ -180,14 +180,14 @@
             <span class="cart-badge">1</span>
           </a>
         </div>
-
+ 
         <!-- Wallet -->
         <a href="#" class="btn-action" aria-label="محفظتي">
           <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
             <use href="#icon-wallet"></use>
           </svg>
         </a>
-
+ 
         <!-- User / Avatar -->
         <a href="#" class="header-avatar" aria-label="حسابي">
           <div class="avatar-icon">
@@ -196,96 +196,256 @@
             </svg>
           </div>
         </a>
-
-
+ 
+ 
       </div><!-- /header-actions -->
-
-
+ 
+ 
       <!-- ── SLOT 4: Hamburger ──────────────────────────────────────
          • order:4 → far-left at 600-960 (after actions in RTL)
          • order:3 → far-left at <600 (after logo in RTL)
          • hidden at >960
     ──────────────────────────────────────────────────────────────-->
-      <button class="btn-hamburger" id="mobile-menu-btn" aria-label="Menu">
-        <svg class="icon icon-ui" aria-hidden="true" width="28" height="28">
+      <button class="btn-hamburger" id="mobile-menu-btn" aria-label="القائمة" aria-expanded="false">
+        <svg class="icon icon-ui menu-icon" aria-hidden="true" width="28" height="28">
           <use href="#icon-menu"></use>
         </svg>
+        <svg class="icon icon-ui close-icon" aria-hidden="true" width="28" height="28">
+          <use href="#icon-close"></use>
+        </svg>
       </button>
-
-
+ 
+ 
       <!-- ── SLOT 5: Mobile Actions (⋮ + Search) ───────────────────
          • order:1 → rightmost at <600 (RTL start)
          • hidden at ≥600
     ──────────────────────────────────────────────────────────────-->
       <div class="header-mobile-actions">
-
-        <button class="btn-action" aria-label="More">
+ 
+        <button class="btn-action" id="secondary-menu-btn" aria-label="المزيد" aria-expanded="false">
           <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
             <use href="#icon-more-vertical"></use>
           </svg>
         </button>
-
-
+ 
+ 
       </div><!-- /header-mobile-actions -->
-
+ 
     </div><!-- /header-main -->
-
-
+ 
+ 
     <!-- ══ ROW 3: CATEGORY STRIP ═════════════════════════════════════ -->
     <nav class="header-category-strip" aria-label="تصفح الفئات">
-
+ 
       <a href="#" class="category-tab">
         <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
           <use href="#icon-accessories"></use>
         </svg>
         <span data-ar="الإكسسوارات" data-en="Accessories">الإكسسوارات</span>
       </a>
-
+ 
       <a href="#" class="category-tab">
         <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
           <use href="#icon-light"></use>
         </svg>
         <span data-ar="الإنارة" data-en="Lighting">الإنارة</span>
       </a>
-
+ 
       <a href="#" class="category-tab">
         <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-          <use href="#icon-battery"></use>
+          <use href="#icon-engine"></use>
         </svg>
-        <span data-ar="البطاريات" data-en="Batteries">البطاريات</span>
+        <span data-ar="المحرك" data-en="Engine">المحرك</span>
       </a>
-
-      <a href="#" class="category-tab">
-        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-          <use href="#icon-tire"></use>
-        </svg>
-        <span data-ar="الإطارات" data-en="Tires">الإطارات</span>
-      </a>
-
+ 
       <a href="#" class="category-tab">
         <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
           <use href="#icon-brake"></use>
         </svg>
         <span data-ar="الفرامل" data-en="Brakes">الفرامل</span>
       </a>
-
+ 
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-suspension"></use>
+        </svg>
+        <span data-ar="التعليق" data-en="Suspension">التعليق</span>
+      </a>
+ 
       <a href="#" class="category-tab">
         <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
           <use href="#icon-filter"></use>
         </svg>
-        <span data-ar="فلاتر وصيانة" data-en="Filters & Maintenance">فلاتر وصيانة</span>
+        <span data-ar="الفلاتر" data-en="Filters">الفلاتر</span>
       </a>
-
+ 
       <a href="#" class="category-tab">
         <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
-          <use href="#icon-oil"></use>
+          <use href="#icon-battery"></use>
         </svg>
-        <span data-ar="زيوت وسوائل" data-en="Oils & Fluids">زيوت وسوائل</span>
+        <span data-ar="البطاريات" data-en="Batteries">البطاريات</span>
       </a>
-
+ 
+      <a href="#" class="category-tab">
+        <svg class="icon icon-ui" aria-hidden="true" width="16" height="16">
+          <use href="#icon-tire"></use>
+        </svg>
+        <span data-ar="الإطارات" data-en="Tires">الإطارات</span>
+      </a>
+ 
     </nav><!-- /header-category-strip -->
-
-  </header>
+ 
+  </header><!-- /site-header -->
+ 
+ 
+  <!-- ══════════════════════════════════════════════════════════════
+       MOBILE MENU OVERLAY & DROPDOWNS
+       • Overlay: semi-transparent backdrop, closes menus on click
+       • Primary Menu: hamburger menu content (navigation links)
+       • Secondary Menu: 3-dots menu content (cart, wallet, avatar)
+  ══════════════════════════════════════════════════════════════ -->
+  
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" aria-hidden="true"></div>
+ 
+  <!-- Primary Menu (Hamburger) -->
+  <nav class="mobile-menu mobile-menu-primary" id="mobile-menu-primary" aria-label="القائمة الرئيسية للموبايل">
+    <div class="mobile-menu__header">
+      <h2 class="mobile-menu__title" data-ar="القائمة الرئيسية" data-en="Main Menu">القائمة الرئيسية</h2>
+      <button class="mobile-menu__close" id="close-primary-menu" aria-label="إغلاق القائمة">
+        <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+          <use href="#icon-close"></use>
+        </svg>
+      </button>
+    </div>
+ 
+    <ul class="mobile-menu__list" role="list">
+      <li class="mobile-menu__item">
+        <a href="#" class="mobile-menu__link">
+          <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+            <use href="#icon-grid"></use>
+          </svg>
+          <span data-ar="تصفح الأقسام" data-en="Browse Categories">تصفح الأقسام</span>
+          <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+            <use href="#icon-chevron-left"></use>
+          </svg>
+        </a>
+      </li>
+ 
+      <li class="mobile-menu__item">
+        <a href="#" class="mobile-menu__link">
+          <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+            <use href="#icon-tag"></use>
+          </svg>
+          <span data-ar="العروض" data-en="Offers">العروض</span>
+          <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+            <use href="#icon-chevron-left"></use>
+          </svg>
+        </a>
+      </li>
+ 
+      <li class="mobile-menu__item">
+        <a href="#" class="mobile-menu__link">
+          <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+            <use href="#icon-star"></use>
+          </svg>
+          <span data-ar="الماركات" data-en="Brands">الماركات</span>
+          <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+            <use href="#icon-chevron-left"></use>
+          </svg>
+        </a>
+      </li>
+ 
+      <li class="mobile-menu__item">
+        <a href="#" class="mobile-menu__link">
+          <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+            <use href="#icon-wrench"></use>
+          </svg>
+          <span data-ar="خدمات الورش" data-en="Workshop Services">خدمات الورش</span>
+          <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+            <use href="#icon-chevron-left"></use>
+          </svg>
+        </a>
+      </li>
+ 
+      <li class="mobile-menu__item">
+        <a href="#" class="mobile-menu__link">
+          <svg class="icon icon-ui" aria-hidden="true" width="20" height="20">
+            <use href="#icon-trending-up"></use>
+          </svg>
+          <span data-ar="الأكثر مبيعاً" data-en="Best Sellers">الأكثر مبيعاً</span>
+          <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+            <use href="#icon-chevron-left"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
+ 
+  <!-- Secondary Menu (3-dots) -->
+  <div class="mobile-menu mobile-menu-secondary" id="mobile-menu-secondary" aria-label="القائمة الثانوية">
+    <div class="mobile-menu__header">
+      <h2 class="mobile-menu__title" data-ar="حسابي" data-en="My Account">حسابي</h2>
+      <button class="mobile-menu__close" id="close-secondary-menu" aria-label="إغلاق القائمة">
+        <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+          <use href="#icon-close"></use>
+        </svg>
+      </button>
+    </div>
+ 
+    <div class="mobile-menu__actions">
+      
+      <!-- Cart -->
+      <a href="#" class="mobile-action-card">
+        <div class="mobile-action-card__icon">
+          <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+            <use href="#icon-cart"></use>
+          </svg>
+          <span class="mobile-action-card__badge">1</span>
+        </div>
+        <div class="mobile-action-card__content">
+          <h3 class="mobile-action-card__title" data-ar="السلة" data-en="Cart">السلة</h3>
+          <p class="mobile-action-card__desc" data-ar="منتج واحد في السلة" data-en="1 item in cart">منتج واحد في السلة</p>
+        </div>
+        <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+          <use href="#icon-chevron-left"></use>
+        </svg>
+      </a>
+ 
+      <!-- Wallet -->
+      <a href="#" class="mobile-action-card">
+        <div class="mobile-action-card__icon">
+          <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+            <use href="#icon-wallet"></use>
+          </svg>
+        </div>
+        <div class="mobile-action-card__content">
+          <h3 class="mobile-action-card__title" data-ar="محفظتي" data-en="My Wallet">محفظتي</h3>
+          <p class="mobile-action-card__desc" data-ar="عرض الرصيد والمعاملات" data-en="View balance & transactions">عرض الرصيد والمعاملات</p>
+        </div>
+        <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+          <use href="#icon-chevron-left"></use>
+        </svg>
+      </a>
+ 
+      <!-- Profile -->
+      <a href="#" class="mobile-action-card">
+        <div class="mobile-action-card__icon">
+          <svg class="icon icon-ui" aria-hidden="true" width="24" height="24">
+            <use href="#icon-user"></use>
+          </svg>
+        </div>
+        <div class="mobile-action-card__content">
+          <h3 class="mobile-action-card__title" data-ar="حسابي" data-en="My Account">حسابي</h3>
+          <p class="mobile-action-card__desc" data-ar="الإعدادات والطلبات" data-en="Settings & orders">الإعدادات والطلبات</p>
+        </div>
+        <svg class="icon icon-ui chevron" aria-hidden="true" width="20" height="20">
+          <use href="#icon-chevron-left"></use>
+        </svg>
+      </a>
+ 
+    </div>
+  </div>
 
 
   <!-- ═══════════════════════════════════════════════════════════
