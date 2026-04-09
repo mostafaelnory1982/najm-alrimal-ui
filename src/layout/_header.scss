@@ -3,7 +3,7 @@
 @use '../base/typography' as ty;
 
 // ════════════════════════════════════════════════════════════
-// _header.scss — Bulletproof Responsive
+// _header.scss — Bulletproof Responsive + Mobile Menus
 // ════════════════════════════════════════════════════════════
 
 .site-header {
@@ -114,7 +114,7 @@ html.dark .site-header.is-scrolled {
 
   .header-actions {
     display: flex; align-items: center; gap: p.$space-4; padding-inline-start: p.$space-3; flex-shrink: 0; order: 3;
-    @media (max-width: 960px) { display: none !important; } // البلوك ده مستحيل يظهر على التابلت دلوقتي
+    @media (max-width: 960px) { display: none !important; }
 
     .btn-action {
       display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: p.$radius-full;
@@ -148,12 +148,24 @@ html.dark .site-header.is-scrolled {
   }
 
   .btn-hamburger {
-    display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: p.$radius-full;
+    display: none; align-items: center; justify-content: center; position: relative;
+    width: 44px; height: 44px; border-radius: p.$radius-full;
     border: none; background: rgb(var(--color-surface-container)); color: rgb(var(--color-on-surface)); cursor: pointer;
     transition: background p.$transition-speed; order: 4;
     @media (max-width: 960px) { display: flex !important; order: 3; }
-    .icon { width: 28px; height: 28px; transition: transform p.$transition-speed; }
-    &.is-open .icon { transform: rotate(90deg); }
+    
+    .icon { width: 28px; height: 28px; position: absolute; transition: opacity 200ms ease, transform 200ms ease; }
+    
+    // Default state: show menu icon, hide close icon
+    .menu-icon { opacity: 1; transform: rotate(0deg); }
+    .close-icon { opacity: 0; transform: rotate(90deg); }
+    
+    // Active state: hide menu icon, show close icon
+    &.is-open {
+      .menu-icon { opacity: 0; transform: rotate(-90deg); }
+      .close-icon { opacity: 1; transform: rotate(0deg); }
+    }
+    
     &:hover { background: rgb(var(--color-outline-variant)); }
   }
 
@@ -223,5 +235,234 @@ html.dark .site-header.is-scrolled {
     transition: background p.$transition-speed, color p.$transition-speed;
     .icon { width: 16px; height: 16px; flex-shrink: 0; }
     &:hover { background: rgba(var(--color-primary), 0.06); color: rgb(var(--color-primary)); }
+  }
+}
+
+
+// ════════════════════════════════════════════════════════════
+// MOBILE MENU SYSTEM
+// ════════════════════════════════════════════════════════════
+
+// ── Mobile Menu Overlay ─────────────────────────────────────
+.mobile-menu-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1020;
+  background: rgba(0, 0, 0, 0.40);
+  opacity: 0; pointer-events: none;
+  transition: opacity 300ms ease;
+  
+  &.is-active {
+    opacity: 1; pointer-events: auto;
+  }
+}
+
+html.dark .mobile-menu-overlay {
+  background: rgba(0, 0, 0, 0.60);
+}
+
+// ── Mobile Menu Base ────────────────────────────────────────
+.mobile-menu {
+  position: fixed; top: 0; width: 100%; max-width: 100vw; z-index: 1025;
+  background: rgb(var(--color-surface));
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.15);
+  overflow-y: auto; overflow-x: hidden;
+  max-height: 0; opacity: 0; pointer-events: none;
+  transition: max-height 300ms ease, opacity 250ms ease;
+  
+  // RTL support
+  inset-inline-start: 0;
+  
+  &.is-active {
+    max-height: calc(100vh - 80px); // Account for header height
+    opacity: 1; pointer-events: auto;
+  }
+  
+  // Positioning below header
+  // Desktop header is ~128px, but on mobile it's ~64px
+  @media (max-width: 960px) {
+    top: 64px;
+  }
+}
+
+html.dark .mobile-menu {
+  background: rgb(var(--color-surface));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.30);
+}
+
+// ── Mobile Menu Header ──────────────────────────────────────
+.mobile-menu__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: p.$space-4 p.$space-6;
+  border-bottom: 1px solid rgb(var(--color-outline-variant));
+  background: rgb(var(--color-surface));
+  position: sticky; top: 0; z-index: 1;
+}
+
+.mobile-menu__title {
+  font-family: var(--font-primary);
+  font-size: p.$font-size-body-md;
+  font-weight: p.$font-weight-bold;
+  color: rgb(var(--color-on-surface));
+  margin: 0;
+}
+
+.mobile-menu__close {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: p.$radius-full;
+  border: none; background: transparent;
+  color: rgb(var(--color-on-surface));
+  cursor: pointer;
+  transition: background p.$transition-speed;
+  
+  .icon { width: 24px; height: 24px; }
+  
+  &:hover { background: rgb(var(--color-surface-container)); }
+}
+
+// ── Primary Menu (Navigation Links) ─────────────────────────
+.mobile-menu__list {
+  list-style: none; margin: 0; padding: p.$space-4 p.$space-6;
+}
+
+.mobile-menu__item {
+  border-bottom: 1px solid rgba(var(--color-outline-variant), 0.50);
+  
+  &:last-child { border-bottom: none; }
+}
+
+.mobile-menu__link {
+  display: flex; align-items: center; gap: p.$space-3;
+  padding: p.$space-4 0;
+  text-decoration: none;
+  color: rgb(var(--color-on-surface));
+  font-family: var(--font-primary);
+  font-size: p.$font-size-body-lg;
+  font-weight: p.$font-weight-medium;
+  transition: color p.$transition-speed;
+  
+  .icon { 
+    width: 20px; height: 20px; 
+    color: rgb(var(--color-on-surface-variant));
+    flex-shrink: 0;
+  }
+  
+  span { flex: 1; }
+  
+  .chevron {
+    width: 20px; height: 20px;
+    color: rgb(var(--color-on-surface-variant));
+    flex-shrink: 0;
+    
+    // RTL auto-flip via CSS logical properties
+    transform: scaleX(var(--dir-flip, 1));
+  }
+  
+  &:hover {
+    color: rgb(var(--color-primary));
+    
+    .icon, .chevron {
+      color: rgb(var(--color-primary));
+    }
+  }
+  
+  &:active {
+    opacity: 0.70;
+  }
+}
+
+// RTL flip chevron
+html[dir="rtl"] .mobile-menu__link .chevron {
+  --dir-flip: -1;
+}
+
+// ── Secondary Menu (Action Cards) ───────────────────────────
+.mobile-menu__actions {
+  padding: p.$space-4 p.$space-6;
+  display: flex; flex-direction: column; gap: p.$space-3;
+}
+
+.mobile-action-card {
+  display: flex; align-items: center; gap: p.$space-3;
+  padding: p.$space-4;
+  border-radius: p.$radius-lg;
+  background: rgb(var(--color-surface-container));
+  text-decoration: none;
+  transition: background p.$transition-speed, transform p.$transition-speed;
+  
+  &:hover {
+    background: rgb(var(--color-surface-container-high));
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.mobile-action-card__icon {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px;
+  border-radius: p.$radius-md;
+  background: rgb(var(--color-primary-container));
+  color: rgb(var(--color-on-primary-cont));
+  flex-shrink: 0;
+  
+  .icon { width: 24px; height: 24px; }
+}
+
+.mobile-action-card__badge {
+  position: absolute; top: -4px; right: -4px;
+  min-width: 18px; height: 18px;
+  border-radius: p.$radius-full;
+  background: rgb(var(--color-error));
+  color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  padding-inline: 4px;
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: p.$font-weight-bold;
+  line-height: 1;
+}
+
+.mobile-action-card__content {
+  flex: 1; min-width: 0;
+}
+
+.mobile-action-card__title {
+  font-family: var(--font-primary);
+  font-size: p.$font-size-body-md;
+  font-weight: p.$font-weight-semibold;
+  color: rgb(var(--color-on-surface));
+  margin: 0 0 p.$space-1 0;
+}
+
+.mobile-action-card__desc {
+  font-family: var(--font-primary);
+  font-size: p.$font-size-body-sm;
+  color: rgb(var(--color-on-surface-variant));
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-action-card .chevron {
+  width: 20px; height: 20px;
+  color: rgb(var(--color-on-surface-variant));
+  flex-shrink: 0;
+  
+  // RTL auto-flip
+  transform: scaleX(var(--dir-flip, 1));
+}
+
+html[dir="rtl"] .mobile-action-card .chevron {
+  --dir-flip: -1;
+}
+
+// ── Prevent body scroll when menu is open ───────────────────
+body.menu-open {
+  overflow: hidden;
+  @media (min-width: 961px) {
+    overflow: auto; // Don't lock on desktop
   }
 }
